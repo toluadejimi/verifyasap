@@ -205,12 +205,12 @@
 
 
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link " href="order.html">Buy Number</a>
+                                            <a class="nav-link " href="home">Buy Number</a>
 
                                         </li>
 
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link " href="about.html">About Us</a>
+                                            <a class="nav-link " href="#">About Us</a>
 
                                         </li>
 
@@ -269,7 +269,7 @@
                                 <p class="lead fs-19 lh-sm mb-7">Don't feel comfortable giving out your phone number?
                                     Protect your online identity by using our virtual phone numbers.</p>
                                 <div>
-                                    <a href="order.html"
+                                    <a href="home"
                                         class="btn btn-lg btn-primary rounded mb-10 mb-xxl-5https://verifyasap.com/register">Buy
                                         Numbers Now!</a>
                                 </div>
