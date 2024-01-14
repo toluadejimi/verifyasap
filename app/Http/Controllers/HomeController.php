@@ -249,7 +249,7 @@ class HomeController extends Controller
         $order = Verification::where('id', $request->id)->first() ?? null;
 
         if($order == null){
-            return back()->with('error', 'Order not found');
+            return redirect('home')->with('error', 'Order not found');
         }
 
         if($order->status == 2){

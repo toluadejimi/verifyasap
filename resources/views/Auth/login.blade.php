@@ -1,5 +1,3 @@
-<script id="pixel-chaty" async="true" src="https://cdn.chaty.app/pixel.js?id=SQB08AOB"></script>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -604,7 +602,7 @@
 
         <body>
 
-            
+
     <div class="font-sans text-gray-900 antialiased">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
             <div>

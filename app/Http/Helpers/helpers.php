@@ -167,6 +167,8 @@ function get_countries(){
         $countries = $var ?? null;
 
 
+
+
         // $history = [];
         // foreach ($countries as $key => $value) {
         //     $history[] = array(
@@ -253,6 +255,7 @@ function create_order($country, $service, $price){
     $var = curl_exec($curl);
     curl_close($curl);
     $var = json_decode($var);
+
 
     $success = $var->success ?? null;
 

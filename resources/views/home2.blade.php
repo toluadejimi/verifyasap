@@ -1,5 +1,3 @@
-<script id="pixel-chaty" async="true" src="https://cdn.chaty.app/pixel.js?id=SQB08AOB"></script>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -926,7 +924,7 @@
 
                                             <a href="#exampleModal" data-toggle="modal" class="text-small text-primary">Why SMS does not arrive?</p></a>
 
-                                          
+
 
                                             <div class="btn-group" role="group" aria-label="Third group">
                                                 <a class="btn btn-danger" href="cancle-sms?id={{$num->id}}"
