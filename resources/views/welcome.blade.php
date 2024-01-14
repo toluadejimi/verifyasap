@@ -142,7 +142,7 @@
 
         <div style="color:#3f78e0; font-weight:bold;" class="flex justify-end text-white">
             <a class="text-xs md:text-base flex gap-3 px-3 md:px-5 py-2 md:py-3 bg-primary rounded-bl-lg"
-                href="register.html">
+                href="register">
                 <svg style="color:white;" xmlns="http://www.w3.org/2000/svg" class="h-4 md:h-5 w-4 md:w-5" fill="none"
                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -364,7 +364,7 @@
                                     <li><i class="uil uil-check"></i>User Authentication</li>
                                     <li><i class="uil uil-check"></i>Prevention of Unauthorized Access.</li>
                                 </ul>
-                                <a href="register.html" class="more hover link-primary">Sign Up</a>
+                                <a href="register" class="more hover link-primary">Sign Up</a>
                             </div>
                             <!-- /column -->
                         </div>
@@ -389,7 +389,7 @@
                                     <li><i class="uil uil-check"></i>Reliable Delivery.</li>
                                     <li><i class="uil uil-check"></i>Fallback Options.</li>
                                 </ul>
-                                <a href="register.html" class="more hover link-green">Sign Up</a>
+                                <a href="register" class="more hover link-green">Sign Up</a>
                             </div>
                             <!-- /column -->
                         </div>
@@ -413,7 +413,7 @@
                                     <li><i class="uil uil-check"></i>100% Discount Prices.</li>
 
                                 </ul>
-                                <a href="register.html" class="more hover link-fuchsia">Sign Up</a>
+                                <a href="register" class="more hover link-fuchsia">Sign Up</a>
                             </div>
                             <!-- /column -->
                         </div>
