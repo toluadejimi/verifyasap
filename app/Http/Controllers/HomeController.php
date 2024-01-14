@@ -68,6 +68,14 @@ class HomeController extends Controller
         $number = Verification::where('user_id', Auth::id())->where('status', 1)->first()->phone ?? null;
 
 
+       $nummm = Verification::where('user_id', Auth::id())->first()->status ?? null;
+       if($nummm == 2){
+        return redirect('home');
+       }
+
+
+
+
             $data['number_order'] = 1;
             $data['sms'] = $sms;
             $data['number'] = $number;
