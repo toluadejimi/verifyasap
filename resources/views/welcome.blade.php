@@ -190,7 +190,7 @@
                     <nav class="navbar navbar-expand-lg center-nav transparent navbar-light">
                         <div class="container flex-lg-row flex-nowrap align-items-center">
                             <div class="navbar-brand w-100">
-                                <a href="https://verifyasap.com/index.html">
+                                <a href="/">
                                     <img src="{{url('')}}/public/assets/img/logo.png" alt="">
                                 </a>
                             </div>
@@ -224,11 +224,11 @@
                                     <div class="offcanvas-footer d-lg-none">
                                         <div>
                                             <nav class="nav social social-white mt-4">
-                                                <a href="index.html#"><i class="uil uil-twitter"></i></a>
-                                                <a href="index.html#"><i class="uil uil-facebook-f"></i></a>
-                                                <a href="index.html#"><i class="uil uil-dribbble"></i></a>
-                                                <a href="index.html#"><i class="uil uil-instagram"></i></a>
-                                                <a href="index.html#"><i class="uil uil-youtube"></i></a>
+                                                <a href="/"><i class="uil uil-twitter"></i></a>
+                                                <a href="/"><i class="uil uil-facebook-f"></i></a>
+                                                <a href="/"><i class="uil uil-dribbble"></i></a>
+                                                <a href="/"><i class="uil uil-instagram"></i></a>
+                                                <a href="/"><i class="uil uil-youtube"></i></a>
                                             </nav>
                                             <!-- /.social -->
                                         </div>
@@ -593,11 +593,11 @@
                                 <p class="mb-4">© 2024 Verify Asap. <br class="d-none d-lg-block">All rights reserved.
                                 </p>
                                 <nav class="nav social ">
-                                    <a href="index.html#"><i class="uil uil-twitter"></i></a>
-                                    <a href="index.html#"><i class="uil uil-facebook-f"></i></a>
-                                    <a href="index.html#"><i class="uil uil-dribbble"></i></a>
-                                    <a href="index.html#"><i class="uil uil-instagram"></i></a>
-                                    <a href="index.html#"><i class="uil uil-youtube"></i></a>
+                                    <a href="/"><i class="uil uil-twitter"></i></a>
+                                    <a href="/"><i class="uil uil-facebook-f"></i></a>
+                                    <a href="/"><i class="uil uil-dribbble"></i></a>
+                                    <a href="/"><i class="uil uil-instagram"></i></a>
+                                    <a href="/"><i class="uil uil-youtube"></i></a>
                                 </nav>
                                 <!-- /.social -->
                             </div>
@@ -609,7 +609,7 @@
                                 <h4 class="widget-title  mb-3">Get in Touch</h4>
                                 <address class="pe-xl-15 pe-xxl-17">Moonshine St. 14/05 Light City, London, United
                                     Kingdom</address>
-                                <a href="index.html" class="link-body">support@verifyasap.com</a>
+                                <a href="/" class="link-body">support@verifyasap.com</a>
                             </div>
                             <!-- /.widget -->
                         </div>
@@ -618,7 +618,7 @@
                             <div class="widget">
                                 <h4 class="widget-title  mb-3">Learn More</h4>
                                 <ul class="list-unstyled text-reset mb-0">
-                                    <li><a href="index.html#">About Us</a></li>
+                                    <li><a href="/">About Us</a></li>
                                     <li><a href="terms.html">Policies</a></li>
 
                                 </ul>
