@@ -44,7 +44,7 @@ class HomeController extends Controller
         $data['verification'] = $verification;
 
         if($verifications->count() == 1){
-            $data['pend'] = 1;
+           return redirect('home2');
         }else{
             $data['pend'] = 0;
         }
@@ -67,7 +67,7 @@ class HomeController extends Controller
         $sms = Verification::where('user_id', Auth::id())->where('status', 1)->first()->sms ?? null;
         $number = Verification::where('user_id', Auth::id())->where('status', 1)->first()->phone ?? null;
 
-            
+
             $data['number_order'] = 1;
             $data['sms'] = $sms;
             $data['number'] = $number;
