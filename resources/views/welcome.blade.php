@@ -677,21 +677,45 @@
                     <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"></path>
                 </svg>
             </div>
-            <script src="https://code.tidio.co/67rkispgflroj92filhyvnswikz4ckvn.js" async></script>
             <script data-cfasync="false" src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
             <script src="{{url('')}}/public/assets/js/plugins.js"></script>
             <script src="{{url('')}}/public/assets/js/theme.js"></script>
+
+
+            <style>
+                .float {
+                    position: fixed;
+                    width: 60px;
+                    height: 60px;
+                    bottom: 40px;
+                    right: 40px;
+                    background-color: #000000;
+                    color: #FFF;
+                    border-radius: 50px;
+                    text-align: center;
+                    font-size: 30px;
+                    box-shadow: 2px 2px 3px #999;
+                    z-index: 100;
+                }
+
+                .my-float {
+                    margin-top: 16px;
+                }
+            </style>
+
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+            <a href="https://t.me/logmarketplacee" class="float" target="_blank">
+                <i class="fa fa-comment my-float"></i>
+            </a>
+
+
         </body>
 
         </html>
         <!-- Livewire Component wire-end:eYPSy5A4nBOh9Tk7XhoH -->
     </div>
     </div>
-    <script src="livewire/livewire.js%3Fid=90730a3b0e7144480175" data-turbo-eval="false" data-turbolinks-eval="false">
-    </script>
-    <script data-turbo-eval="false" data-turbolinks-eval="false">
-        window.livewire = new Livewire();window.Livewire = window.livewire;window.livewire_app_url = '';window.livewire_token = 'foewKYXFOarJRxYMmhQo3T3jOg6JngRe0CUmKZDM';window.deferLoadingAlpine = function (callback) {window.addEventListener('livewire:load', function () {callback();});};let started = false;window.addEventListener('alpine:initializing', function () {if (! started) {window.livewire.start();started = true;}});document.addEventListener("DOMContentLoaded", function () {if (! started) {window.livewire.start();started = true;}});
-    </script>
+
 
 
 

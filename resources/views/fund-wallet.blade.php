@@ -814,12 +814,33 @@
     <!-- Livewire Component wire-end:k3avItmW0YN9EgcVBf0J -->
     </div>
     </div>
-    <script src="/livewire/livewire.js?id=90730a3b0e7144480175" data-turbo-eval="false" data-turbolinks-eval="false">
-    </script>
-    <script data-turbo-eval="false" data-turbolinks-eval="false">
-        window.livewire = new Livewire();window.Livewire = window.livewire;window.livewire_app_url = '';window.livewire_token = 'toMly90uEuHnJFQfBy9mkwUSirMwxb5rT5FLfcbg';window.deferLoadingAlpine = function (callback) {window.addEventListener('livewire:load', function () {callback();});};let started = false;window.addEventListener('alpine:initializing', function () {if (! started) {window.livewire.start();started = true;}});document.addEventListener("DOMContentLoaded", function () {if (! started) {window.livewire.start();started = true;}});
-    </script>
 
+
+    <style>
+        .float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #000000;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+        }
+
+        .my-float {
+            margin-top: 16px;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <a href="https://t.me/logmarketplacee" class="float" target="_blank">
+        <i class="fa fa-comment my-float"></i>
+    </a>
 
 </body>
 

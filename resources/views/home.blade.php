@@ -1104,7 +1104,6 @@
                     <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"></path>
                 </svg>
             </div>
-            <script src="//code.tidio.co/67rkispgflroj92filhyvnswikz4ckvn.js" async></script>
             <script data-cfasync="false" src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
             <script src="{{url('')}}/public/assets/js/plugins.js"></script>
             <script src="{{url('')}}/public/assets/js/theme.js"></script>
@@ -1156,6 +1155,33 @@
 
 
     </script>
+
+
+    <style>
+        .float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #000000;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+        }
+
+        .my-float {
+            margin-top: 16px;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <a href="https://t.me/logmarketplacee" class="float" target="_blank">
+        <i class="fa fa-comment my-float"></i>
+    </a>
 
 
 
