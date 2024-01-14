@@ -775,7 +775,7 @@
                     <nav class="navbar navbar-expand-lg center-nav transparent navbar-light">
                         <div class="container flex-lg-row flex-nowrap align-items-center">
                             <div class="navbar-brand w-100">
-                                <a href="index.html">
+                                <a href="/">
                                     <img src="{{url('')}}/public/assets/img/logo.png" alt="">
                                 </a>
                             </div>
@@ -922,10 +922,10 @@
                                                 </div>
                                             </div>
 
-                                         
+
 
                                             <a href="#exampleModal" data-toggle="modal" class="text-small text-primary">Why SMS does not arrive?</p></a>
-                                         
+
                                           
 
                                             <div class="btn-group" role="group" aria-label="Third group">
@@ -972,18 +972,18 @@
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                    
+
                       <div class="modal-body">
                         <p>
                             Why SMS does not arrive?
                         Please consider the following recommendations:
-                        
-                        </p> 
+
+                        </p>
                         <p> 1.⁠ ⁠Repeat sending the SMS code from the selected service to the purchased phone number.</p>
                         <p> 2.⁠ ⁠Change your IP address. Use a proxy or VPN. Your IP address should comply with the country of the purchased phone number.</p>
                         <p> 3.⁠ ⁠Apply extensions in the browser to change the user-agent or open the tab in incognito mode. Many websites track a certain set of user information.</p>
                         <p> 4.⁠ ⁠Try to buy another phone number.</p>
-                        
+
                         <p>Additionally:
                         We don’t charge you until you receive code , so you can keep trying different numbers</p>
                       </div>

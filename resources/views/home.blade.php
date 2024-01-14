@@ -708,7 +708,7 @@
                     <nav class="navbar navbar-expand-lg center-nav transparent navbar-light">
                         <div class="container flex-lg-row flex-nowrap align-items-center">
                             <div class="navbar-brand w-100">
-                                <a href="index.html">
+                                <a href="/">
                                     <img src="{{url('')}}/public/assets/img/logo.png" alt="">
                                 </a>
                             </div>
@@ -987,7 +987,7 @@
 
 
 
-                               
+
 
                             </div>
 
