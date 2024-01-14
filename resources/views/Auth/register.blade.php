@@ -604,11 +604,11 @@
 
         <body>
 
-            
+
     <div class="font-sans text-gray-900 antialiased">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
             <div>
-                <a href="index.html">
+                <a href="/">
                     <img src="{{url('')}}/public/assets/storage/images/logo.png" alt="logo">
                 </a>
             </div>
