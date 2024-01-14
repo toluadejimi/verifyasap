@@ -980,4 +980,14 @@ class HomeController extends Controller
     }
 
 
+    public function webhook(request $request){
+
+        $message = json_encode($request->all());
+        send_notification($message);
+
+
+    }
+
+
+
 }

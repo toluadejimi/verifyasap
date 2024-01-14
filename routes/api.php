@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::any('get-smscode',  [HomeController::class,'get_smscode']);
+Route::any('webhook',  [HomeController::class,'webhook']);
+
 
 
