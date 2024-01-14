@@ -35,7 +35,7 @@ class HomeController extends Controller
         $services = get_services();
 
         $verification = Verification::where('user_id', Auth::id())->get();
-
+        $verifications = Verification::where('user_id', Auth::id())->where('status', 1)->get();
 
 
 
@@ -43,8 +43,40 @@ class HomeController extends Controller
         $data['countries'] = $countries;
         $data['verification'] = $verification;
 
+        if($verifications->count() == 1){
+            $data['pend'] = 1;
+        }else{
+            $data['pend'] = 0;
+        }
+
         $data['product'] = null;
+
+
+
         return view('home', $data);
+
+
+    }
+
+
+    public function home2(request $request)
+    {
+
+
+        $num = Verification::where('user_id', Auth::id())->where('status', 1)->first() ?? null;
+        $sms = Verification::where('user_id', Auth::id())->where('status', 1)->first()->sms ?? null;
+        $number = Verification::where('user_id', Auth::id())->where('status', 1)->first()->phone ?? null;
+
+            
+            $data['number_order'] = 1;
+            $data['sms'] = $sms;
+            $data['number'] = $number;
+            $data['num'] = $num;
+
+
+        return view('home2', $data);
+
+
     }
 
 
@@ -112,6 +144,16 @@ class HomeController extends Controller
             $data['price'] = $ngnprice;
             $data['product'] = 1;
 
+            $data['number_order'] = null;
+
+            $verifications = Verification::where('user_id', Auth::id())->where('status', 1)->get();
+            if($verifications->count() > 1){
+                $data['pend'] = 1;
+            }else{
+                $data['pend'] = 0;
+            }
+
+
             return view('home', $data);
 
         }
@@ -129,6 +171,14 @@ class HomeController extends Controller
             return back()->with('error', "Insufficient Funds");
         }
 
+
+        $ckn = Verification::where('user_id', Auth::id())->where('status', 1) ?? null;
+        if($ckn->count() == 1){
+            return redirect('home')->with('error', "Complete or End Pending Order");
+        }
+
+
+
         User::where('id', Auth::id())->decrement('wallet', $request->price);
 
         $country = $request->country;
@@ -137,12 +187,14 @@ class HomeController extends Controller
 
 
         $order = create_order($country, $service, $price);
+
         if($order == 1){
         User::where('id', Auth::id())->increment('wallet', $request->price);
         $message = "Verify ASAP | Low balance";
         send_notification($message);
         return redirect('home')->with('error', 'Error occurred, Please try again');
         }
+
         if($order == 2){
             User::where('id', Auth::id())->increment('wallet', $request->price);
             $message = "Verify ASAP | Error";
@@ -152,13 +204,33 @@ class HomeController extends Controller
 
         if($order == 3 ){
 
-            return redirect('home')->with('message', 'Phone Number available to receive sms');
+            $countries = get_countries();
+            $services = get_services();
+
+            $verification = Verification::where('user_id', Auth::id())->get();
+            $sms = Verification::where('user_id', Auth::id())->where('status', 1)->first()->sms;
+            $number = Verification::where('user_id', Auth::id())->where('status', 1)->first()->phone;
+            $num = Verification::where('user_id', Auth::id())->where('status', 1)->first();
+
+
+            $data['services'] = $services;
+            $data['countries'] = $countries;
+            $data['verification'] = $verification;
+            $data['sms'] = $sms;
+            $data['number'] = $number;
+            $data['product'] = null;
+
+            $data['number_order'] = 1;
+            $data['product'] = null;
+
+            $data['num'] = $num;
+
+
+
+
+            return view('home2', $data);
 
         }
-
-
-
-
 
     }
 
@@ -170,6 +242,10 @@ class HomeController extends Controller
 
         if($order == null){
             return back()->with('error', 'Order not found');
+        }
+
+        if($order->status == 2){
+            return redirect('home')->with('message', "Order Completed");
         }
 
         if($order->status == 1){
@@ -186,7 +262,7 @@ class HomeController extends Controller
                 $amount = number_format($order->cost, 2);
                 User::where('id', Auth::id())->increment('wallet', $order->cost);
                 Verification::where('id', $request->id)->delete();
-                return back()->with('message', "Order has been cancled, NGN$amount has been refunded");
+                return redirect('home')->with('message', "Order has been cancled, NGN$amount has been refunded");
             }
 
 
@@ -194,15 +270,14 @@ class HomeController extends Controller
 
 
                 $order = Verification::where('id', $request->id)->first() ?? null;
-
                 if($order->status != 1 || $order == null){
-                    return back()->with('error', "Please try again later");
+                    return redirect('home')->with('error', "Please try again later");
                 }
 
                 $amount = number_format($order->cost, 2);
                 User::where('id', Auth::id())->increment('wallet', $order->cost);
                 Verification::where('id', $request->id)->delete();
-                return back()->with('message', "Order has been cancled, NGN$amount has been refunded");
+                return redirect('home')->with('message', "Order has been cancled, NGN$amount has been refunded");
             }
 
 
@@ -227,14 +302,14 @@ class HomeController extends Controller
             $sms = check_sms($orderID);
 
             if($sms == 1){
-                return back()->with('error', 'Sms Pending, please wait and refresh again');
+                return redirect('home2')->with('error', 'Sms Pending, please wait and refresh again');
             }
 
             if($sms == 6){
                 $amount = number_format($order->cost, 2);
                 User::where('id', Auth::id())->increment('wallet', $order->cost);
                 Verification::where('id', $request->id)->delete();
-                return back()->with('message', "Order has been canceled, NGN$amount has been refunded");
+                return redirect('home')->with('message', "Order has been canceled, NGN$amount has been refunded");
             }
 
             if($sms == 6){
@@ -874,4 +949,35 @@ class HomeController extends Controller
             return back()->with('error', "please try again later");
         }
     }
+
+
+    public function  get_smscode(request $request){
+
+
+       $sms =  Verification::where('phone', $request->num)->first()->sms ?? null;
+       $order_id =  Verification::where('phone', $request->num)->first()->order_id ?? null;
+       check_sms($order_id);
+
+
+        $originalString = 'waiting for sms';
+        $processedString = str_replace('"', '', $originalString);
+
+
+       if($sms == null){
+        return response()->json([
+            'message' => $processedString
+        ]);
+       }else{
+
+        return response()->json([
+            'message' => $sms
+        ]);
+       }
+
+
+
+
+    }
+
+
 }

@@ -39,7 +39,7 @@
 }
 body {
   font-family: "Space Grotesk", sans-serif;
-  font-size: .85rem
+  font-size: 0.5rem
 }
 em {
   font-family: "IBM Plex Serif", serif
@@ -93,10 +93,10 @@ h6 {
 .nav-link,
 .nav-link p,
 .navbar .btn-sm {
-  font-size: .85rem
+  font-size: .5rem
 }
 .dropdown-menu {
-  font-size: .8rem
+  font-size: .5rem
 }
 .btn-group-sm>.btn,
 .btn-sm,

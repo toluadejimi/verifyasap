@@ -264,7 +264,7 @@ function create_order($country, $service, $price){
         $ver->order_id = $var->order_id;
         $ver->country = $var->country;
         $ver->service = $var->service;
-        $ver->expires_in = $var->expires_in;
+        $ver->expires_in = $var->expires_in / 10 - 20;
         $ver->cost = $price;
         $ver->api_cost = $var->cost;
         $ver->status = 1;
@@ -376,7 +376,7 @@ function check_sms($orderID){
     if($status == 1){
 
         Verification::where('order_id', $orderID)->update([
-            'expires_in' => $var->time_left,
+            'expires_in' => $var->time_left / 10 - 20,
         ]);
 
         return 1;

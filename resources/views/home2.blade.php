@@ -15,6 +15,10 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 
@@ -176,6 +180,10 @@
             display: inline-block;
             margin-left: 0;
         }
+
+        .modal-backdrop {
+            z-index: -1;
+          }
 
         /* line 130, bootstrap-select.scss */
         .bootstrap-select.btn-group.dropdown-menu-right,
@@ -667,6 +675,65 @@
                 background: transparent;
             }
         }
+
+        .input-group {
+            margin-top: 10px;
+            margin-bottom: 20px;
+
+            position: relative;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group-addon {
+            border: none;
+        }
+
+        .linkname {
+            display: none;
+        }
+
+        #copyButton {
+            cursor: pointer;
+            background: #3f78e0;
+            color: white;
+        }
+
+        #copyTarget {
+            border-left: none;
+        }
+
+
+        #copyButton2 {
+            cursor: pointer;
+            background: #3f78e0;
+            color: white;
+        }
+
+        #copyTarget2 {
+            border-left: none;
+        }
+
+
+        .copied {
+            opacity: 1;
+            position: absolute;
+            left: 55px;
+        }
+
+        @media (min-width: 768px) {
+            .copied {
+                left: 135px;
+            }
+
+            .linkname {
+                display: block;
+                background: #3b3e45;
+                color: #fff;
+            }
+        }
     </style>
 </head>
 
@@ -788,31 +855,15 @@
 
                             <div class="col-lg-9 col-xl-8 col-xxl-7 mx-auto  text-center" data-cues="slideInDown"
                                 data-group="page-title" data-delay="500">
+                                <h5 class="display-1 ls-sm fs-40 mb-4 px-md-8 px-lg-0">Hi {{ Auth::user()->username
+                                    }},</h5>
+                                <p class="lead fs-19 lh-sm mb-1  text-center">Kindly wait to receive your SMS.</p>
+                                <p class="lead fs-19 lh-sm text-small text-warning  text-center">Page may automatically refresh.</p>
 
 
 
 
-                                <h5 class="display-1 ls-sm fs-40 mb-4 px-md-8 px-lg-0">Welcome {{ Auth::user()->username
-                                    }}</h5>
-
-                                    @if($pend == 1)
-                                    <a  href="home2" class="btn btn-warning mb-2">You have a pending order</a>
-                                    @endif
-                                <p class="lead fs-19 lh-sm mb-7  text-center">Dont feel comfortable giving out your
-                                    phone number?
-                                    Protect your online identity by using our virtual phone numbers.</p>
-                            </div>
-
-
-
-
-                            <div class="row p-3">
-
-
-
-
-                                <div class="col-xl-6 col-md-6 col-sm-12">
-
+                                <div class="col-xl-12 col-md-12 col-sm-12 p-2 justify-center">
                                     @if ($errors->any())
                                     <div class="alert alert-danger">
                                         <ul>
@@ -833,163 +884,78 @@
                                     </div>
                                     @endif
 
+
                                     <div class="card">
 
+
+
+
                                         <div class="card-body">
-
-
-                                            <form action="check-av" method="POST">
-                                                @csrf
-
-                                                <div class="row">
-
-                                                    <div class="col-xl-10 col-md-10 col-sm-12 p-3">
-
-
-                                                        <p class="mb-5 text-muted"> Choose your prefered country and
-                                                            service
-                                                        </p>
-
-
-                                                        <label for="country" class="mb-2 mt-3 text-muted"> Select
-                                                            Country 🌍</label>
-                                                        <div>
-                                                            <select style="width:250px; border-color:rgb(0, 11, 136);"
-                                                                id="select_page" class="operator" name="country">
-                                                                <option value="">🔍 Select Country</option>
-                                                                @foreach ($countries as $data)
-                                                                <option value="{{ $data->ID }}">{{ $data->name }}
-                                                                </option>
-                                                                @endforeach
-
-                                                            </select>
-                                                        </div>
-
-
-                                                        <label for="country" class="mt-3 text-muted mb-2"> Select
-                                                            Services 📞</label>
-                                                        <div>
-                                                            <select class="form-control" style="width:250px;"
-                                                                id="select_page2" name="service">
-
-                                                                <option value="">Choose Service</option>
-                                                                @foreach ($services as $data)
-                                                                <option value="{{ $data->ID }}">{{ $data->name }}
-                                                                </option>
-                                                                @endforeach
-
-                                                            </select>
-                                                        </div>
-
-
-
-                                                        <button type="submit" class="btn btn-primary btn-lg mt-3">Check
-                                                            availability 📶</button>
-
-                                                    </div>
-
-
-
-
-
-                                            </form>
-
-
-                                        </div>
-
-
-                                    </div>
-
-                                </div>
-                            </div>
-
-
-                            <div class="col-xl-6 col-md-6 col-sm-12 p-3">
-
-                                @if ($product != null)
-
-
-                                <div class="card mb-3">
-                                    <div class="card-body">
-
-                                        <div class="row">
-
-                                            <p class="text-muted">Service Infomation</p>
-                                            <div class="col-xl-4 col-md-4 col-sm-6">
-                                                <p class="text-muted">Price</p>
-                                                <p>NGN {{ number_format($price, 2) }}</p>
-                                            </div>
-
-                                            <div class="col-xl-4 col-md-4 col-sm-6">
-                                                <p class="text-muted">Success Rate</p>
-                                                @if ($rate < 10) <p class="text-danger">{{ $rate }}%</p>
-                                                    @elseif ($rate < 20) <p class="text-danger">{{ $rate }}%</p>
-                                                        @elseif ($rate < 30) <p class="text-danger">{{ $rate }}%
-                                                            </p>
-                                                            @elseif ($rate < 40) <p class="text-warning">{{ $rate
-                                                                }}%</p>
-                                                                @elseif ($rate < 50) <p class="text-warning">{{
-                                                                    $rate }}%</p>
-                                                                    @elseif ($rate < 60) <p class="text-success">{{
-                                                                        $rate }}%</p>
-                                                                        @elseif ($rate < 70) <p class="text-success">{{
-                                                                            $rate }}%</p>
-                                                                            @elseif ($rate < 80) <p
-                                                                                class="text-success">{{ $rate }}%
-                                                                                </p>
-                                                                                @elseif ($rate < 90) <p
-                                                                                    class="text-success">{{ $rate
-                                                                                    }}%</p>
-                                                                                    @elseif ($rate <= 100) <p
-                                                                                        class="text-success">{{
-                                                                                        $rate }}%</p>
-                                                                                        @else
-                                                                                        @endif
+                                            @if($number_order != null)
+                                            <label>Number 📞</label>
+                                            <div class="input-group">
+                                                <input type="text" id="copyTarget" class="form-control"
+                                                    value="{{$number}}">
+                                                <span id="copyButton" class="input-group-addon btn"
+                                                    title="Click to copy">
+                                                    <i class="fa fa-clipboard" aria-hidden="true"></i>
+                                                </span>
                                             </div>
 
 
-                                            @if(Auth::user()->wallet < $price) <a href="fund-wallet"
-                                                class="btn btn-secondary text-white btn-lg">Fund Wallet</a>
-                                                @else
-
-                                                <form action="order_now" method="POST">
-                                                    @csrf
-
-                                                    <input type="text" name="country" hidden value="{{ $count_id }}">
-                                                    <input type="text" name="price" hidden value="{{ $price }}">
-                                                    <input type="text" name="service" hidden value="{{ $serv }}">
-
-
-                                                    <button type="submit" class="btn btn-dark btn-lg mt-6">Buy Number
-                                                        Now</button>
+                                            <label class="my-1">Code from SMS 💬</label>
+                                            <div class="input-group">
+                                                <input type="text" readonly id="response-input" class="form-control">
+                                                <span id="copyButton2" class="input-group-addon btn"
+                                                    title="Click to copy">
+                                                    <i class="fa fa-clipboard" aria-hidden="true"></i>
+                                                </span>
+                                            </div>
 
 
 
-                                                </form>
+                                            <p class="text-small text-primary">{{ $num->expires_in }}% to complete</p>
+                                            <div class="progress my-4">
+                                                <div class="progress-bar" role="progressbar"
+                                                    style="width: {{ $num->expires_in }}%" aria-valuenow="2"
+                                                    aria-valuemin="0" aria-valuemax="100">
+                                                </div>
+                                            </div>
 
-                                                @endif
+                                         
+
+                                            <a href="#exampleModal" data-toggle="modal" class="text-small text-primary">Why SMS does not arrive?</p></a>
+                                         
+                                          
+
+                                            <div class="btn-group" role="group" aria-label="Third group">
+                                                <a class="btn btn-danger" href="cancle-sms?id={{$num->id}}"
+                                                    role="button"><i class="bi bi-archive-fill"> Delete Order</a></i>
+                                                <a class="btn btn-primary" href="check-sms?id={{$num->id}}"
+                                                    role="button"><i class="bi bi-arrow-clockwise"> Recheck
+                                                        Order</a></i>
+
+                                            </div>
+
+                                            @endif
+
+
+
+
+
+
 
 
 
                                         </div>
 
-
-
                                     </div>
 
                                 </div>
 
-
-
-                                @endif
-
-
-
-
-
-                               
-
                             </div>
+
+
 
 
                         </div>
@@ -1002,6 +968,28 @@
                 <!-- /section -->
 
 
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    
+                      <div class="modal-body">
+                        <p>
+                            Why SMS does not arrive?
+                        Please consider the following recommendations:
+                        
+                        </p> 
+                        <p> 1.⁠ ⁠Repeat sending the SMS code from the selected service to the purchased phone number.</p>
+                        <p> 2.⁠ ⁠Change your IP address. Use a proxy or VPN. Your IP address should comply with the country of the purchased phone number.</p>
+                        <p> 3.⁠ ⁠Apply extensions in the browser to change the user-agent or open the tab in incognito mode. Many websites track a certain set of user information.</p>
+                        <p> 4.⁠ ⁠Try to buy another phone number.</p>
+                        
+                        <p>Additionally:
+                        We don’t charge you until you receive code , so you can keep trying different numbers</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
 
 
@@ -1154,6 +1142,174 @@
 //change selectboxes to selectize mode to be searchable
    $("select").select2();
 });
+
+
+
+function copyToClipboard(element) {
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val($(element).text()).select();
+    document.execCommand("copy");
+    $temp.remove();
+}
+
+ var addrsField = $('.input_copy .txt');
+ @if($number_order == 1)
+addrsField.text("{{"$number" ?? null}} ");
+@endif
+$('.input_copy .icon').click(function() {
+        copyToClipboard('.input_copy .txt');
+        addrsField.addClass('flashBG')
+          .delay('1000').queue(function(){
+            addrsField.removeClass('flashBG').dequeue();
+        });
+    });
+
+
+
+
+
+     var addrsField = $('.input_copy2 .txt2');
+     @if($number_order == 1)
+    addrsField.text("{{"$sms" ?? null}} ");
+    @endif
+    $('.input_copy2 .icon2').click(function() {
+            copyToClipboard('.input_copy2 .txt2');
+            addrsField.addClass('flashBG')
+              .delay('1000').queue(function(){
+                addrsField.removeClass('flashBG').dequeue();
+            });
+        });
+
+
+        (function() {
+            "use strict";
+
+            function copyToClipboard(elem) {
+              var target = elem;
+
+              // select the content
+              var currentFocus = document.activeElement;
+
+              target.focus();
+              target.setSelectionRange(0, target.value.length);
+
+              // copy the selection
+              var succeed;
+
+              try {
+                succeed = document.execCommand("copy");
+              } catch (e) {
+                console.warn(e);
+
+                succeed = false;
+              }
+
+              // Restore original focus
+              if (currentFocus && typeof currentFocus.focus === "function") {
+                currentFocus.focus();
+              }
+
+              if (succeed) {
+                $(".copied").animate({ top: -25, opacity: 0 }, 700, function() {
+                  $(this).css({ top: 0, opacity: 1 });
+                });
+              }
+
+              return succeed;
+            }
+
+            $("#copyButton, #copyTarget").on("click", function() {
+              copyToClipboard(document.getElementById("copyTarget"));
+            });
+          })();
+
+
+
+
+
+
+
+          (function() {
+            "use strict";
+
+            function copyToClipboard(elem) {
+              var target = elem;
+
+              // select the content
+              var currentFocus = document.activeElement;
+
+              target.focus();
+              target.setSelectionRange(0, target.value.length);
+
+              // copy the selection
+              var succeed;
+
+              try {
+                succeed = document.execCommand("copy");
+              } catch (e) {
+                console.warn(e);
+
+                succeed = false;
+              }
+
+              // Restore original focus
+              if (currentFocus && typeof currentFocus.focus === "function") {
+                currentFocus.focus();
+              }
+
+              if (succeed) {
+                $(".copied").animate({ top: -25, opacity: 0 }, 700, function() {
+                  $(this).css({ top: 0, opacity: 1 });
+                });
+              }
+
+              return succeed;
+            }
+
+            $("#copyButton2, #copyTarget2").on("click", function() {
+              copyToClipboard(document.getElementById("copyTarget2"));
+            });
+          })();
+
+
+
+
+        makeRequest();
+        setInterval(makeRequest, 5000);
+
+        function makeRequest() {
+            fetch('{{ url('') }}/get-smscode?num={{$number}}')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+
+                    console.log(data.message);
+                    displayResponse(data.message);
+
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    displayResponse({ error: 'An error occurred while fetching the data.' });
+                });
+        }
+
+        function displayResponse(data) {
+            const responseInput = document.getElementById('response-input');
+            responseInput.value = data;
+        }
+
+
+        function reloadPage() {
+            location.reload();
+        }
+
+        setInterval(reloadPage, 40000);
+
 
 
 
