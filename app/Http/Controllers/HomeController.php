@@ -997,5 +997,17 @@ class HomeController extends Controller
     }
 
 
+    public function orders(request $request){
+
+        $orders = Verification::where('user_id', Auth::id())->get() ?? null;
+        return view('orders', compact('orders'));
+
+
+    }
+
+
+
+    
+
 
 }

@@ -13,6 +13,10 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 
@@ -174,6 +178,10 @@
             display: inline-block;
             margin-left: 0;
         }
+
+        .modal-backdrop {
+            z-index: -1;
+          }
 
         /* line 130, bootstrap-select.scss */
         .bootstrap-select.btn-group.dropdown-menu-right,
@@ -665,6 +673,65 @@
                 background: transparent;
             }
         }
+
+        .input-group {
+            margin-top: 10px;
+            margin-bottom: 20px;
+
+            position: relative;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group-addon {
+            border: none;
+        }
+
+        .linkname {
+            display: none;
+        }
+
+        #copyButton {
+            cursor: pointer;
+            background: #3f78e0;
+            color: white;
+        }
+
+        #copyTarget {
+            border-left: none;
+        }
+
+
+        #copyButton2 {
+            cursor: pointer;
+            background: #3f78e0;
+            color: white;
+        }
+
+        #copyTarget2 {
+            border-left: none;
+        }
+
+
+        .copied {
+            opacity: 1;
+            position: absolute;
+            left: 55px;
+        }
+
+        @media (min-width: 768px) {
+            .copied {
+                left: 135px;
+            }
+
+            .linkname {
+                display: block;
+                background: #3b3e45;
+                color: #fff;
+            }
+        }
     </style>
 </head>
 
@@ -725,9 +792,13 @@
 
                                         </li>
 
-
                                         <li class="nav-item dropdown">
                                             <a class="nav-link " href="orders">My Orders</a>
+
+                                        </li>
+
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link" href="home2">Pending Orders</a>
 
                                         </li>
 
@@ -792,208 +863,85 @@
 
                             <div class="col-lg-9 col-xl-8 col-xxl-7 mx-auto  text-center" data-cues="slideInDown"
                                 data-group="page-title" data-delay="500">
+                                <h5 class="display-1 ls-sm fs-40 mb-4 px-md-8 px-lg-0">Hi {{ Auth::user()->username
+                                    }},</h5>
+                                <p class="lead fs-19 lh-sm mb-1  text-center">Recent Orders</p>
 
 
 
 
-                                <h5 class="display-1 ls-sm fs-40 mb-4 px-md-8 px-lg-0">Welcome {{ Auth::user()->username
-                                    }}</h5>
+                                <div class="col-xl-12 col-md-12 col-sm-12 p-2 justify-center">
 
-                                    @if($pend == 1)
-                                    <a  href="home2" class="btn btn-warning mb-2">You have a pending order</a>
-                                    @endif
-                                <p class="lead fs-19 lh-sm mb-7  text-center">Dont feel comfortable giving out your
-                                    phone number?
-                                    Protect your online identity by using our virtual phone numbers.</p>
-                            </div>
-
-
-
-
-                            <div class="row p-3">
-
-
-
-
-                                <div class="col-xl-6 col-md-6 col-sm-12">
-
-                                    @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                    @endif
-                                    @if (session()->has('message'))
-                                    <div class="alert alert-success">
-                                        {{ session()->get('message') }}
-                                    </div>
-                                    @endif
-                                    @if (session()->has('error'))
-                                    <div class="alert alert-danger">
-                                        {{ session()->get('error') }}
-                                    </div>
-                                    @endif
 
                                     <div class="card">
-
                                         <div class="card-body">
+                                            <table class="table table-sm table-responsive-sm">
+
+                                                <thead>
+                                                  <tr>
+                                                    <th>ID</th>
+                                                    <th>Phone</th>
+                                                    <th>SMS</th>
+                                                    <th>Amount</th>
+                                                    <th>Status</th>
+
+                                                  </tr>
+                                                </thead>
 
 
-                                            <form action="check-av" method="POST">
-                                                @csrf
+                                                @foreach ($orders as $data)
 
-                                                <div class="row">
+                                                <tbody>
 
-                                                    <div class="col-xl-10 col-md-10 col-sm-12 p-3">
+                                                  <tr>
 
+                                                    <td>
+                                                      {{ $data->id }}
+                                                    </td>
+                                                    <td>
+                                                      {{ $data->phone }}
+                                                    </td>
+                                                    <td>
+                                                      {{ $data->sms}}
+                                                    </td>
 
-                                                        <p class="mb-5 text-muted"> Choose your prefered country and
-                                                            service
-                                                        </p>
+                                                    <td>
+                                                      {{ number_format($data->cost, 2) }}
+                                                    </td>
 
-
-                                                        <label for="country" class="mb-2 mt-3 text-muted"> Select
-                                                            Country 🌍</label>
-                                                        <div>
-                                                            <select style="width:250px; border-color:rgb(0, 11, 136);"
-                                                                id="select_page" class="operator" name="country">
-                                                                <option value="">🔍 Select Country</option>
-                                                                @foreach ($countries as $data)
-                                                                <option value="{{ $data->ID }}">{{ $data->name }}
-                                                                </option>
-                                                                @endforeach
-
-                                                            </select>
-                                                        </div>
-
-
-                                                        <label for="country" class="mt-3 text-muted mb-2"> Select
-                                                            Services 📞</label>
-                                                        <div>
-                                                            <select class="form-control" style="width:250px;"
-                                                                id="select_page2" name="service">
-
-                                                                <option value="">Choose Service</option>
-                                                                @foreach ($services as $data)
-                                                                <option value="{{ $data->ID }}">{{ $data->name }}
-                                                                </option>
-                                                                @endforeach
-
-                                                            </select>
-                                                        </div>
+                                                    @if($data->status == 2)
+                                                    <td class="text-success">
+                                                        Delivered
+                                                    </td>
+                                                    @else
+                                                     <td class="text-warning">
+                                                        Pending
+                                                    </td>
+                                                    @endif
+                                                  </tr>
 
 
+                                                </tbody>
 
-                                                        <button type="submit" class="btn btn-primary btn-lg mt-3">Check
-                                                            availability 📶</button>
-
-                                                    </div>
+                                                @endforeach
 
 
-
-
-
-                                            </form>
-
-
-                                        </div>
-
-
-                                    </div>
-
-                                </div>
-                            </div>
-
-
-                            <div class="col-xl-6 col-md-6 col-sm-12 p-3">
-
-                                @if ($product != null)
-
-
-                                <div class="card mb-3">
-                                    <div class="card-body">
-
-                                        <div class="row">
-
-                                            <p class="text-muted">Service Infomation</p>
-                                            <div class="col-xl-4 col-md-4 col-sm-6">
-                                                <p class="text-muted">Price</p>
-                                                <p>NGN {{ number_format($price, 2) }}</p>
-                                            </div>
-
-                                            <div class="col-xl-4 col-md-4 col-sm-6">
-                                                <p class="text-muted">Success Rate</p>
-                                                @if ($rate < 10) <p class="text-danger">{{ $rate }}%</p>
-                                                    @elseif ($rate < 20) <p class="text-danger">{{ $rate }}%</p>
-                                                        @elseif ($rate < 30) <p class="text-danger">{{ $rate }}%
-                                                            </p>
-                                                            @elseif ($rate < 40) <p class="text-warning">{{ $rate
-                                                                }}%</p>
-                                                                @elseif ($rate < 50) <p class="text-warning">{{
-                                                                    $rate }}%</p>
-                                                                    @elseif ($rate < 60) <p class="text-success">{{
-                                                                        $rate }}%</p>
-                                                                        @elseif ($rate < 70) <p class="text-success">{{
-                                                                            $rate }}%</p>
-                                                                            @elseif ($rate < 80) <p
-                                                                                class="text-success">{{ $rate }}%
-                                                                                </p>
-                                                                                @elseif ($rate < 90) <p
-                                                                                    class="text-success">{{ $rate
-                                                                                    }}%</p>
-                                                                                    @elseif ($rate <= 100) <p
-                                                                                        class="text-success">{{
-                                                                                        $rate }}%</p>
-                                                                                        @else
-                                                                                        @endif
-                                            </div>
-
-
-                                            @if(Auth::user()->wallet < $price) <a href="fund-wallet"
-                                                class="btn btn-secondary text-white btn-lg">Fund Wallet</a>
-                                                @else
-
-                                                <form action="order_now" method="POST">
-                                                    @csrf
-
-                                                    <input type="text" name="country" hidden value="{{ $count_id }}">
-                                                    <input type="text" name="price" hidden value="{{ $price }}">
-                                                    <input type="text" name="service" hidden value="{{ $serv }}">
-
-
-                                                    <button type="submit" class="btn btn-dark btn-lg mt-6">Buy Number
-                                                        Now</button>
+                                              </table>
 
 
 
-                                                </form>
-
-                                                @endif
 
 
 
                                         </div>
 
-
-
                                     </div>
 
                                 </div>
 
-
-
-                                @endif
-
-
-
-
-
-
-
                             </div>
+
+
 
 
                         </div>
@@ -1006,6 +954,28 @@
                 <!-- /section -->
 
 
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+
+                      <div class="modal-body">
+                        <p>
+                            Why SMS does not arrive?
+                        Please consider the following recommendations:
+
+                        </p>
+                        <p> 1.⁠ ⁠Repeat sending the SMS code from the selected service to the purchased phone number.</p>
+                        <p> 2.⁠ ⁠Change your IP address. Use a proxy or VPN. Your IP address should comply with the country of the purchased phone number.</p>
+                        <p> 3.⁠ ⁠Apply extensions in the browser to change the user-agent or open the tab in incognito mode. Many websites track a certain set of user information.</p>
+                        <p> 4.⁠ ⁠Try to buy another phone number.</p>
+
+                        <p>Additionally:
+                        We don’t charge you until you receive code , so you can keep trying different numbers</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
 
 
@@ -1158,9 +1128,6 @@
    $("select").select2();
 });
 
-
-
-    </script>
 
 
     <style>

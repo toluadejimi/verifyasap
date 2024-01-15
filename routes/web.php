@@ -72,6 +72,11 @@ Route::group(['middleware' => ['auth', 'user', 'session.timeout']], function () 
 
     Route::any('home2',  [HomeController::class,'home2']);
 
+    Route::any('orders',  [HomeController::class,'orders']);
+
+
+    
+
 
 
     Route::any('check-av',  [HomeController::class,'check_av']);
