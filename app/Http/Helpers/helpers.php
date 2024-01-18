@@ -263,7 +263,7 @@ function create_order($country, $service, $price){
 
         $ver = new Verification();
         $ver->user_id = Auth::id();
-        $ver->phone = $var->phonenumber;
+        $ver->phone = $var->cc.$var->phonenumber;
         $ver->order_id = $var->order_id;
         $ver->country = $var->country;
         $ver->service = $var->service;
