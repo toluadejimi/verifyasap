@@ -683,9 +683,7 @@
 
                 <div
                     class="text-blue-500 text-center text-sm justify-center items-stretch bg-blue-500 bg-opacity-20 self-stretch mt-2 px-6 py-3 rounded-xl">
-                    Add more funds to wallet so you can be able
-                    <br />
-                    to rent out numbers and make money
+                    Add more funds to wallet.
                 </div>
                 <button type="submit"
                     class="text-white text-xl font-bold whitespace-nowrap justify-center items-stretch bg-blue-500 self-center mt-11 mb-11 px-12 py-5 rounded-3xl">
