@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" href="{{url('')}}/public/assets/storage/images/favicon.png" type="image/png">
-    <title>Verify Asap</title>
+    <link rel="icon" href="{{url('')}}/public/concept/assets/storage/images/favicon.png" type="image/png">
+    <title>Log Market Place</title>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -20,12 +20,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
         integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
         crossorigin="anonymous" />
-    <link rel="stylesheet" href="{{url('')}}/public/assets/css/vendor.css">
-    <link rel="stylesheet" href="{{url('')}}/public/assets/css/common.css">
-    <script src="{{url('')}}/public/assets/vendor/Shortcode/Shortcode.js"></script>
+    <link rel="stylesheet" href="{{url('')}}/public/css/vendor.css">
+    <link rel="stylesheet" href="{{url('')}}/public/css/common.css">
+    <script src="{{url('')}}/public/concept/assets/vendor/Shortcode/Shortcode.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <script src="{{url('')}}/public/assets/js/app.js" defer></script>
+    <script src="{{url('')}}/public/concept/assets/js/app.js" defer></script>
     <style>
         [wire\:loading],
         [wire\:loading\.delay],
@@ -551,11 +551,11 @@
     </style>
     <style>
         #span-3 {
-            color: #6633db;
+            color: #a4a4a4;
             white-space: nowrap;
             justify-content: center;
             border-radius: 20px;
-            background-color: #1e1e1e;
+            background-color: #000000;
             padding: 21px 50px;
             font: 700 16px Inter, sans-serif;
         }
@@ -563,7 +563,7 @@
         #div-2 {
             white-space: nowrap;
             justify-content: center;
-            color: #6633db;
+            color: #c5c5c5;
             border-radius: 20px;
             padding: 21px 50px;
             font: 700 16px Inter, sans-serif;
@@ -578,13 +578,7 @@
 <body>
     <div class="default-theme">
 
-        <div style="color:#3f78e0; font-weight:bold;" class="flex justify-end text-white">
-            <a style="color:white;" href="fund-wallet"
-                class="flex flex-col bg-primary rounded-b-lg px-5 py-2">
-                <span style="color:white;" class="text-xs font-medium">Wallet</span>
-                <span style="color:white;" class="text-xl">NGN{{ number_format(Auth::user()->wallet, 2) }}</span>
-            </a>
-        </div>
+
 
         <!DOCTYPE html>
         <html wire:id="KYyr7BXHmAukicbrQqma"
@@ -600,22 +594,22 @@
                 content="bootstrap 5, business, corporate, creative, gulp, marketing, minimal, modern, multipurpose, one page, responsive, saas, sass, seo, startup, html5 template, site template">
             <meta name="author" content="elemis">
             <title>Verify Asap | SMS Verification Website.</title>
-            <link rel="shortcut icon" href="{{url('')}}/public/assets/img/favicon.png">
-            <link rel="stylesheet" href="{{url('')}}/public/assets/css/plugins.css">
-            <link rel="stylesheet" href="{{url('')}}/public/assets/css/style.css">
-            <link rel="preload" href="{{url('')}}/public/assets/css/fonts/space.css" as="style"
+            <link rel="shortcut icon" href="{{url('')}}/public/concept/assets/img/favicon.png">
+            <link rel="stylesheet" href="{{url('')}}/public/concept/assets/css/plugins.css">
+            <link rel="stylesheet" href="{{url('')}}/public/concept/assets/css/style.css">
+            <link rel="preload" href="{{url('')}}/public/concept/assets/css/fonts/space.css" as="style"
                 onload="this.rel='stylesheet'">
         </head>
 
         <body>
 
 
-        <div wire:id="k3avItmW0YN9EgcVBf0J"
-            wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;k3avItmW0YN9EgcVBf0J&quot;,&quot;name&quot;:&quot;frontend.wallet&quot;,&quot;locale&quot;:&quot;en&quot;,&quot;path&quot;:&quot;wallet&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;v&quot;:&quot;acj&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[&quot;cancelOrder&quot;],&quot;path&quot;:&quot;https:\/\/verifyasap.com\/wallet&quot;},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;72bb1150&quot;,&quot;data&quot;:{&quot;amount&quot;:5,&quot;methods&quot;:[],&quot;selected&quot;:null,&quot;crypto&quot;:null,&quot;error&quot;:null,&quot;total&quot;:2,&quot;razorpay&quot;:null,&quot;page&quot;:1,&quot;paginators&quot;:{&quot;page&quot;:1}},&quot;dataMeta&quot;:{&quot;modelCollections&quot;:{&quot;methods&quot;:{&quot;class&quot;:&quot;App\\Models\\PaymentMethod&quot;,&quot;id&quot;:[5],&quot;relations&quot;:[],&quot;connection&quot;:&quot;mysql&quot;,&quot;collectionClass&quot;:null}}},&quot;checksum&quot;:&quot;e06f40890a224cc82793e013b7c726c2f372e57ddfbe3fab752c8a90a4d5fb44&quot;}}"
-            class="bg-white flex max-w-[480px] w-full flex-col mx-auto px-11 py-12">
+            <div wire:id="k3avItmW0YN9EgcVBf0J"
+                wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;k3avItmW0YN9EgcVBf0J&quot;,&quot;name&quot;:&quot;frontend.wallet&quot;,&quot;locale&quot;:&quot;en&quot;,&quot;path&quot;:&quot;wallet&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;v&quot;:&quot;acj&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[&quot;cancelOrder&quot;],&quot;path&quot;:&quot;https:\/\/verifyasap.com\/wallet&quot;},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;72bb1150&quot;,&quot;data&quot;:{&quot;amount&quot;:5,&quot;methods&quot;:[],&quot;selected&quot;:null,&quot;crypto&quot;:null,&quot;error&quot;:null,&quot;total&quot;:2,&quot;razorpay&quot;:null,&quot;page&quot;:1,&quot;paginators&quot;:{&quot;page&quot;:1}},&quot;dataMeta&quot;:{&quot;modelCollections&quot;:{&quot;methods&quot;:{&quot;class&quot;:&quot;App\\Models\\PaymentMethod&quot;,&quot;id&quot;:[5],&quot;relations&quot;:[],&quot;connection&quot;:&quot;mysql&quot;,&quot;collectionClass&quot;:null}}},&quot;checksum&quot;:&quot;e06f40890a224cc82793e013b7c726c2f372e57ddfbe3fab752c8a90a4d5fb44&quot;}}"
+                class="bg-white flex max-w-[480px] w-full flex-col mx-auto px-11 py-12">
 
-            <div class="text-center">
-            @if ($errors->any())
+                <div class="text-center">
+                    @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
                             @foreach ($errors->all() as $error)
@@ -634,7 +628,7 @@
                         {{ session()->get('error') }}
                     </div>
                     @endif
-            </div>
+                </div>
 
 
             <a href="home" class="aspect-[3.35] object-contain object-center w-[201px] overflow-hidden self-center max-w-full mt-2">
@@ -646,166 +640,51 @@
 
 
 
-            <div class="text-stone-900 text-xl font-bold self-center whitespace-nowrap mt-10">
-                FUND WALLET
-            </div>
 
 
 
 
-
-            <div
-                class="items-stretch shadow-sm bg-white self-stretch flex justify-between gap-5 mt-9 px-2 py-2 rounded-3xl">
-                <button id="span-3" class="button" onclick="activateButton(this)">
-                    Fund
-                </button>
-                <button id="div-2" class="button" onclick="activateButton(this)">
-                    History
-                </button>
-            </div>
-
-
-            <form id="myDiv" action="fund-now" class="grid grid-cols-1" gap-3 method="POST">
-                    @csrf
-
-                    <label class="mt-3 mb-3 text-gray-600 font-bold gap-3 text-sm">Enter the Amount (NGN)</label>
-                    <div class="flex">
-                        <span
-                            class="inline-flex items-center px-4 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500">
-                            NGN
-                        </span>
-                        <input
-                            class="border-gray-300 gap-3 focus:border-primary focus:ring-1 focus:ring-primary focus:ring-opacity-50 rounded-md shadow-sm block w-full rounded-l-none"
-                            id="amount" type="number" max="999999" min="5" name="amount"
-                            placeholder="Enter the Amount you want Add" required="required">
-                    </div>
-
-
-
-                    <div class="flex mt-5 mb-4">
-
-
-
-                        <div class="flex">
-
-                            <span
-                                class="inline-flex  items-center px-10 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500">
-                                Paywith
-                            </span>
-
-                            <select name="type"class="border-gray-300 gap-3 focus:border-primary focus:ring-1 focus:ring-primary focus:ring-opacity-50 rounded-md shadow-sm block w-full rounded-l-none"
-                            id="amount" type="number" max="999999" min="5" name="amount"
-                            placeholder="Enter the Amount you want Add" required="required">
-
-                                <option class="text-center" value="1"> ENKPAY </option>
-                                <option class="text-center" value="2"> Manual Funding</option>
-
-                            </select>
-                        </div>
-
-                    </div>
-
-
-
-                    <div
-                        class="text-blue-500 text-center text-sm justify-center items-stretch bg-blue-500 bg-opacity-20 self-stretch mt-2 px-6 py-3 rounded-xl">
-                        Add more funds to wallet.
-                    </div>
-                    <button type="submit"
-                        class="text-white text-xl font-bold whitespace-nowrap justify-center items-stretch bg-blue-500 self-center mt-11 mb-11 px-12 py-5 rounded-3xl">
-
-                        Add Funds
-                    </button>
-                </form>
-
-
-
-
-
-
-        </div>
-
-        <div id="myDiv3" class="container mx-auto px-5 md:px-100">
-            <div class="space-y-6">
-                <h1 class="text-2xl font-bold text-primary">List of Transactions</h1>
-                <div class="border-b border-dashed border-primary w-24"></div>
-                <div class="bg-gray-400 text-white shadow rounded-lg overflow-hidden">
-                    <div class="border-b py-4 px-5 grid grid-cols-3 md:grid-cols-4">
-
-                        @foreach($transaction as $data)
-                        <div class="hidden md:block">
-                            <label class="text-xs font-medium text-gray-100">Transaction ID #</label>
-                            <div class="text-lg font-bold">{{$data->ref_id}}</div>
-                        </div>
-                        <div>
-                            <label class="text-xs font-medium text-gray-100 mb-2">Type</label>
-                            @if($data->type == 2)
-                            <div>
-                                <span
-                                    class="uppercase text-xs font-bold bg-green-800 text-white rounded px-2 py-1">Credit</span>
-                            </div>
-                            @else
-                            <div>
-                                <span
-                                    class="uppercase text-xs font-bold bg-red-800 text-white rounded px-2 py-1">Debit</span>
-                            </div>
-                            @endif
-                        </div>
-                        <div>
-                            <label class="text-xs font-medium text-gray-100 ">Amount</label>
-                            <div class="text-lg font-bold">NGN {{ number_format($data->amount, 2) }}</div>
-                        </div>
-                        @if ($data->status == 2)
-
-                         <div>
-                            <label class="text-xs font-medium text-gray-100 mb-2">Status</label>
-                            <div>
-                                <span
-                                    class="text-xs font-bold bg-green-300 text-gray-800 rounded px-2 py-1">Completed</span>
-                            </div>
-                        </div>
-
-                        @else
-
-
-                          <div>
-                            <label class="text-xs font-medium text-gray-100 mb-2">Status</label>
-                            <div>
-                                <a href="resolve-page?trx_ref={{$data->ref_id}}"
-                                    class="text-xs font-bold bg-orange-300 text-gray-800 rounded px-2 py-1">Resolve</a>
-                            </div>
-                        </div>
-
-                        @endif
-
-                    </div>
-                    <div class="border-b py-4 px-5 grid grid-cols-3 md:grid-cols-4">
-                        <div class="hidden md:block">
-
-                        </div>
-                        <div>
-
-                        </div>
-                        <div>
-
-                        </div>
-                        <div>
-
-                        </div>
-
-                    @endforeach
-                    </div>
-                </div>
-                <div>
+                <div
+                    class="text-blue-500 text-center  mt-5 text-sm justify-center items-stretch bg-blue-500 bg-opacity-20 self-stretch mt-2 px-6 py-3 rounded-xl">
+                    Your payment has been submitted<br> Amount will be added soon.
                 </div>
 
+
+
+                <div class="text-center">               
+                <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+                    type="module">
+                </script>
+
+                    <dotlottie-player src="https://lottie.host/9392734f-fc13-4317-9f34-f95c243ffaff/VyZrXdIQfQ.json"
+                        background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay>
+                    </dotlottie-player>
+
+                </div>
+
+
+
+
+                <a href="#"
+                    class="text-white text-center text-xl font-bold whitespace-nowrap justify-center items-stretch bg-blue-500 self-center mt-11 mb-11 px-12 py-5 rounded-3xl">
+
+                    Contact Support
+                </a>
+
+
+
             </div>
-        </div>
 
 
 
-        <script>
-            var showButton = document.getElementById('span-3');
+
+
+
+
+
+
+            <script>
+                var showButton = document.getElementById('span-3');
     var hideButton = document.getElementById('div-2');
     var myDiv = document.getElementById('myDiv');
     var myDiv2 = document.getElementById('myDiv3');
@@ -831,8 +710,8 @@
       // Change the color of the clicked button
       button.style.backgroundColor = '#1e1e1e'; // Red, change to the desired color
     }
-        </script>
-        </main>
+            </script>
+            </main>
     </div>
     </div>
     <!-- Livewire Component wire-end:k3avItmW0YN9EgcVBf0J -->

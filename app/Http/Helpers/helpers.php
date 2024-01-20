@@ -1,5 +1,5 @@
 <?php
-use DB;
+
 use App\Constants\Status;
 use App\Models\Extension;
 use App\Models\Verification;

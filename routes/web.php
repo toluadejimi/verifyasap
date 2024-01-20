@@ -67,7 +67,6 @@ Route::any('get-smscode',  [HomeController::class,'get_smscode']);
 
 Route::group(['middleware' => ['auth', 'user', 'session.timeout']], function () {
 
-
     Route::get('home',  [HomeController::class,'home']);
 
     Route::any('home2',  [HomeController::class,'home2']);
@@ -134,22 +133,19 @@ Route::get('admin',  [AdminController::class,'index']);
 
 Route::get('admin-dashboard',  [AdminController::class,'admin_dashboard']);
 
-Route::get('caterogies',  [AdminController::class,'categories']);
 
-Route::post('add-new-cat',  [AdminController::class,'add_new_cat']);
-Route::get('delete-cat',  [AdminController::class,'delete_cat']);
+Route::any('update-rate',  [AdminController::class,'update_rate']);
+Route::any('update-cost',  [AdminController::class,'update_cost']);
 
-Route::get('products',  [AdminController::class,'index_product']);
-Route::post('delete-product',  [AdminController::class,'delete_product']);
+Route::get('manual-payment',  [AdminController::class,'manual_payment_view']);
+Route::any('verify-payment',  [AdminController::class,'approve_payment']);
+Route::any('update-acct-name',  [AdminController::class,'update_acct_name']);
+Route::any('delete-payment',  [AdminController::class,'delete_payment']);
 
-Route::post('add-new-pr',  [AdminController::class,'add_new_pr']);
-Route::post('delete-pr',  [AdminController::class,'delete_pr']);
 
-Route::get('delete-front-pr',  [AdminController::class,'delete_front_pr']);
 
-Route::get('delete-pr',  [AdminController::class,'delete_pro']);
-
-Route::get('delete-main',  [AdminController::class,'delete_main']);
+Route::any('fund-manual-now',  [HomeController::class,'fund_manual_now']);
+Route::any('confirm-pay',  [HomeController::class,'confirm_pay']);
 
 
 Route::post('search-user',  [AdminController::class,'search_user']);

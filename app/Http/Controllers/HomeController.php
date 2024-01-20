@@ -14,6 +14,8 @@ use App\Models\Category;
 use App\Models\Transaction;
 use App\Models\Verification;
 use Illuminate\Http\Request;
+use App\Models\AccountDetail;
+use App\Models\ManualPayment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -353,46 +355,148 @@ class HomeController extends Controller
     public function fund_now(Request $request)
     {
 
-
         $request->validate([
             'amount'      => 'required|numeric|gt:0',
         ]);
 
+
+
+
+
         Transaction::where('user_id', Auth::id())->where('status', 1)->delete() ?? null;
 
-        if ($request->amount < 100) {
-            return back()->with('error', 'You can not fund less than NGN 100');
+
+
+        if ($request->type == 1) {
+
+            if ($request->amount < 100) {
+                return back()->with('error', 'You can not fund less than NGN 100');
+            }
+
+
+            if ($request->amount > 100000) {
+                return back()->with('error', 'You can not fund more than NGN 100,000');
+            }
+
+
+
+
+            $key = env('WEBKEY');
+            $ref = "VERF" . random_int(000, 999) . date('ymdhis');
+            $email = Auth::user()->email;
+
+            $url = "https://web.enkpay.com/pay?amount=$request->amount&key=$key&ref=$ref&email=$email";
+
+
+            $data                  = new Transaction();
+            $data->user_id         = Auth::id();
+            $data->amount          = $request->amount;
+            $data->ref_id          = $ref;
+            $data->type            = 2;
+            $data->status          = 1; //initiate
+            $data->save();
+
+
+            $message = Auth::user()->email . "| wants to fund |  NGN " . number_format($request->amount) . " | with ref | $ref |  on VERIFY ASAP";
+            send_notification2($message);
+
+            return Redirect::to($url);
         }
 
 
-        if ($request->amount > 100000) {
-            return back()->with('error', 'You can not fund more than NGN 100,000');
+
+        if ($request->type == 2) {
+
+            if ($request->amount < 100) {
+                return back()->with('error', 'You can not fund less than NGN 100');
+            }
+
+
+            if ($request->amount > 100000) {
+                return back()->with('error', 'You can not fund more than NGN 100,000');
+            }
+
+
+
+
+            $ref = "VERFM" . random_int(000, 999) . date('ymdhis');
+            $email = Auth::user()->email;
+
+
+            $data                  = new Transaction();
+            $data->user_id         = Auth::id();
+            $data->amount          = $request->amount;
+            $data->ref_id          = $ref;
+            $data->type            = 6; //manual funding
+            $data->status          = 1; //initiate
+            $data->save();
+
+
+            $message = Auth::user()->email . "| wants to fund Manually |  NGN " . number_format($request->amount) . " | with ref | $ref |  on VERIFY ASAP";
+            send_notification2($message);
+
+            $data['account_details'] = AccountDetail::where('id', 1)->first();
+            $data['amount'] = $request->amount;
+
+            return view('manual-fund', $data);
         }
 
 
 
 
-        $key = env('WEBKEY');
-        $ref = "VERF" . random_int(000, 999) . date('ymdhis');
-        $email = Auth::user()->email;
-
-        $url = "https://web.enkpay.com/pay?amount=$request->amount&key=$key&ref=$ref&email=$email";
 
 
-        $data                  = new Transaction();
-        $data->user_id         = Auth::id();
-        $data->amount          = $request->amount;
-        $data->ref_id          = $ref;
-        $data->type            = 2;
-        $data->status          = 1; //initiate
-        $data->save();
 
 
-        $message = Auth::user()->email . "| wants to fund |  NGN " . number_format($request->amount) . " | with ref | $ref |  on VERIFY ASAP";
+
+
+
+
+
+    }
+
+
+    public function fund_manual_now(Request $request)
+    {
+
+
+
+        if($request->receipt == null){
+            return back()->with('error', "Payment receipt is required");
+        }
+
+
+        $file = $request->file('receipt');
+        $receipt_fileName = date("ymis").$file->getClientOriginalName();
+        $destinationPath = public_path() . 'upload/receipt';
+        $request->receipt->move(public_path('upload/receipt'), $receipt_fileName);
+
+
+        $pay = new ManualPayment();
+        $pay->receipt = $receipt_fileName;
+        $pay->user_id = Auth::id();
+        $pay->amount = $request->amount;
+        $pay->save();
+
+
+        $message = Auth::user()->email . "| submitted payment receipt |  NGN " . number_format($request->amount) . " | on VERIFY ASAP";
         send_notification2($message);
 
-        return Redirect::to($url);
+
+        return view('confirm-pay');
+        
+
     }
+
+
+    public function confirm_pay(Request $request)
+    {
+        
+        return view('confirm-pay');
+
+    
+    }
+
 
 
     public function verify_payment(request $request)
@@ -406,7 +510,7 @@ class HomeController extends Controller
         if ($status == 'failed') {
 
 
-            $message = Auth::user()->email . "| Cancled |  NGN " . number_format($request->amount) . " | with ref | $trx_id |  on LOG MARKETPLACE";
+            $message = Auth::user()->email . "| Cancled |  NGN " . number_format($request->amount) . " | with ref | $trx_id |  on VERIFY ASAP";
             send_notification2($message);
 
             Transaction::where('ref_id', $trx_id)->where('status', 1)->update(['status' => 3]);
@@ -423,7 +527,7 @@ class HomeController extends Controller
             $message =  Auth::user()->email . "| is trying to fund  with | " . number_format($request->amount, 2) . "\n\n IP ====> " . $request->ip();
             send_notification($message);
 
-            $message =  Auth::user()->email . "| on LOG MarketPlace | is trying to fund  with | " . number_format($request->amount, 2) . "\n\n IP ====> " . $request->ip();
+            $message =  Auth::user()->email . "| on VERIFY ASAP | is trying to fund  with | " . number_format($request->amount, 2) . "\n\n IP ====> " . $request->ip();
             send_notification2($message);
 
 
@@ -490,7 +594,7 @@ class HomeController extends Controller
             $var = json_decode($var);
 
 
-            $message = Auth::user()->email . "| Just funded |  NGN " . number_format($request->amount) . " | with ref | $order_id |  on LOG MARKETPLACE";
+            $message = Auth::user()->email . "| Just funded |  NGN " . number_format($request->amount) . " | with ref | $order_id |  on VERIFY ASAP";
             send_notification2($message);
 
 
@@ -599,10 +703,10 @@ class HomeController extends Controller
         $trx = Transaction::where('ref_id', $request->ref_id)->first()->status ?? null;
         if ($trx == null) {
 
-            $message = Auth::user()->email . "is trying to resolve from deleted transaction on LOG MarketPlace";
+            $message = Auth::user()->email . "is trying to resolve from deleted transaction on VERIFY ASAP";
             send_notification($message);
 
-            $message = Auth::user()->email . "is trying to reslove from deleted transaction on LOG MarketPlace";
+            $message = Auth::user()->email . "is trying to reslove from deleted transaction on VERIFY ASAP";
             send_notification2($message);
 
 
@@ -615,10 +719,10 @@ class HomeController extends Controller
 
         if ($chk == 2 || $chk == 4) {
 
-            $message = Auth::user()->email . "is trying to steal hits the endpoint twice on LOG MarketPlace";
+            $message = Auth::user()->email . "is trying to steal hits the endpoint twice on VERIFY ASAP";
             send_notification($message);
 
-            $message = Auth::user()->email . "is trying to steal hits the endpoint twice on LOG MarketPlace";
+            $message = Auth::user()->email . "is trying to steal hits the endpoint twice on VERIFY ASAP";
             send_notification2($message);
 
             return back()->with('message', "You are a thief");
@@ -644,10 +748,10 @@ class HomeController extends Controller
             $data->save();
 
 
-            $message = Auth::user()->email . "| just resolved with $request->session_id | NGN " . number_format($amount) . " on LOG MarketPlace";
+            $message = Auth::user()->email . "| just resolved with $request->session_id | NGN " . number_format($amount) . " on VERIFY ASAP";
             send_notification($message);
 
-            $message = Auth::user()->email . "| just resolved with $request->session_id | NGN " . number_format($amount) . " on LOG MarketPlace";
+            $message = Auth::user()->email . "| just resolved with $request->session_id | NGN " . number_format($amount) . " on VERIFY ASAP";
             send_notification2($message);
 
 
@@ -739,7 +843,7 @@ class HomeController extends Controller
             ]);
 
             $data = array(
-                'fromsender' => 'noreply@logmarketplace.com', 'LOG MARKETPLACE',
+                'fromsender' => 'noreply@logmarketplace.com', 'VERIFY ASAP',
                 'subject' => "Reset Password",
                 'toreceiver' => $email,
                 'url' => $url,
