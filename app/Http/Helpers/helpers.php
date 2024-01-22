@@ -43,7 +43,7 @@ function resolve_complete($order_id)
 
 
 function send_notification($message)
-    {
+{
 
         $curl = curl_init();
 
@@ -68,7 +68,37 @@ function send_notification($message)
         curl_close($curl);
 
         $var = json_decode($var);
-    }
+}
+
+
+
+function send_notification3($message)
+{
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.telegram.org/bot6572395726:AAH8TqwhfSln5gn0Grp1303BrRp1Oif-3Yk/sendMessage?chat_id=6909620098',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => array(
+                'chat_id' => "6909620098",
+                'text' => $message,
+
+            ),
+            CURLOPT_HTTPHEADER => array(),
+        ));
+
+        $var = curl_exec($curl);
+        curl_close($curl);
+
+        $var = json_decode($var);
+}
 
 
 

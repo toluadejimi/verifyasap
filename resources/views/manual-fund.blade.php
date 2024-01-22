@@ -650,7 +650,8 @@
 
             <div
                 class="text-blue-500 text-center  mt-5 text-sm justify-center items-stretch bg-blue-500 bg-opacity-20 self-stretch mt-2 px-6 py-3 rounded-xl">
-                Add funds to wallet by sending to the<br> account details below.
+                Add funds to wallet by sending to the<br> account details below.<br>
+                <p class="text-danger">Manual Funding  is only availabe from 10am - 10pm</p>
             </div>
 
 
