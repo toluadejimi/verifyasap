@@ -711,31 +711,9 @@
 
 
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link " href="fund-wallet">Fund Wallet</a>
+                                            <a class="nav-link " href="/">Home</a>
 
                                         </li>
-
-
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link " href="orders">My Orders</a>
-
-                                        </li>
-
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link " href="https://t.me/verifyasapcc">Support</a>
-
-
-
-                                        </li>
-
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link text-danger" href="log-out">Log Out</a>
-
-                                        </li>
-
-
-
-
 
 
 

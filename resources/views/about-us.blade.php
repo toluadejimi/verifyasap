@@ -675,7 +675,6 @@
         <div style="color:#3f78e0; font-weight:bold;" class="flex justify-end text-white">
             <a style="color:white;" href="fund-wallet" class="flex flex-col bg-primary rounded-b-lg px-5 py-2">
                 <span style="color:white;" class="text-xs font-medium">Wallet</span>
-                <span style="color:white;" class="text-xl">NGN{{ number_format(Auth::user()->wallet, 2) }}</span>
             </a>
         </div>
 
@@ -716,33 +715,12 @@
 
 
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link " href="fund-wallet">Fund Wallet</a>
+                                            <a class="nav-link " href="/">Home</a>
 
                                         </li>
 
 
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link " href="orders">My Orders</a>
-
-                                        </li>
-
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link " href="https://t.me/verifyasapcc">Support</a>
-
-
-
-                                        </li>
-
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link text-danger" href="log-out">Log Out</a>
-
-                                        </li>
-
-
-
-
-
-
+                                    
 
                                     </ul>
                                     <!-- /.navbar-nav -->
