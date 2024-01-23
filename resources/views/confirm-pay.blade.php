@@ -665,10 +665,9 @@
 
 
 
-                <a href="#"
+                <a href="home"
                     class="text-white text-center text-xl font-bold whitespace-nowrap justify-center items-stretch bg-blue-500 self-center mt-11 mb-11 px-12 py-5 rounded-3xl">
-
-                    Contact Support
+                    Go Home
                 </a>
 
 
