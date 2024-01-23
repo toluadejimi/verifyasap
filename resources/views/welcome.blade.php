@@ -617,7 +617,8 @@
                                 <h4 class="widget-title  mb-3">Learn More</h4>
                                 <ul class="list-unstyled text-reset mb-0">
                                     <li><a href="/">About Us</a></li>
-                                    <li><a href="terms.html">Policies</a></li>
+                                       <li><a href="policy">Policies</a></li>
+
 
                                 </ul>
                             </div>
@@ -704,7 +705,7 @@
             </style>
 
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-            <a href="https://t.me/logmarketplacee" class="float" target="_blank">
+            <a href="https://t.me/verifyasapcom" class="float" target="_blank">
                 <i class="fa fa-comment my-float"></i>
             </a>
 

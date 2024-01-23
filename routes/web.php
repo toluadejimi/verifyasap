@@ -151,6 +151,11 @@ Route::any('confirm-pay',  [HomeController::class,'confirm_pay']);
 Route::post('search-user',  [AdminController::class,'search_user']);
 Route::post('search-username',  [AdminController::class,'search_username']);
 
+Route::any('about-us',  [HomeController::class,'about_us']);
+Route::any('policy',  [HomeController::class,'policy']);
+
+
+
 
 
 

@@ -732,7 +732,9 @@
                                         </li>
 
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link " href="#">Support</a>
+                                            <a class="nav-link " href="https://t.me/verifyasapcc">Support</a>
+
+                                            
 
                                         </li>
 
@@ -755,7 +757,7 @@
                                                 <a href="#"><i class="uil uil-twitter"></i></a>
                                                 <a href="#"><i class="uil uil-facebook-f"></i></a>
                                                 <a href="#"><i class="uil uil-dribbble"></i></a>
-                                                <a href="#"><i class="uil uil-instagram"></i></a>
+                                                                                    <a href="https://www.instagram.com/verifyasap.co?igsh=MWtkanlibnhwYzdyag%3D%3D&utm_source=qr"><i class="uil uil-instagram"></i></a>
                                                 <a href="#"><i class="uil uil-youtube"></i></a>
                                             </nav>
                                             <!-- /.social -->
@@ -1026,7 +1028,7 @@
                                     <a href="#"><i class="uil uil-twitter"></i></a>
                                     <a href="#"><i class="uil uil-facebook-f"></i></a>
                                     <a href="#"><i class="uil uil-dribbble"></i></a>
-                                    <a href="#"><i class="uil uil-instagram"></i></a>
+                                                                        <a href="https://www.instagram.com/verifyasap.co?igsh=MWtkanlibnhwYzdyag%3D%3D&utm_source=qr"><i class="uil uil-instagram"></i></a>
                                     <a href="#"><i class="uil uil-youtube"></i></a>
                                 </nav>
                                 <!-- /.social -->
@@ -1048,8 +1050,9 @@
                             <div class="widget">
                                 <h4 class="widget-title  mb-3">Learn More</h4>
                                 <ul class="list-unstyled text-reset mb-0">
-                                    <li><a href="#">About Us</a></li>
-                                    <li><a href="terms.html">Policies</a></li>
+                                    <li><a href="about-us">About Us</a></li>
+                                       <li><a href="policy">Policies</a></li>
+
 
                                 </ul>
                             </div>
@@ -1185,9 +1188,12 @@
     </style>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <a href="https://t.me/logmarketplacee" class="float" target="_blank">
+    <a href="https://t.me/verifyasapcom" class="float" target="_blank">
         <i class="fa fa-comment my-float"></i>
     </a>
+
+
+    
 
 
 

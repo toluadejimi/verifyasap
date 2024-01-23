@@ -13,17 +13,11 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <link rel="stylesheet" href="{{url('')}}/public/assets/css/vendor.css">
     <link rel="stylesheet" href="{{url('')}}/public/assets/css/common.css">
     <script src="{{url('')}}/public/assets/vendor/Shortcode/Shortcode.js"></script>
@@ -178,10 +172,6 @@
             display: inline-block;
             margin-left: 0;
         }
-
-        .modal-backdrop {
-            z-index: -1;
-          }
 
         /* line 130, bootstrap-select.scss */
         .bootstrap-select.btn-group.dropdown-menu-right,
@@ -512,6 +502,7 @@
         .input-group .bs-searchbox .form-control {
             width: 100%;
         }
+
     </style>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -562,6 +553,7 @@
         input:checked~.toggle-path {
             background-color: #6633db;
         }
+
     </style>
     <style>
         #span-3 {
@@ -674,64 +666,6 @@
             }
         }
 
-        .input-group {
-            margin-top: 10px;
-            margin-bottom: 20px;
-
-            position: relative;
-        }
-
-        .input-group {
-            position: relative;
-        }
-
-        .input-group-addon {
-            border: none;
-        }
-
-        .linkname {
-            display: none;
-        }
-
-        #copyButton {
-            cursor: pointer;
-            background: #3f78e0;
-            color: white;
-        }
-
-        #copyTarget {
-            border-left: none;
-        }
-
-
-        #copyButton2 {
-            cursor: pointer;
-            background: #3f78e0;
-            color: white;
-        }
-
-        #copyTarget2 {
-            border-left: none;
-        }
-
-
-        .copied {
-            opacity: 1;
-            position: absolute;
-            left: 55px;
-        }
-
-        @media (min-width: 768px) {
-            .copied {
-                left: 135px;
-            }
-
-            .linkname {
-                display: block;
-                background: #3b3e45;
-                color: #fff;
-            }
-        }
     </style>
 </head>
 
@@ -746,24 +680,19 @@
         </div>
 
         <!DOCTYPE html>
-        <html wire:id="KYyr7BXHmAukicbrQqma"
-            wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;KYyr7BXHmAukicbrQqma&quot;,&quot;name&quot;:&quot;frontend.home&quot;,&quot;locale&quot;:&quot;en&quot;,&quot;path&quot;:&quot;\/&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;v&quot;:&quot;acj&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;295eff0e&quot;,&quot;data&quot;:{&quot;numbers&quot;:[],&quot;features&quot;:[],&quot;sections&quot;:[],&quot;assigned&quot;:[],&quot;user&quot;:[],&quot;orders&quot;:[],&quot;filters&quot;:{&quot;number&quot;:{&quot;country&quot;:[]},&quot;private&quot;:{&quot;country&quot;:[]},&quot;rented&quot;:{&quot;country&quot;:[]}},&quot;private&quot;:[],&quot;rented&quot;:[],&quot;types&quot;:[&quot;Open&quot;,&quot;Register Only&quot;,&quot;Private&quot;,&quot;Shared Buy&quot;,&quot;Private Buy&quot;],&quot;bg&quot;:[&quot;bg-gray-200&quot;,&quot;bg-lime-200&quot;,&quot;bg-red-200&quot;,&quot;bg-purple-200&quot;,&quot;bg-pink-200&quot;],&quot;text&quot;:[&quot;text-gray-800&quot;,&quot;text-lime-800&quot;,&quot;text-red-800&quot;,&quot;text-purple-800&quot;,&quot;text-pink-800&quot;]},&quot;dataMeta&quot;:{&quot;modelCollections&quot;:{&quot;numbers&quot;:{&quot;class&quot;:null,&quot;id&quot;:[],&quot;relations&quot;:[],&quot;connection&quot;:null,&quot;collectionClass&quot;:null},&quot;features&quot;:{&quot;class&quot;:&quot;App\\Models\\Feature&quot;,&quot;id&quot;:[1,2,3],&quot;relations&quot;:[],&quot;connection&quot;:&quot;mysql&quot;,&quot;collectionClass&quot;:null},&quot;sections&quot;:{&quot;class&quot;:&quot;App\\Models\\Section&quot;,&quot;id&quot;:[1,2],&quot;relations&quot;:[],&quot;connection&quot;:&quot;mysql&quot;,&quot;collectionClass&quot;:null},&quot;assigned&quot;:{&quot;class&quot;:null,&quot;id&quot;:[],&quot;relations&quot;:[],&quot;connection&quot;:null,&quot;collectionClass&quot;:null},&quot;orders&quot;:{&quot;class&quot;:null,&quot;id&quot;:[],&quot;relations&quot;:[],&quot;connection&quot;:null,&quot;collectionClass&quot;:null}},&quot;models&quot;:{&quot;user&quot;:{&quot;class&quot;:&quot;App\\Models\\User&quot;,&quot;id&quot;:7,&quot;relations&quot;:[],&quot;connection&quot;:&quot;mysql&quot;,&quot;collectionClass&quot;:null}},&quot;collections&quot;:[&quot;private&quot;,&quot;rented&quot;]},&quot;checksum&quot;:&quot;cf962efb8d221e5ebe86618f48f0f85d335196fa78ebeb696ca9cf0e7856a18d&quot;}}"
-            lang="en">
+        <html wire:id="KYyr7BXHmAukicbrQqma" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;KYyr7BXHmAukicbrQqma&quot;,&quot;name&quot;:&quot;frontend.home&quot;,&quot;locale&quot;:&quot;en&quot;,&quot;path&quot;:&quot;\/&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;v&quot;:&quot;acj&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;295eff0e&quot;,&quot;data&quot;:{&quot;numbers&quot;:[],&quot;features&quot;:[],&quot;sections&quot;:[],&quot;assigned&quot;:[],&quot;user&quot;:[],&quot;orders&quot;:[],&quot;filters&quot;:{&quot;number&quot;:{&quot;country&quot;:[]},&quot;private&quot;:{&quot;country&quot;:[]},&quot;rented&quot;:{&quot;country&quot;:[]}},&quot;private&quot;:[],&quot;rented&quot;:[],&quot;types&quot;:[&quot;Open&quot;,&quot;Register Only&quot;,&quot;Private&quot;,&quot;Shared Buy&quot;,&quot;Private Buy&quot;],&quot;bg&quot;:[&quot;bg-gray-200&quot;,&quot;bg-lime-200&quot;,&quot;bg-red-200&quot;,&quot;bg-purple-200&quot;,&quot;bg-pink-200&quot;],&quot;text&quot;:[&quot;text-gray-800&quot;,&quot;text-lime-800&quot;,&quot;text-red-800&quot;,&quot;text-purple-800&quot;,&quot;text-pink-800&quot;]},&quot;dataMeta&quot;:{&quot;modelCollections&quot;:{&quot;numbers&quot;:{&quot;class&quot;:null,&quot;id&quot;:[],&quot;relations&quot;:[],&quot;connection&quot;:null,&quot;collectionClass&quot;:null},&quot;features&quot;:{&quot;class&quot;:&quot;App\\Models\\Feature&quot;,&quot;id&quot;:[1,2,3],&quot;relations&quot;:[],&quot;connection&quot;:&quot;mysql&quot;,&quot;collectionClass&quot;:null},&quot;sections&quot;:{&quot;class&quot;:&quot;App\\Models\\Section&quot;,&quot;id&quot;:[1,2],&quot;relations&quot;:[],&quot;connection&quot;:&quot;mysql&quot;,&quot;collectionClass&quot;:null},&quot;assigned&quot;:{&quot;class&quot;:null,&quot;id&quot;:[],&quot;relations&quot;:[],&quot;connection&quot;:null,&quot;collectionClass&quot;:null},&quot;orders&quot;:{&quot;class&quot;:null,&quot;id&quot;:[],&quot;relations&quot;:[],&quot;connection&quot;:null,&quot;collectionClass&quot;:null}},&quot;models&quot;:{&quot;user&quot;:{&quot;class&quot;:&quot;App\\Models\\User&quot;,&quot;id&quot;:7,&quot;relations&quot;:[],&quot;connection&quot;:&quot;mysql&quot;,&quot;collectionClass&quot;:null}},&quot;collections&quot;:[&quot;private&quot;,&quot;rented&quot;]},&quot;checksum&quot;:&quot;cf962efb8d221e5ebe86618f48f0f85d335196fa78ebeb696ca9cf0e7856a18d&quot;}}" lang="en">
 
         <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta name="description"
-                content="An impressive and flawless site template that includes various UI elements and countless features, attractive ready-made blocks and rich pages, basically everything you need to create a unique and professional website.">
-            <meta name="keywords"
-                content="bootstrap 5, business, corporate, creative, gulp, marketing, minimal, modern, multipurpose, one page, responsive, saas, sass, seo, startup, html5 template, site template">
+            <meta name="description" content="An impressive and flawless site template that includes various UI elements and countless features, attractive ready-made blocks and rich pages, basically everything you need to create a unique and professional website.">
+            <meta name="keywords" content="bootstrap 5, business, corporate, creative, gulp, marketing, minimal, modern, multipurpose, one page, responsive, saas, sass, seo, startup, html5 template, site template">
             <meta name="author" content="elemis">
             <title>Verify Asap | SMS Verification Website.</title>
             <link rel="shortcut icon" href="{{url('')}}/public/assets/img/favicon.png">
             <link rel="stylesheet" href="{{url('')}}/public/assets/css/plugins.css">
             <link rel="stylesheet" href="{{url('')}}/public/assets/css/style.css">
-            <link rel="preload" href="{{url('')}}/public/assets/css/fonts/space.css" as="style"
-                onload="this.rel='stylesheet'">
+            <link rel="preload" href="{{url('')}}/public/assets/css/fonts/space.css" as="style" onload="this.rel='stylesheet'">
         </head>
 
         <body>
@@ -780,8 +709,7 @@
                             <div class="navbar-collapse offcanvas offcanvas-nav offcanvas-start">
                                 <div class="offcanvas-header d-lg-none">
                                     <h3 class="text-white fs-30 mb-0">VerifyAsap</h3>
-                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
-                                        aria-label="Close"></button>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                                 </div>
                                 <div class="offcanvas-body ms-lg-auto d-flex flex-column h-100">
                                     <ul class="navbar-nav">
@@ -792,18 +720,16 @@
 
                                         </li>
 
+
                                         <li class="nav-item dropdown">
                                             <a class="nav-link " href="orders">My Orders</a>
 
                                         </li>
 
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link" href="home2">Pending Orders</a>
-
-                                        </li>
-
-                                        <li class="nav-item dropdown">
                                             <a class="nav-link " href="https://t.me/verifyasapcc">Support</a>
+
+
 
                                         </li>
 
@@ -861,86 +787,10 @@
                         <div class="row">
 
 
-                            <div class="col-lg-9 col-xl-8 col-xxl-7 mx-auto  text-center" data-cues="slideInDown"
-                                data-group="page-title" data-delay="500">
-                                <h5 class="display-1 ls-sm fs-40 mb-4 px-md-8 px-lg-0">Hi {{ Auth::user()->username
-                                    }},</h5>
-                                <p class="lead fs-19 lh-sm mb-1  text-center">Recent Orders</p>
-
-
-
-
-                                <div class="col-xl-12 col-md-12 col-sm-12 p-2 justify-center">
-
-
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <table class="table table-sm table-responsive-sm">
-
-                                                <thead>
-                                                  <tr>
-                                                    <th>ID</th>
-                                                    <th>Phone</th>
-                                                    <th>SMS</th>
-                                                    <th>Amount</th>
-                                                    <th>Status</th>
-
-                                                  </tr>
-                                                </thead>
-
-
-                                                @foreach ($orders as $data)
-
-                                                <tbody>
-
-                                                  <tr>
-
-                                                    <td>
-                                                      {{ $data->id }}
-                                                    </td>
-                                                    <td>
-                                                      {{ $data->phone }}
-                                                    </td>
-                                                    <td>
-                                                      {{ $data->sms}}
-                                                    </td>
-
-                                                    <td>
-                                                      {{ number_format($data->cost, 2) }}
-                                                    </td>
-
-                                                    @if($data->status == 2)
-                                                    <td class="text-success">
-                                                        Delivered
-                                                    </td>
-                                                    @else
-                                                     <td class="text-warning">
-                                                        Pending
-                                                    </td>
-                                                    @endif
-                                                  </tr>
-
-
-                                                </tbody>
-
-                                                @endforeach
-
-
-                                              </table>
-
-
-
-
-
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
+                            <div class="col-lg-9 col-xl-8 col-xxl-7 mx-auto  text-center" data-cues="slideInDown" data-group="page-title" data-delay="500">
+                                <h5 class="display-1 ls-sm fs-40 mb-4 px-md-8 px-lg-0">About VERIFYASAP</h5>
+                                <p class="lead fs-19 lh-sm mb-7  text-center">When you sign up for accounts on social networks, chat services, and other websites, an SMS account verification is necessary. <br> If you don't want to buy a new SIM card, you can use our services because we provide virtual phone numbers for receiving SMS verification code online.</p>
                             </div>
-
 
 
 
@@ -954,28 +804,6 @@
                 <!-- /section -->
 
 
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-
-                      <div class="modal-body">
-                        <p>
-                            Why SMS does not arrive?
-                        Please consider the following recommendations:
-
-                        </p>
-                        <p> 1.⁠ ⁠Repeat sending the SMS code from the selected service to the purchased phone number.</p>
-                        <p> 2.⁠ ⁠Change your IP address. Use a proxy or VPN. Your IP address should comply with the country of the purchased phone number.</p>
-                        <p> 3.⁠ ⁠Apply extensions in the browser to change the user-agent or open the tab in incognito mode. Many websites track a certain set of user information.</p>
-                        <p> 4.⁠ ⁠Try to buy another phone number.</p>
-
-                        <p>Additionally:
-                        We don’t charge you until you receive code , so you can keep trying different numbers</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
 
 
@@ -1035,30 +863,21 @@
                                 <div class="newsletter-wrapper">
                                     <!-- Begin Mailchimp Signup Form -->
                                     <div id="mc_embed_signup2">
-                                        <form
-                                            action="https://elemisfreebies.us20.list-manage.com/subscribe/post?u=aa4947f70a475ce162057838d&amp;id=b49ef47a9a"
-                                            method="post" id="mc-embedded-subscribe-form2"
-                                            name="mc-embedded-subscribe-form" class="validate " target="_blank"
-                                            novalidate="">
+                                        <form action="https://elemisfreebies.us20.list-manage.com/subscribe/post?u=aa4947f70a475ce162057838d&amp;id=b49ef47a9a" method="post" id="mc-embedded-subscribe-form2" name="mc-embedded-subscribe-form" class="validate " target="_blank" novalidate="">
                                             <div id="mc_embed_signup_scroll2">
                                                 <div class="mc-field-group input-group form-floating">
-                                                    <input type="email" value="" name="EMAIL"
-                                                        class="required email form-control" placeholder="Email Address"
-                                                        id="mce-EMAIL2">
+                                                    <input type="email" value="" name="EMAIL" class="required email form-control" placeholder="Email Address" id="mce-EMAIL2">
                                                     <label for="mce-EMAIL2">Email Address</label>
-                                                    <input type="submit" value="Join" name="subscribe"
-                                                        id="mc-embedded-subscribe2" class="btn btn-primary ">
+                                                    <input type="submit" value="Join" name="subscribe" id="mc-embedded-subscribe2" class="btn btn-primary ">
                                                 </div>
                                                 <div id="mce-responses2" class="clear">
                                                     <div class="response" id="mce-error-response2" style="display:none">
                                                     </div>
-                                                    <div class="response" id="mce-success-response2"
-                                                        style="display:none"></div>
+                                                    <div class="response" id="mce-success-response2" style="display:none"></div>
                                                 </div>
                                                 <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
                                                 <div style="position: absolute; left: -5000px;" aria-hidden="true">
-                                                    <input type="text" name="b_ddc180777a163e0f9f66ee014_4b1bcfa0bc"
-                                                        tabindex="-1" value="">
+                                                    <input type="text" name="b_ddc180777a163e0f9f66ee014_4b1bcfa0bc" tabindex="-1" value="">
                                                 </div>
                                                 <div class="clear"></div>
                                             </div>
@@ -1093,12 +912,34 @@
     <script src="/livewire/livewire.js?id=90730a3b0e7144480175" data-turbo-eval="false" data-turbolinks-eval="false">
     </script>
     <script data-turbo-eval="false" data-turbolinks-eval="false">
-        window.livewire = new Livewire();window.Livewire = window.livewire;window.livewire_app_url = '';window.livewire_token = 'JBt4aOzGju0YuBweWShPMRkAkmVxvzZzG4XOMx7V';window.deferLoadingAlpine = function (callback) {window.addEventListener('livewire:load', function () {callback();});};let started = false;window.addEventListener('alpine:initializing', function () {if (! started) {window.livewire.start();started = true;}});document.addEventListener("DOMContentLoaded", function () {if (! started) {window.livewire.start();started = true;}});
+        window.livewire = new Livewire();
+        window.Livewire = window.livewire;
+        window.livewire_app_url = '';
+        window.livewire_token = 'JBt4aOzGju0YuBweWShPMRkAkmVxvzZzG4XOMx7V';
+        window.deferLoadingAlpine = function(callback) {
+            window.addEventListener('livewire:load', function() {
+                callback();
+            });
+        };
+        let started = false;
+        window.addEventListener('alpine:initializing', function() {
+            if (!started) {
+                window.livewire.start();
+                started = true;
+            }
+        });
+        document.addEventListener("DOMContentLoaded", function() {
+            if (!started) {
+                window.livewire.start();
+                started = true;
+            }
+        });
+
     </script>
 
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const table = document.getElementById('data-table');
             const rows = table.querySelectorAll('tbody tr');
 
@@ -1106,7 +947,7 @@
                 const countdownElement = row.cells[2]; // Assumes "Expires" is in the third column (index 2)
                 let seconds = parseInt(countdownElement.getAttribute('data-seconds'), 10);
 
-                const countdownInterval = setInterval(function () {
+                const countdownInterval = setInterval(function() {
                     countdownElement.textContent = seconds + 's';
 
                     if (seconds <= 0) {
@@ -1121,14 +962,16 @@
 
             // You may add the sendPostRequest function here or modify the code accordingly
         });
+
     </script>
 
     <script>
-        $(document).ready(function () {
-//change selectboxes to selectize mode to be searchable
-   $("select").select2();
-});
+        $(document).ready(function() {
+            //change selectboxes to selectize mode to be searchable
+            $("select").select2();
+        });
 
+    </script>
 
 
     <style>
@@ -1150,12 +993,16 @@
         .my-float {
             margin-top: 16px;
         }
+
     </style>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <a href="https://t.me/verifyasapcom" class="float" target="_blank">
         <i class="fa fa-comment my-float"></i>
     </a>
+
+
+
 
 
 

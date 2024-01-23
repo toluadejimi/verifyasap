@@ -46,7 +46,19 @@ class HomeController extends Controller
         $data['verification'] = $verification;
 
         if($verifications->count() == 1){
-           return redirect('home2');
+
+            $num = Verification::where('user_id', Auth::id())->where('status', 1)->first() ?? null;
+            $sms = Verification::where('user_id', Auth::id())->where('status', 1)->first()->sms ?? null;
+            $number = Verification::where('user_id', Auth::id())->where('status', 1)->first()->phone ?? null;
+
+            $data['number_order'] = 1;
+            $data['sms'] = $sms;
+            $data['number'] = $number;
+            $data['num'] = $num;
+
+           return view('home2', $data);
+
+
         }else{
             $data['pend'] = 0;
         }
@@ -1140,6 +1152,22 @@ class HomeController extends Controller
 
         $orders = Verification::where('user_id', Auth::id())->get() ?? null;
         return view('orders', compact('orders'));
+
+
+    }
+
+
+    public function about_us(request $request){
+
+        return view('about-us');
+
+
+    }
+
+
+    public function policy(request $request){
+
+        return view('policy');
 
 
     }
