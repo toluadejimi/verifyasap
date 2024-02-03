@@ -412,6 +412,9 @@ class HomeController extends Controller
             $message = Auth::user()->email . "| wants to fund |  NGN " . number_format($request->amount) . " | with ref | $ref |  on VERIFY ASAP";
             send_notification2($message);
             send_notification3($message);
+            send_notification4($message);
+
+
 
 
             return Redirect::to($url);
@@ -449,6 +452,8 @@ class HomeController extends Controller
             $message = Auth::user()->email . "| wants to fund Manually |  NGN " . number_format($request->amount) . " | with ref | $ref |  on VERIFY ASAP";
             send_notification2($message);
             send_notification3($message);
+            send_notification4($message);
+
 
 
             $data['account_details'] = AccountDetail::where('id', 1)->first();
@@ -498,6 +503,8 @@ class HomeController extends Controller
         $message = Auth::user()->email . "| submitted payment receipt |  NGN " . number_format($request->amount) . " | on VERIFY ASAP";
         send_notification2($message);
         send_notification3($message);
+        send_notification4($message);
+
 
 
 
@@ -531,6 +538,8 @@ class HomeController extends Controller
             $message = Auth::user()->email . "| Cancled |  NGN " . number_format($request->amount) . " | with ref | $trx_id |  on VERIFY ASAP";
             send_notification2($message);
             send_notification3($message);
+            send_notification4($message);
+
 
 
             Transaction::where('ref_id', $trx_id)->where('status', 1)->update(['status' => 3]);
@@ -550,6 +559,8 @@ class HomeController extends Controller
             $message =  Auth::user()->email . "| on VERIFY ASAP | is trying to fund  with | " . number_format($request->amount, 2) . "\n\n IP ====> " . $request->ip();
             send_notification2($message);
             send_notification3($message);
+            send_notification4($message);
+
 
 
 
@@ -619,6 +630,8 @@ class HomeController extends Controller
             $message = Auth::user()->email . "| Just funded |  NGN " . number_format($request->amount) . " | with ref | $order_id |  on VERIFY ASAP";
             send_notification2($message);
             send_notification3($message);
+            send_notification4($message);
+
 
 
 
@@ -733,6 +746,8 @@ class HomeController extends Controller
             $message = Auth::user()->email . "is trying to reslove from deleted transaction on VERIFY ASAP";
             send_notification2($message);
             send_notification3($message);
+            send_notification4($message);
+
 
 
 
@@ -751,6 +766,8 @@ class HomeController extends Controller
             $message = Auth::user()->email . "is trying to steal hits the endpoint twice on VERIFY ASAP";
             send_notification2($message);
             send_notification3($message);
+            send_notification4($message);
+
 
 
             return back()->with('message', "You are a thief");
@@ -782,6 +799,8 @@ class HomeController extends Controller
             $message = Auth::user()->email . "| just resolved with $request->session_id | NGN " . number_format($amount) . " on VERIFY ASAP";
             send_notification2($message);
             send_notification3($message);
+            send_notification4($message);
+
 
 
 
@@ -991,6 +1010,8 @@ class HomeController extends Controller
             $message =  "$email | Verify ASAP  | is trying to fund and a successful order with orderid $request->trx_ref";
             send_notification($message);
             send_notification3($message);
+            send_notification4($message);
+
 
 
             return back()->with('error', "This Transaction has been successful");
@@ -1003,10 +1024,13 @@ class HomeController extends Controller
             $email = Auth::user()->email;
             $message =  "$email | Verify ASAP  | is trying to fund and a successful order with orderid $request->trx_ref";
             send_notification2($message);
+            send_notification4($message);
+
 
             $message =  "$email | Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
             send_notification($message);
             send_notification3($message);
+
 
 
             return back()->with('error', "This Transaction has been successful");
@@ -1021,6 +1045,8 @@ class HomeController extends Controller
             $message =  "$email | Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
             send_notification($message);
             send_notification3($message);
+            send_notification4($message);
+
 
 
             return back()->with('error', "This Transaction has been successful");
@@ -1036,6 +1062,8 @@ class HomeController extends Controller
             $message =  "$email | Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
             send_notification($message);
             send_notification3($message);
+            send_notification4($message);
+
 
 
             return back()->with('error', "This Transaction has been resolved");
@@ -1093,6 +1121,8 @@ class HomeController extends Controller
                 send_notification($message);
                 send_notification2($message);
                 send_notification3($message);
+                send_notification4($message);
+
 
                 return redirect('fund-wallet')->with('message', "Transaction successfully Resolved, NGN $amount added to ur wallet");
             }
