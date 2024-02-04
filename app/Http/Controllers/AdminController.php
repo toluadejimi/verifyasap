@@ -336,7 +336,11 @@ class AdminController extends Controller
 	{
 
 
-       $get_id = User::where('email', $request->email)->first()->id;
+       $get_id = User::where('email', $request->email)->first()->id ?? null;
+
+       if($get_id == null){
+        return back()->with('error', 'No user Found');
+       }
 
        $data['users'] = User::where('id', $get_id)->get();
        $data['user'] = User::all()->count();
@@ -354,7 +358,11 @@ class AdminController extends Controller
     public function search_username(request $request)
 	{
 
-       $get_id = User::where('username', $request->username)->first()->id;
+       $get_id = User::where('username', $request->username)->first()->id ?? null;
+
+       if($get_id == null){
+        return back()->with('error', 'No user Found');
+       }
 
        $data['users'] = User::where('id', $get_id)->get();
        $data['user'] = User::all()->count();
