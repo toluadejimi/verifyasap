@@ -342,11 +342,10 @@ class AdminController extends Controller
         return back()->with('error', 'No user Found');
        }
 
-       $data['users'] = User::where('id', $get_id)->get();
-       $data['user'] = User::all()->count();
-       $data['transaction'] = Transaction::latest()->where('user_id', $get_id)->paginate();
-       $data['order'] = SoldLog::latest()->where('user_id', $get_id)->paginate();
 
+       $data['users'] = User::where('id', $get_id)->first();
+       $data['transaction'] = Transaction::latest()->where('user_id', $request->id)->paginate();
+       $data['verification'] = verification::latest()->where('user_id', $request->id)->paginate();
 
 
        return view('user-search', $data);
@@ -364,13 +363,13 @@ class AdminController extends Controller
         return back()->with('error', 'No user Found');
        }
 
-       $data['users'] = User::where('id', $get_id)->get();
-       $data['user'] = User::all()->count();
-       $data['transaction'] = Transaction::latest()->where('user_id', $get_id)->paginate();
-       $data['order'] = SoldLog::latest()->where('user_id', $get_id)->paginate();
+       $data['users'] = User::where('id', $get_id)->first();
+       $data['transaction'] = Transaction::latest()->where('user_id', $request->id)->paginate();
+       $data['verification'] = verification::latest()->where('user_id', $request->id)->paginate();
 
 
        return view('user-search', $data);
+
 
 
     }

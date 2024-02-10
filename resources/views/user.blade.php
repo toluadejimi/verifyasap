@@ -185,7 +185,7 @@
 
                                         <form action="search-username" method="POST">
                                             @csrf
-                                            <label>Enter Email</label>
+                                            <label>Enter Username</label>
                                             <input type="text" class="form-control2 text-dark" name="username" required autofocus>
 
                                             <button class="btn btn-sm btn-success my-3">Submit</button>
