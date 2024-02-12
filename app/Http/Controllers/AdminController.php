@@ -335,7 +335,6 @@ class AdminController extends Controller
     public function search_user(request $request)
 	{
 
-
        $get_id = User::where('email', $request->email)->first()->id ?? null;
 
        if($get_id == null){
@@ -348,7 +347,7 @@ class AdminController extends Controller
        $data['verification'] = verification::latest()->where('user_id', $request->id)->paginate();
 
 
-       return view('user-search', $data);
+       return view('view-user', $data);
 
 
     }
@@ -368,7 +367,7 @@ class AdminController extends Controller
        $data['verification'] = verification::latest()->where('user_id', $request->id)->paginate();
 
 
-       return view('user-search', $data);
+       return view('view-user', $data);
 
 
 
