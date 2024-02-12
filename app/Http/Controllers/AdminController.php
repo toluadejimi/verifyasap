@@ -342,7 +342,7 @@ class AdminController extends Controller
        }
 
 
-       $data['users'] = User::where('id', $get_id)->first();
+       $data['user'] = User::where('id', $get_id)->first();
        $data['transaction'] = Transaction::latest()->where('user_id', $request->id)->paginate();
        $data['verification'] = verification::latest()->where('user_id', $request->id)->paginate();
 
@@ -362,7 +362,7 @@ class AdminController extends Controller
         return back()->with('error', 'No user Found');
        }
 
-       $data['users'] = User::where('id', $get_id)->first();
+       $data['user'] = User::where('id', $get_id)->first();
        $data['transaction'] = Transaction::latest()->where('user_id', $request->id)->paginate();
        $data['verification'] = verification::latest()->where('user_id', $request->id)->paginate();
 
