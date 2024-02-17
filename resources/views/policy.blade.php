@@ -772,8 +772,8 @@
                                     A disposable phone number, also known as a temporary number, is a phone number that is only active for a short period of time, usually 10 minutes. <br>
                                     These numbers are typically used to receive SMS verification codes on websites or apps where users don’t want to share their personal number.<br></p>
 
-                                     <p class="lead fs-19 lh-sm mb-7  text-center"> You can now verify your online accounts without using your personal, work or business numbers.<br>  Verifyasap provides real sim card numbers for you to create and verify your accounts.<br>
-                                       Using our platform , we offer a wide variety of countries for SMS Verifications</p>
+                                     <p class="lead fs-19 lh-sm mb-7  text-center"> You can now verify your online accounts without using your personal, work or business numbers.<br> Verifyasap provides real sim card numbers for you to create and verify your accounts.<br>
+                                      Using our platform , we offer a wide variety of countries for SMS Verifications</p>
 
 
                                     STOP GIVING OUT YOUR REAL NUMBERS ONLINE

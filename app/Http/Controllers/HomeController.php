@@ -771,6 +771,17 @@ class HomeController extends Controller
         return view('Auth.login');
     }
 
+    
+
+
+    
+
+
+    public function forget_password(Request $request)
+    {
+        return view('Auth.forgot-password');
+    }
+
 
     public function register(Request $request)
     {
@@ -964,13 +975,13 @@ class HomeController extends Controller
     }
 
 
-    public function forget_password(request $request)
-    {
+    // public function forget_password(request $request)
+    // {
 
-        $user = Auth::id() ?? null;
+    //     $user = Auth::id() ?? null;
 
-        return view('forget-password', compact('user'));
-    }
+    //     return view('forget-password', compact('user'));
+    // }
 
     public function reset_password(request $request)
     {
@@ -980,6 +991,8 @@ class HomeController extends Controller
         $url = url('') . "/verify-password?code=$expiryTimestamp&email=$request->email";
 
         $ck = User::where('email', $request->email)->first()->email ?? null;
+        $username = User::where('email', $request->email)->first()->username ?? null;
+
 
         if ($ck == $request->email) {
 
@@ -988,10 +1001,11 @@ class HomeController extends Controller
             ]);
 
             $data = array(
-                'fromsender' => 'noreply@logmarketplace.com', 'VERIFY ASAP',
+                'fromsender' => 'noreply@verifyasap.com', 'VERIFY ASAP',
                 'subject' => "Reset Password",
                 'toreceiver' => $email,
                 'url' => $url,
+                'user' =>$username,
             );
 
 
@@ -1055,7 +1069,7 @@ class HomeController extends Controller
 
         ]);
 
-        return redirect('/')->with('message', 'Password reset successful, Please login to continue');
+        return redirect('/login')->with('message', 'Password reset successful, Please login to continue');
     }
 
 

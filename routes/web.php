@@ -150,8 +150,8 @@ Route::any('fund-manual-now',  [HomeController::class,'fund_manual_now']);
 Route::any('confirm-pay',  [HomeController::class,'confirm_pay']);
 
 
-Route::post('search-user',  [AdminController::class,'search_user']);
-Route::post('search-username',  [AdminController::class,'search_username']);
+Route::get('search-user',  [AdminController::class,'search_user']);
+Route::any('search-username',  [AdminController::class,'search_username']);
 
 Route::any('about-us',  [HomeController::class,'about_us']);
 Route::any('policy',  [HomeController::class,'policy']);
@@ -171,8 +171,8 @@ Route::any('policy',  [HomeController::class,'policy']);
 
 Route::get('users',  [AdminController::class,'index_user']);
 Route::get('view-user',  [AdminController::class,'view_user']);
-Route::post('update-user',  [AdminController::class,'update_user']);
-Route::post('remove-user',  [AdminController::class,'remove_user']);
+Route::any('update-user',  [AdminController::class,'update_user']);
+Route::any('remove-user',  [AdminController::class,'remove_user']);
 
 
 

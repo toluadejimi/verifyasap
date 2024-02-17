@@ -159,7 +159,7 @@
                                     <div class="card-body">
                                         <h5 class="text-muted">Search user</h5>
 
-                                        <form action="search-user" method="POST">
+                                        <form action="search-user" method="GET">
                                             @csrf
                                             <label>Enter Email</label>
                                             <input type="email" class="form-control2 text-dark" name="email" required autofocus>
@@ -183,7 +183,7 @@
                                     <div class="card-body">
                                         <h5 class="text-muted">Search user</h5>
 
-                                        <form action="search-username" method="POST">
+                                        <form action="search-username" method="GET">
                                             @csrf
                                             <label>Enter Username</label>
                                             <input type="text" class="form-control2 text-dark" name="username" required autofocus>
