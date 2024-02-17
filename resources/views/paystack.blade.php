@@ -639,147 +639,29 @@
 
 
                 <div class="text-stone-900 text-xl font-bold self-center whitespace-nowrap mt-10">
-                    FUND WALLET
+                    Pay with paystack
                 </div>
 
-
-
-
-
-                <div class="items-stretch shadow-sm bg-white self-stretch flex justify-between gap-5 mt-9 px-2 py-2 rounded-3xl">
-                    <button id="span-3" class="button" onclick="activateButton(this)">
-                        Fund
-                    </button>
-                    <button id="div-2" class="button" onclick="activateButton(this)">
-                        History
-                    </button>
+                <div class="text-blue-500 text-center text-sm justify-center items-stretch bg-blue-500 bg-opacity-20 self-stretch mt-2 px-6 py-3 rounded-xl">
+                    You are about to pay NGN {{ number_format($amount, 2) }}
                 </div>
 
-
-                <form id="myDiv" action="fund-now" class="grid grid-cols-1" gap-3 method="POST">
-                    @csrf
-
-                    <label class="mt-3 mb-3 text-gray-600 font-bold gap-3 text-sm">Enter the Amount (NGN)</label>
-                    <div class="flex">
-                        <span class="inline-flex items-center px-4 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500">
-                            NGN
-                        </span>
-                        <input class="border-gray-300 gap-3 focus:border-primary focus:ring-1 focus:ring-primary focus:ring-opacity-50 rounded-md shadow-sm block w-full rounded-l-none" id="amount" type="number" max="999999" min="5" name="amount" placeholder="Enter the Amount you want Add" required="required">
-                    </div>
+                <a type="submit" href="{{ $url }}" class="text-white text-xl font-bold whitespace-nowrap justify-center items-stretch bg-blue-500 self-center mt-11 mb-11 px-12 py-5 rounded-3xl">
+                    Pay Now
+                </a>
 
 
 
-                    <div class="flex mt-5 mb-4">
 
 
-
-                        <div class="flex">
-
-                            <span class="inline-flex  items-center px-10 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500">
-                                Paywith
-                            </span>
-
-                            <select name="type" class="border-gray-300 gap-3 focus:border-primary focus:ring-1 focus:ring-primary focus:ring-opacity-50 rounded-md shadow-sm block w-full rounded-l-none" id="amount" type="number" max="999999" min="5" name="amount" placeholder="Enter the Amount you want Add" required="required">
-
-                                <option class="text-center" value="1"> ENKPAY </option>
-                                <option class="text-center" value="3"> PAYSTACK </option>
-                                <option class="text-center" value="2"> Manual Funding</option>
-
-                            </select>
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="text-blue-500 text-center text-sm justify-center items-stretch bg-blue-500 bg-opacity-20 self-stretch mt-2 px-6 py-3 rounded-xl">
-                        Add more funds to wallet.
-                    </div>
-                    <button type="submit" class="text-white text-xl font-bold whitespace-nowrap justify-center items-stretch bg-blue-500 self-center mt-11 mb-11 px-12 py-5 rounded-3xl">
-
-                        Add Funds
-                    </button>
-                </form>
-
-
+              
 
 
 
 
             </div>
 
-            <div id="myDiv3" class="container mx-auto px-5 md:px-100">
-                <div class="space-y-6">
-                    <h1 class="text-2xl font-bold text-primary">List of Transactions</h1>
-                    <div class="border-b border-dashed border-primary w-24"></div>
-                    <div class="bg-gray-400 text-white shadow rounded-lg overflow-hidden">
-                        <div class="border-b py-4 px-5 grid grid-cols-3 md:grid-cols-4">
 
-                            @foreach($transaction as $data)
-                            <div class="hidden md:block">
-                                <label class="text-xs font-medium text-gray-100">Transaction ID #</label>
-                                <div class="text-lg font-bold">{{$data->ref_id}}</div>
-                            </div>
-                            <div>
-                                <label class="text-xs font-medium text-gray-100 mb-2">Type</label>
-                                @if($data->type == 2)
-                                <div>
-                                    <span class="uppercase text-xs font-bold bg-green-800 text-white rounded px-2 py-1">Credit</span>
-                                </div>
-                                @else
-                                <div>
-                                    <span class="uppercase text-xs font-bold bg-red-800 text-white rounded px-2 py-1">Debit</span>
-                                </div>
-                                @endif
-                            </div>
-                            <div>
-                                <label class="text-xs font-medium text-gray-100 ">Amount</label>
-                                <div class="text-lg font-bold">NGN {{ number_format($data->amount, 2) }}</div>
-                            </div>
-                            @if ($data->status == 2)
-
-                            <div>
-                                <label class="text-xs font-medium text-gray-100 mb-2">Status</label>
-                                <div>
-                                    <span class="text-xs font-bold bg-green-300 text-gray-800 rounded px-2 py-1">Completed</span>
-                                </div>
-                            </div>
-
-                            @else
-
-
-                            <div>
-                                <label class="text-xs font-medium text-gray-100 mb-2">Status</label>
-                                <div>
-                                    <a href="resolve-page?trx_ref={{$data->ref_id}}" class="text-xs font-bold bg-orange-300 text-gray-800 rounded px-2 py-1">Resolve</a>
-                                </div>
-                            </div>
-
-                            @endif
-
-                        </div>
-                        <div class="border-b py-4 px-5 grid grid-cols-3 md:grid-cols-4">
-                            <div class="hidden md:block">
-
-                            </div>
-                            <div>
-
-                            </div>
-                            <div>
-
-                            </div>
-                            <div>
-
-                            </div>
-
-                            @endforeach
-                        </div>
-                    </div>
-                    <div>
-                    </div>
-
-                </div>
-            </div>
 
 
 

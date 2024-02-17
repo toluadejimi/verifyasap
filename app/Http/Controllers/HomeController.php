@@ -45,7 +45,7 @@ class HomeController extends Controller
         $data['countries'] = $countries;
         $data['verification'] = $verification;
 
-        if($verifications->count() == 1){
+        if ($verifications->count() == 1) {
 
             $num = Verification::where('user_id', Auth::id())->where('status', 1)->first() ?? null;
             $sms = Verification::where('user_id', Auth::id())->where('status', 1)->first()->sms ?? null;
@@ -56,10 +56,8 @@ class HomeController extends Controller
             $data['number'] = $number;
             $data['num'] = $num;
 
-           return view('home2', $data);
-
-
-        }else{
+            return view('home2', $data);
+        } else {
             $data['pend'] = 0;
         }
 
@@ -68,8 +66,6 @@ class HomeController extends Controller
 
 
         return view('home', $data);
-
-
     }
 
 
@@ -82,30 +78,28 @@ class HomeController extends Controller
         $number = Verification::where('user_id', Auth::id())->where('status', 1)->first()->phone ?? null;
 
 
-       $nummm = Verification::where('user_id', Auth::id())->first()->status ?? null;
-       if($nummm == 2){
-        return redirect('home');
-       }
+        $nummm = Verification::where('user_id', Auth::id())->first()->status ?? null;
+        if ($nummm == 2) {
+            return redirect('home');
+        }
 
 
 
-       $nummm = Verification::where('user_id', Auth::id())->first()->status ?? null;
-       if($nummm == null){
-        return redirect('home');
-       }
+        $nummm = Verification::where('user_id', Auth::id())->first()->status ?? null;
+        if ($nummm == null) {
+            return redirect('home');
+        }
 
 
 
 
-            $data['number_order'] = 1;
-            $data['sms'] = $sms;
-            $data['number'] = $number;
-            $data['num'] = $num;
+        $data['number_order'] = 1;
+        $data['sms'] = $sms;
+        $data['number'] = $number;
+        $data['num'] = $num;
 
 
         return view('home2', $data);
-
-
     }
 
 
@@ -115,14 +109,14 @@ class HomeController extends Controller
         $key = env('KEY');
 
 
-    $databody = array(
-        "key" => $key,
-        "country" => $request->country,
-        "service" => $request->service,
-        "pool" => '7',
-    );
+        $databody = array(
+            "key" => $key,
+            "country" => $request->country,
+            "service" => $request->service,
+            "pool" => '7',
+        );
 
-    $body = json_encode($databody);
+        $body = json_encode($databody);
 
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -150,9 +144,9 @@ class HomeController extends Controller
 
 
 
-        if ($price == null){
+        if ($price == null) {
             return redirect('home')->with('error', 'Verification not available for selected service');
-        }else{
+        } else {
 
             $get_rate = Setting::where('id', 1)->first()->rate;
             $margin = Setting::where('id', 1)->first()->margin;
@@ -176,33 +170,28 @@ class HomeController extends Controller
             $data['number_order'] = null;
 
             $verifications = Verification::where('user_id', Auth::id())->where('status', 1)->get();
-            if($verifications->count() > 1){
+            if ($verifications->count() > 1) {
                 $data['pend'] = 1;
-            }else{
+            } else {
                 $data['pend'] = 0;
             }
 
 
             return view('home', $data);
-
         }
-
-
-
-
     }
 
 
     public function order_now(Request $request)
     {
 
-        if(Auth::user()->wallet < $request->price){
+        if (Auth::user()->wallet < $request->price) {
             return back()->with('error', "Insufficient Funds");
         }
 
 
         $ckn = Verification::where('user_id', Auth::id())->where('status', 1) ?? null;
-        if($ckn->count() == 1){
+        if ($ckn->count() == 1) {
             return redirect('home')->with('error', "Complete or End Pending Order");
         }
 
@@ -217,21 +206,21 @@ class HomeController extends Controller
 
         $order = create_order($country, $service, $price);
 
-        if($order == 1){
-        User::where('id', Auth::id())->increment('wallet', $request->price);
-        $message = "Verify ASAP | Low balance";
-        send_notification($message);
-        return redirect('home')->with('error', 'Error occurred, Please try again');
+        if ($order == 1) {
+            User::where('id', Auth::id())->increment('wallet', $request->price);
+            $message = "Verify ASAP | Low balance";
+            send_notification($message);
+            return redirect('home')->with('error', 'Error occurred, Please try again');
         }
 
-        if($order == 2){
+        if ($order == 2) {
             User::where('id', Auth::id())->increment('wallet', $request->price);
             $message = "Verify ASAP | Error";
             send_notification($message);
             return redirect('home')->with('error', 'Error occurred, Please try again');
         }
 
-        if($order == 3 ){
+        if ($order == 3) {
 
             $countries = get_countries();
             $services = get_services();
@@ -258,9 +247,7 @@ class HomeController extends Controller
 
 
             return view('home2', $data);
-
         }
-
     }
 
 
@@ -269,25 +256,25 @@ class HomeController extends Controller
 
         $order = Verification::where('id', $request->id)->first() ?? null;
 
-        if($order == null){
+        if ($order == null) {
             return redirect('home')->with('error', 'Order not found');
         }
 
-        if($order->status == 2){
+        if ($order->status == 2) {
             return redirect('home')->with('message', "Order Completed");
         }
 
-        if($order->status == 1){
+        if ($order->status == 1) {
 
             $orderID = $order->order_id;
             $can_order = cancel_order($orderID);
 
-            if( $can_order == 0){
+            if ($can_order == 0) {
                 return back()->with('error', "Please wait and try again later");
             }
 
 
-            if( $can_order == 1){
+            if ($can_order == 1) {
                 $amount = number_format($order->cost, 2);
                 User::where('id', Auth::id())->increment('wallet', $order->cost);
                 Verification::where('id', $request->id)->delete();
@@ -295,11 +282,11 @@ class HomeController extends Controller
             }
 
 
-            if( $can_order == 3){
+            if ($can_order == 3) {
 
 
                 $order = Verification::where('id', $request->id)->first() ?? null;
-                if($order->status != 1 || $order == null){
+                if ($order->status != 1 || $order == null) {
                     return redirect('home')->with('error', "Please try again later");
                 }
 
@@ -308,56 +295,48 @@ class HomeController extends Controller
                 Verification::where('id', $request->id)->delete();
                 return redirect('home')->with('message', "Order has been cancled, NGN$amount has been refunded");
             }
-
-
-
         }
-
     }
 
 
     public function check_sms(Request $request)
     {
 
-         $order = Verification::where('id', $request->id)->first() ?? null;
+        $order = Verification::where('id', $request->id)->first() ?? null;
 
-        if($order == null){
+        if ($order == null) {
             return back()->with('error', 'Order not found');
         }
 
-        if($order->status == 1){
+        if ($order->status == 1) {
 
             $orderID = $order->order_id;
             $sms = check_sms($orderID);
 
-            if($sms == 1){
+            if ($sms == 1) {
                 return redirect('home2')->with('error', 'Sms Pending, please wait and refresh again');
             }
 
-            if($sms == 6){
+            if ($sms == 6) {
                 $amount = number_format($order->cost, 2);
                 User::where('id', Auth::id())->increment('wallet', $order->cost);
                 Verification::where('id', $request->id)->delete();
                 return redirect('home')->with('message', "Order has been canceled, NGN$amount has been refunded");
             }
 
-            if($sms == 6){
+            if ($sms == 6) {
                 return back()->with('message', 'Sms Received, order completed');
             }
         }
-
-
-
-
     }
 
     public function fund_wallet(Request $request)
     {
         $user = Auth::id() ?? null;
         $transaction = Transaction::query()
-        ->orderByRaw('updated_at DESC')
-        ->where('user_id', Auth::id())
-        ->get();
+            ->orderByRaw('updated_at DESC')
+            ->where('user_id', Auth::id())
+            ->get();
 
 
         return view('fund-wallet', compact('user', 'transaction'));
@@ -411,8 +390,8 @@ class HomeController extends Controller
 
             $message = Auth::user()->email . "| wants to fund |  NGN " . number_format($request->amount) . " | with ref | $ref |  on VERIFY ASAP";
             send_notification2($message);
-            
-            
+
+
 
 
 
@@ -451,8 +430,8 @@ class HomeController extends Controller
 
             $message = Auth::user()->email . "| wants to fund Manually |  NGN " . number_format($request->amount) . " | with ref | $ref |  on VERIFY ASAP";
             send_notification2($message);
-            
-            
+
+
 
 
 
@@ -464,16 +443,59 @@ class HomeController extends Controller
 
 
 
+        if ($request->type == 3) {
+
+            $paystackskey = env('PSKEY');
+
+            if ($request->amount < 100) {
+                return back()->with('error', 'You can not fund less than NGN 100');
+            }
+
+
+            if ($request->amount > 100000) {
+                return back()->with('error', 'You can not fund more than NGN 100,000');
+            }
 
 
 
+            $url = "https://api.paystack.co/transaction/initialize";
+
+            $fields = [
+                'email' => Auth::user()->email,
+                'amount' => $request->amount * 100,
+            ];
+
+            $fields_string = http_build_query($fields);
+
+            //open connection
+            $ch = curl_init();
+
+            //set the url, number of POST vars, POST data
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                "Authorization: Bearer $paystackskey",
+                "Cache-Control: no-cache",
+            ));
+
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 
+            $var = curl_exec($ch);
+            curl_close($ch);
+            $var = json_decode($var);
+            $status = $var->status ?? null;
 
+            if ($status == true) {
+                $data['url'] = $var->data->authorization_url;
+            } else {
+                $data['url'] = "#";
+            }
 
-
-
-
+            $data['amount'] = $request->amount;
+            return view('paystack', $data);
+        }
     }
 
 
@@ -482,13 +504,13 @@ class HomeController extends Controller
 
 
 
-        if($request->receipt == null){
+        if ($request->receipt == null) {
             return back()->with('error', "Payment receipt is required");
         }
 
 
         $file = $request->file('receipt');
-        $receipt_fileName = date("ymis").$file->getClientOriginalName();
+        $receipt_fileName = date("ymis") . $file->getClientOriginalName();
         $destinationPath = public_path() . 'upload/receipt';
         $request->receipt->move(public_path('upload/receipt'), $receipt_fileName);
 
@@ -502,24 +524,20 @@ class HomeController extends Controller
 
         $message = Auth::user()->email . "| submitted payment receipt |  NGN " . number_format($request->amount) . " | on VERIFY ASAP";
         send_notification2($message);
-        
-        
+
+
 
 
 
 
         return view('confirm-pay');
-        
-
     }
 
 
     public function confirm_pay(Request $request)
     {
-        
-        return view('confirm-pay');
 
-    
+        return view('confirm-pay');
     }
 
 
@@ -537,8 +555,8 @@ class HomeController extends Controller
 
             $message = Auth::user()->email . "| Cancled |  NGN " . number_format($request->amount) . " | with ref | $trx_id |  on VERIFY ASAP";
             send_notification2($message);
-            
-            
+
+
 
 
 
@@ -558,8 +576,8 @@ class HomeController extends Controller
 
             $message =  Auth::user()->email . "| on VERIFY ASAP | is trying to fund  with | " . number_format($request->amount, 2) . "\n\n IP ====> " . $request->ip();
             send_notification2($message);
-            
-            
+
+
 
 
 
@@ -629,8 +647,8 @@ class HomeController extends Controller
 
             $message = Auth::user()->email . "| Just funded |  NGN " . number_format($request->amount) . " | with ref | $order_id |  on VERIFY ASAP";
             send_notification2($message);
-            
-            
+
+
 
 
 
@@ -640,6 +658,88 @@ class HomeController extends Controller
 
         return redirect('fund-wallet')->with('error', 'Transaction already confirmed or not found');
     }
+
+    public function verifypay_payment(request $request)
+    {
+
+
+        $paystackskey = env('PSKEY');
+
+        $trx_id = $request->trxref;
+        $ip = $request->ip();
+        $ref = $request->reference;
+
+        $trxstatus = Transaction::where('ref_id', $trx_id)->first()->status ?? null;
+
+        if ($trxstatus == 2) {
+
+            $message =  Auth::user()->email . "| is trying to fund  with | " . number_format($request->amount, 2) . "\n\n IP ====> " . $request->ip();
+            send_notification($message);
+
+            $message =  Auth::user()->email . "| on VERIFY ASAP | is trying to fund  with | " . number_format($request->amount, 2) . "\n\n IP ====> " . $request->ip();
+            send_notification2($message);
+            return redirect('fund-wallet')->with('error', 'Transaction already confirmed or not found');
+        }
+
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.paystack.co/transaction/verify/$ref",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "Authorization: Bearer $paystackskey",
+                "Cache-Control: no-cache",
+            ),
+        ));
+
+
+        $var = curl_exec($curl);
+        curl_close($curl);
+        $var = json_decode($var);
+
+        $status1 = $var->status ?? null;
+        $status2 = $var->data->status ?? null;
+        $amount = $var->data->amount / 100  ?? null;
+
+
+
+        if ($status1 == true && $status2 == 'success') {
+
+
+            Transaction::where('ref_id', $trx_id)->update(['status' => 2]);
+            User::where('id', Auth::id())->increment('wallet', $amount);
+
+
+
+            $data                  = new Transaction();
+            $data->user_id         = Auth::id();
+            $data->amount          = $amount;
+            $data->ref_id          = $trx_id;
+            $data->type            = 2; 
+            $data->status          = 2; //initiate
+            $data->save();
+
+
+
+            $message =  Auth::user()->email . "| just funded with Paystack NGN" . number_format($amount, 2) . " on Log market";
+            send_notification($message);
+
+
+            $message = Auth::user()->email . "|  just funded with Paystack NGN" . number_format($amount) . " | with ref | $trx_id |  on VERIFY ASAP";
+            send_notification2($message);
+
+            return redirect('fund-wallet')->with('message', "Wallet has been funded with $amount");
+        }
+
+        return redirect('fund-wallet')->with('error', 'Transaction already confirmed or not found');
+    }
+
 
 
 
@@ -745,8 +845,8 @@ class HomeController extends Controller
 
             $message = Auth::user()->email . "is trying to reslove from deleted transaction on VERIFY ASAP";
             send_notification2($message);
-            
-            
+
+
 
 
 
@@ -765,8 +865,8 @@ class HomeController extends Controller
 
             $message = Auth::user()->email . "is trying to steal hits the endpoint twice on VERIFY ASAP";
             send_notification2($message);
-            
-            
+
+
 
 
 
@@ -798,8 +898,8 @@ class HomeController extends Controller
 
             $message = Auth::user()->email . "| just resolved with $request->session_id | NGN " . number_format($amount) . " on VERIFY ASAP";
             send_notification2($message);
-            
-            
+
+
 
 
 
@@ -843,7 +943,7 @@ class HomeController extends Controller
         return view('rules', compact('user'));
     }
 
-   
+
 
 
 
@@ -1009,8 +1109,8 @@ class HomeController extends Controller
 
             $message =  "$email | Verify ASAP  | is trying to fund and a successful order with orderid $request->trx_ref";
             send_notification($message);
-            
-            
+
+
 
 
 
@@ -1024,12 +1124,12 @@ class HomeController extends Controller
             $email = Auth::user()->email;
             $message =  "$email | Verify ASAP  | is trying to fund and a successful order with orderid $request->trx_ref";
             send_notification2($message);
-            
+
 
 
             $message =  "$email | Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
             send_notification($message);
-            
+
 
 
 
@@ -1044,8 +1144,8 @@ class HomeController extends Controller
 
             $message =  "$email | Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
             send_notification($message);
-            
-            
+
+
 
 
 
@@ -1061,8 +1161,8 @@ class HomeController extends Controller
 
             $message =  "$email | Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
             send_notification($message);
-            
-            
+
+
 
 
 
@@ -1120,8 +1220,8 @@ class HomeController extends Controller
                 $message = "$user_email | $request->trx_ref | $session_id | $var->amount | just resolved deposit | Verify ASAP";
                 send_notification($message);
                 send_notification2($message);
-                
-                
+
+
 
 
                 return redirect('fund-wallet')->with('message', "Transaction successfully Resolved, NGN $amount added to ur wallet");
@@ -1136,78 +1236,72 @@ class HomeController extends Controller
     }
 
 
-    public function  get_smscode(request $request){
+    public function  get_smscode(request $request)
+    {
 
 
-       $sms =  Verification::where('phone', $request->num)->first()->sms ?? null;
-       $order_id =  Verification::where('phone', $request->num)->first()->order_id ?? null;
-       check_sms($order_id);
+        $sms =  Verification::where('phone', $request->num)->first()->sms ?? null;
+        $order_id =  Verification::where('phone', $request->num)->first()->order_id ?? null;
+        check_sms($order_id);
 
 
         $originalString = 'waiting for sms';
         $processedString = str_replace('"', '', $originalString);
 
 
-       if($sms == null){
-        return response()->json([
-            'message' => $processedString
-        ]);
-       }else{
+        if ($sms == null) {
+            return response()->json([
+                'message' => $processedString
+            ]);
+        } else {
 
-        return response()->json([
-            'message' => $sms
-        ]);
-       }
-
-
-
-
+            return response()->json([
+                'message' => $sms
+            ]);
+        }
     }
 
 
-    public function webhook(request $request){
+    public function webhook(request $request)
+    {
 
         $message = json_encode($request->all());
         send_notification($message);
-
-
     }
 
 
-    public function orders(request $request){
+    public function orders(request $request)
+    {
 
         $orders = Verification::where('user_id', Auth::id())->get() ?? null;
         return view('orders', compact('orders'));
-
-
     }
 
 
-    public function about_us(request $request){
+    public function about_us(request $request)
+    {
 
         return view('about-us');
-
-
     }
 
 
-    public function policy(request $request){
+    public function policy(request $request)
+    {
 
         return view('policy');
-
-
     }
 
 
 
-   
 
 
-    public function e_check(request $request){
+
+    public function e_check(request $request)
+    {
 
         $get_user =  User::where('email', $request->email)->first() ?? null;
 
-        if($get_user == null){
+        if ($get_user == null) {
 
             return response()->json([
                 'status' => false,
@@ -1220,15 +1314,15 @@ class HomeController extends Controller
             'status' => true,
             'user' => $get_user->username,
         ]);
-
     }
 
 
-    public function e_fund(request $request){
+    public function e_fund(request $request)
+    {
 
         $get_user =  User::where('email', $request->email)->first() ?? null;
 
-        if($get_user == null){
+        if ($get_user == null) {
 
             return response()->json([
                 'status' => false,
@@ -1244,12 +1338,5 @@ class HomeController extends Controller
             'status' => true,
             'message' => "NGN $amount has been successfully added to your wallet",
         ]);
-
     }
-
-
-
-
-
-
 }
