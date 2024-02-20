@@ -210,6 +210,8 @@ class HomeController extends Controller
             User::where('id', Auth::id())->increment('wallet', $request->price);
             $message = "Verify ASAP | Low balance";
             send_notification($message);
+            send_notification3($message);
+
             return redirect('home')->with('error', 'Error occurred, Please try again');
         }
 
@@ -217,6 +219,8 @@ class HomeController extends Controller
             User::where('id', Auth::id())->increment('wallet', $request->price);
             $message = "Verify ASAP | Error";
             send_notification($message);
+            send_notification3($message);
+
             return redirect('home')->with('error', 'Error occurred, Please try again');
         }
 
@@ -390,11 +394,7 @@ class HomeController extends Controller
 
             $message = Auth::user()->email . "| wants to fund |  NGN " . number_format($request->amount) . " | with ref | $ref |  on VERIFY ASAP";
             send_notification2($message);
-
-
-
-
-
+            send_notification3($message);
 
             return Redirect::to($url);
         }
@@ -430,6 +430,8 @@ class HomeController extends Controller
 
             $message = Auth::user()->email . "| wants to fund Manually |  NGN " . number_format($request->amount) . " | with ref | $ref |  on VERIFY ASAP";
             send_notification2($message);
+            send_notification3($message);
+
 
 
 
@@ -622,6 +624,8 @@ class HomeController extends Controller
 
             $message =  Auth::user()->email . "| just funded NGN" . number_format($request->amount, 2) . " on Log market";
             send_notification($message);
+            send_notification3($message);
+
 
 
 
@@ -678,6 +682,8 @@ class HomeController extends Controller
 
             $message =  Auth::user()->email . "| on VERIFY ASAP | is trying to fund  with | " . number_format($request->amount, 2) . "\n\n IP ====> " . $request->ip();
             send_notification2($message);
+            send_notification3($message);
+
             return redirect('fund-wallet')->with('error', 'Transaction already confirmed or not found');
         }
 
@@ -733,6 +739,8 @@ class HomeController extends Controller
 
             $message = Auth::user()->email . "|  just funded with Paystack NGN" . number_format($amount) . " | with ref | $trx_id |  on VERIFY ASAP";
             send_notification2($message);
+            send_notification3($message);
+
 
             return redirect('fund-wallet')->with('message', "Wallet has been funded with $amount");
         }
@@ -856,6 +864,8 @@ class HomeController extends Controller
 
             $message = Auth::user()->email . "is trying to reslove from deleted transaction on VERIFY ASAP";
             send_notification2($message);
+            send_notification3($message);
+
 
 
 
@@ -876,6 +886,8 @@ class HomeController extends Controller
 
             $message = Auth::user()->email . "is trying to steal hits the endpoint twice on VERIFY ASAP";
             send_notification2($message);
+            send_notification3($message);
+
 
 
 
@@ -909,6 +921,8 @@ class HomeController extends Controller
 
             $message = Auth::user()->email . "| just resolved with $request->session_id | NGN " . number_format($amount) . " on VERIFY ASAP";
             send_notification2($message);
+            send_notification3($message);
+
 
 
 
@@ -1123,6 +1137,8 @@ class HomeController extends Controller
 
             $message =  "$email | Verify ASAP  | is trying to fund and a successful order with orderid $request->trx_ref";
             send_notification($message);
+            send_notification3($message);
+
 
 
 
@@ -1143,6 +1159,7 @@ class HomeController extends Controller
 
             $message =  "$email | Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
             send_notification($message);
+            send_notification3($message);
 
 
 
@@ -1158,6 +1175,8 @@ class HomeController extends Controller
 
             $message =  "$email | Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
             send_notification($message);
+            send_notification3($message);
+
 
 
 
@@ -1175,6 +1194,8 @@ class HomeController extends Controller
 
             $message =  "$email | Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
             send_notification($message);
+            send_notification3($message);
+
 
 
 
@@ -1234,6 +1255,8 @@ class HomeController extends Controller
                 $message = "$user_email | $request->trx_ref | $session_id | $var->amount | just resolved deposit | Verify ASAP";
                 send_notification($message);
                 send_notification2($message);
+                send_notification3($message);
+
 
 
 
