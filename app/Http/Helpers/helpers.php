@@ -289,12 +289,13 @@ function create_order($country, $service, $price){
     curl_close($curl);
     $var = json_decode($var);
 
+    dd($var);
+
 
 
     $success = $var->success ?? null;
 
     if($success == 0){
-
         return 5;
 
     }
