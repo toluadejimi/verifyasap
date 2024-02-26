@@ -290,7 +290,16 @@ function create_order($country, $service, $price){
     $var = json_decode($var);
 
 
+
     $success = $var->success ?? null;
+
+    if($success == 0){
+
+        return 5;
+
+    }
+
+
 
     if($success == 1){
 
@@ -312,6 +321,10 @@ function create_order($country, $service, $price){
 
 
     }
+
+
+
+
 
 
 

@@ -206,6 +206,11 @@ class HomeController extends Controller
 
         $order = create_order($country, $service, $price);
 
+        if ($order == 5) {
+            User::where('id', Auth::id())->increment('wallet', $request->price);
+            return redirect('home')->with('error', 'Number Currently out of stock, Please check back later');
+        }
+
         if ($order == 1) {
             User::where('id', Auth::id())->increment('wallet', $request->price);
             $message = "Verify ASAP | Low balance";
@@ -233,6 +238,8 @@ class HomeController extends Controller
             $sms = Verification::where('user_id', Auth::id())->where('status', 1)->first()->sms;
             $number = Verification::where('user_id', Auth::id())->where('status', 1)->first()->phone;
             $num = Verification::where('user_id', Auth::id())->where('status', 1)->first();
+
+
 
 
             $data['services'] = $services;
@@ -727,7 +734,7 @@ class HomeController extends Controller
             $data->user_id         = Auth::id();
             $data->amount          = $amount;
             $data->ref_id          = $trx_id;
-            $data->type            = 2; 
+            $data->type            = 2;
             $data->status          = 2; //initiate
             $data->save();
 
@@ -779,10 +786,10 @@ class HomeController extends Controller
         return view('Auth.login');
     }
 
-    
 
 
-    
+
+
 
 
     public function forget_password(Request $request)
