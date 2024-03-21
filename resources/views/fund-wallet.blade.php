@@ -681,9 +681,7 @@
 
                             <select name="type" class="border-gray-300 gap-3 focus:border-primary focus:ring-1 focus:ring-primary focus:ring-opacity-50 rounded-md shadow-sm block w-full rounded-l-none" id="amount" type="number" max="999999" min="5" name="amount" placeholder="Enter the Amount you want Add" required="required">
 
-                                {{-- <option class="text-center" value="1"> ENKPAY </option> --}}
                                 <option class="text-center" value="3"> PAYSTACK </option>
-                                {{-- <option class="text-center" value="2"> Manual Funding</option> --}}
 
                             </select>
                         </div>
