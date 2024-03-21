@@ -680,9 +680,9 @@
                             </span>
 
                             <select name="type" class="border-gray-300 gap-3 focus:border-primary focus:ring-1 focus:ring-primary focus:ring-opacity-50 rounded-md shadow-sm block w-full rounded-l-none" id="amount" type="number" max="999999" min="5" name="amount" placeholder="Enter the Amount you want Add" required="required">
-
-                                <option class="text-center" value="3"> PAYSTACK </option>
-
+                                @foreach ($pay as $data)
+                                <option class="text-center" value="{{$data->id}}"> {{$data->title}} </option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -694,7 +694,6 @@
                         Add more funds to wallet.
                     </div>
                     <button type="submit" class="text-white text-xl font-bold whitespace-nowrap justify-center items-stretch bg-blue-500 self-center mt-11 mb-11 px-12 py-5 rounded-3xl">
-
                         Add Funds
                     </button>
                 </form>

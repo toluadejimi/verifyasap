@@ -344,13 +344,13 @@ class HomeController extends Controller
     public function fund_wallet(Request $request)
     {
         $user = Auth::id() ?? null;
+        $pay = PaymentMethod::all();
         $transaction = Transaction::query()
             ->orderByRaw('updated_at DESC')
             ->where('user_id', Auth::id())
             ->get();
 
-
-        return view('fund-wallet', compact('user', 'transaction'));
+        return view('fund-wallet', compact('user', 'pay', 'transaction'));
     }
 
 
