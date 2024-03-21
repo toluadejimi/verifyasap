@@ -16,6 +16,7 @@ use App\Models\Verification;
 use Illuminate\Http\Request;
 use App\Models\AccountDetail;
 use App\Models\ManualPayment;
+use App\Models\PaymentMethod;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
