@@ -1178,8 +1178,10 @@
         }
     </style>
 
+    
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <a href="https://t.me/verifyasapcom" class="float" target="_blank">
+    <a href="https://t.me/verifyasapp" class="float" target="_blank">
         <i class="fa fa-comment my-float"></i>
     </a>
 
