@@ -795,7 +795,6 @@
 
                                         <li class="nav-item dropdown">
                                             <a class="nav-link " href="orders">My Orders</a>
-
                                         </li>
 
                                         <li class="nav-item dropdown">

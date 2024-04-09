@@ -860,12 +860,32 @@
                     <div class="container pt-11 pt-md-13 pb-19 pb-md-17">
                         <div class="row">
 
+                            @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    @endif
+                                    @if (session()->has('message'))
+                                    <div class="alert alert-success">
+                                        {{ session()->get('message') }}
+                                    </div>
+                                    @endif
+                                    @if (session()->has('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session()->get('error') }}
+                                    </div>
+                             @endif
 
                             <div class="col-lg-9 col-xl-8 col-xxl-7 mx-auto  text-center" data-cues="slideInDown"
                                 data-group="page-title" data-delay="500">
                                 <h5 class="display-1 ls-sm fs-40 mb-4 px-md-8 px-lg-0">Hi {{ Auth::user()->username
                                     }},</h5>
                                 <p class="lead fs-19 lh-sm mb-1  text-center">Recent Orders</p>
+
 
 
 
@@ -921,7 +941,7 @@
                                                     @endif
                                                     
                                                     <td>
-                                                        <a href="delete-order?id={{$data->id}}" class="btn btn-sm btn-dark">Delete</a>
+                                                        <a href="delete-order?id={{$data->id}}" class="btn btn-sm btn-dark text-small">Delete</a>
                                                     </td>
   
                                                   </tr>
