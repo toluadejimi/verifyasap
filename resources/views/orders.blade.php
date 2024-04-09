@@ -884,6 +884,7 @@
                                                     <th>SMS</th>
                                                     <th>Amount</th>
                                                     <th>Status</th>
+                                                    <th>Action</th>
 
                                                   </tr>
                                                 </thead>
@@ -918,6 +919,7 @@
                                                         Pending
                                                     </td>
                                                     @endif
+                                                    
                                                     <td>
                                                         <a href="delete-order?id={{$data->id}}" class="btn btn-sm btn-dark">Delete</a>
                                                     </td>
