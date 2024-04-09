@@ -876,11 +876,6 @@ class HomeController extends Controller
 
 
 
-
-
-
-
-
             return back()->with('error', "Transaction has been deleted");
         }
 
@@ -901,7 +896,7 @@ class HomeController extends Controller
 
 
 
-            return back()->with('message', "You are a thief");
+            return back()->with('message', "Error Occured");
         }
 
 
@@ -1317,7 +1312,6 @@ class HomeController extends Controller
 
     public function orders(request $request)
     {
-
         $orders = Verification::where('user_id', Auth::id())->get() ?? null;
         return view('orders', compact('orders'));
     }
@@ -1336,6 +1330,48 @@ class HomeController extends Controller
         return view('policy');
     }
 
+
+    public function delete_order(request $request)
+    {
+
+        $order = Verification::where('id', $request->id)->first() ?? null;
+
+        if ($order == null) {
+            return redirect('home')->with('error', 'Order not found');
+        }
+
+        if ($order->status == 2) {
+            Verification::where('id', $request->id)->delete();
+            return back()->with('message', "Order has been successfully deleted");
+        }
+
+        if ($order->status == 1) {
+
+            $orderID = $order->order_id;
+            $can_order = cancel_order($orderID);
+
+            if ($can_order == 0) {
+                return back()->with('error', "Please wait and try again later");
+            }
+
+
+            if ($can_order == 1) {
+                $amount = number_format($order->cost, 2);
+                User::where('id', Auth::id())->increment('wallet', $order->cost);
+                Verification::where('id', $request->id)->delete();
+                return back()->with('message', "Order has been cancled, NGN$amount has been refunded");
+            }
+
+
+            if ($can_order == 3) {
+                $amount = number_format($order->cost, 2);
+                User::where('id', Auth::id())->increment('wallet', $order->cost);
+                Verification::where('id', $request->id)->delete();
+                return back()->with('message', "Order has been cancled, NGN$amount has been refunded");
+            }
+        }
+        
+    }
 
 
 

@@ -918,6 +918,10 @@
                                                         Pending
                                                     </td>
                                                     @endif
+                                                    <td>
+                                                        <a href="delete-order?id={{$data->id}}" class="btn btn-sm btn-dark">Delete</a>
+                                                    </td>
+  
                                                   </tr>
 
 

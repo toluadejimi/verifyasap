@@ -59,7 +59,6 @@ function send_notification($message)
             CURLOPT_POSTFIELDS => array(
                 'chat_id' => "1316552414",
                 'text' => $message,
-
             ),
             CURLOPT_HTTPHEADER => array(),
         ));
