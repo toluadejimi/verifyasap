@@ -49,7 +49,7 @@ class AdminController extends Controller
 
                 return redirect('admin-dashboard');
 
-               
+
             }else{
                 Auth::logout();
                 return redirect('/admin')->with('error', "You do not have permission");
@@ -114,7 +114,7 @@ class AdminController extends Controller
         $data['margin'] = Setting::where('id', 1)->first()->margin;
         $data['verification'] = Verification::latest()->paginate(10);
 
-        
+
 
         return view('admin-dashboard', $data);
 
@@ -138,7 +138,7 @@ class AdminController extends Controller
 
     }
 
-    
+
 
 
 
@@ -191,7 +191,7 @@ class AdminController extends Controller
 	{
 
         $role = User::where('id', Auth::id())->first()->role_id ?? null;
-        
+
         if($role != 5){
 
             Auth::logout();
@@ -293,8 +293,8 @@ class AdminController extends Controller
        $data->user_id         = $request->user_id;
        $data->amount          = $request->amount;
        $data->ref_id          = $ref;
-       $data->type            = 2; 
-       $data->status          = 2; 
+       $data->type            = 2;
+       $data->status          = 2;
        $data->save();
 
 
@@ -303,7 +303,7 @@ class AdminController extends Controller
        send_notification2($message);
        send_notification3($message);
 
-       
+
 
 
        return back()->with('message', 'Transaction added successfully');
@@ -324,7 +324,6 @@ class AdminController extends Controller
 
 
     }
-  
 
 
 
@@ -332,7 +331,8 @@ class AdminController extends Controller
 
 
 
- 
+
+
 
     public function search_user(request $request)
 	{
@@ -343,13 +343,12 @@ class AdminController extends Controller
         return back()->with('error', 'No user Found');
        }
 
-
-       $data['user'] = User::where('id', $get_id)->first();
-       $data['transaction'] = Transaction::latest()->where('user_id', $request->id)->paginate();
-       $data['verification'] = verification::latest()->where('user_id', $request->id)->paginate();
+        $user = User::where('id', $get_id)->count();
+        $users = User::where('id', $get_id)->paginate(10);
 
 
-       return view('view-user', $data);
+        return view('user', compact('user', 'users'));
+
 
 
     }
@@ -364,12 +363,12 @@ class AdminController extends Controller
         return back()->with('error', 'No user Found');
        }
 
-       $data['user'] = User::where('id', $get_id)->first();
-       $data['transaction'] = Transaction::latest()->where('user_id', $request->id)->paginate();
-       $data['verification'] = verification::latest()->where('user_id', $request->id)->paginate();
+        $user = User::where('id', $get_id)->count();
+        $users = User::where('id', $get_id)->paginate(10);
 
 
-       return view('view-user', $data);
+        return view('user', compact('user', 'users'));
+
 
 
 
