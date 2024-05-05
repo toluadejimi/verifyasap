@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ url('') }}/public/concept/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="{{ url('') }}/public/concept/assets/vendor/charts/c3charts/c3.css">
     <link rel="stylesheet" href="{{ url('') }}/public/concept/assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
-    <title>Log Marketplace - BRST LOG SITE</title>
+    <title>VERIFY ASAP - BRST LOG SITE</title>
 </head>
 
 <body>
@@ -203,7 +203,7 @@
 
                                          {{ number_format($total_verified_message) }}
 
-                                        
+
                                         </div>
                                     </div>
                                 </div>
@@ -288,7 +288,7 @@
                                                     @endforelse
 
 
-                                                   
+
                                                 </tbody>
 
                                             {{ $verification->links() }}
@@ -306,7 +306,7 @@
                                 <div class="card">
                                     <h5 class="card-header">Update Cost / Rate</h5>
                                     <div class="card-body p-0">
-                                        
+
 
                                         <div class="col-12 p-3">
 
@@ -316,7 +316,7 @@
                                         <input class="form-control2 text-dark" name="rate" value="{{ $usdtongn }}">
 
                                         <button type="submit" class="btn btn-primary" >Update Rate</button>
-                                        
+
                                         </form>
 
                                         </div>
@@ -439,7 +439,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                        Copyright © 2018 Log Marketplace. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">Colorlib</a>.
+                        Copyright © 2018 VERIFY ASAP. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">Colorlib</a>.
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                         <div class="text-md-right footer-links d-none d-sm-block">
