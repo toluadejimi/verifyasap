@@ -191,6 +191,10 @@ class HomeController extends Controller
         }
 
 
+        if($request->price == null){
+            return redirect('home')->with('message', 'SMS Code fetch');
+        }
+
         $ckn = Verification::where('user_id', Auth::id())->where('status', 1) ?? null;
         if ($ckn->count() == 1) {
             return redirect('home')->with('error', "Complete or End Pending Order");
@@ -198,7 +202,7 @@ class HomeController extends Controller
 
 
 
-        User::where('id', Auth::id())->decrement('wallet', $request->price);
+        User::where('id', Auth::id())->decrement('wallet', $request->price) ?? null;
 
         $country = $request->country;
         $service = $request->service;
@@ -1370,7 +1374,7 @@ class HomeController extends Controller
                 return back()->with('message', "Order has been cancled, NGN$amount has been refunded");
             }
         }
-        
+
     }
 
 
