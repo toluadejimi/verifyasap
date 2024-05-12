@@ -10,14 +10,15 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+          integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+          crossorigin="anonymous"/>
     <link rel="stylesheet" href="{{url('')}}/public/assets/css/vendor.css">
     <link rel="stylesheet" href="{{url('')}}/public/assets/css/common.css">
     <script src="{{url('')}}/public/assets/vendor/Shortcode/Shortcode.js"></script>
@@ -62,7 +63,8 @@
         }
 
         @keyframes livewireautofill {
-            from {}
+            from {
+            }
         }
 
 
@@ -79,27 +81,27 @@
         }
 
         /* line 37, bootstrap-select.scss */
-        .bootstrap-select.btn-group>.dropdown-toggle {
+        .bootstrap-select.btn-group > .dropdown-toggle {
             height: 100%;
         }
 
         /* line 43, bootstrap-select.scss */
-        .bootstrap-select>.dropdown-toggle {
+        .bootstrap-select > .dropdown-toggle {
             width: 100%;
             padding-right: 25px;
             z-index: 1;
         }
 
         /* line 48, bootstrap-select.scss */
-        .bootstrap-select>.dropdown-toggle.bs-placeholder,
-        .bootstrap-select>.dropdown-toggle.bs-placeholder:hover,
-        .bootstrap-select>.dropdown-toggle.bs-placeholder:focus,
-        .bootstrap-select>.dropdown-toggle.bs-placeholder:active {
+        .bootstrap-select > .dropdown-toggle.bs-placeholder,
+        .bootstrap-select > .dropdown-toggle.bs-placeholder:hover,
+        .bootstrap-select > .dropdown-toggle.bs-placeholder:focus,
+        .bootstrap-select > .dropdown-toggle.bs-placeholder:active {
             color: #999;
         }
 
         /* line 56, bootstrap-select.scss */
-        .bootstrap-select>select {
+        .bootstrap-select > select {
             position: absolute !important;
             bottom: 0;
             left: 50%;
@@ -112,7 +114,7 @@
         }
 
         /* line 67, bootstrap-select.scss */
-        .bootstrap-select>select.mobile-device {
+        .bootstrap-select > select.mobile-device {
             top: 0;
             left: 0;
             display: block !important;
@@ -161,7 +163,7 @@
         }
 
         /* line 110, bootstrap-select.scss */
-        .bootstrap-select.form-control.input-group-btn:not(:first-child):not(:last-child)>.btn {
+        .bootstrap-select.form-control.input-group-btn:not(:first-child):not(:last-child) > .btn {
             border-radius: 0;
         }
 
@@ -209,13 +211,13 @@
 
         /* line 159, bootstrap-select.scss */
         .bootstrap-select.btn-group.disabled,
-        .bootstrap-select.btn-group>.disabled {
+        .bootstrap-select.btn-group > .disabled {
             cursor: not-allowed;
         }
 
         /* line 163, bootstrap-select.scss */
         .bootstrap-select.btn-group.disabled:focus,
-        .bootstrap-select.btn-group>.disabled:focus {
+        .bootstrap-select.btn-group > .disabled:focus {
             outline: none !important;
         }
 
@@ -384,7 +386,7 @@
         }
 
         /* line 316, bootstrap-select.scss */
-        .bootstrap-select.show-menu-arrow.open>.dropdown-toggle {
+        .bootstrap-select.show-menu-arrow.open > .dropdown-toggle {
             z-index: 1061;
         }
 
@@ -441,8 +443,8 @@
         }
 
         /* line 373, bootstrap-select.scss */
-        .bootstrap-select.show-menu-arrow.open>.dropdown-toggle:before,
-        .bootstrap-select.show-menu-arrow.open>.dropdown-toggle:after {
+        .bootstrap-select.show-menu-arrow.open > .dropdown-toggle:before,
+        .bootstrap-select.show-menu-arrow.open > .dropdown-toggle:after {
             display: block;
         }
 
@@ -481,7 +483,7 @@
         }
 
         /* line 406, bootstrap-select.scss */
-        .bs-searchbox+.bs-actionsbox {
+        .bs-searchbox + .bs-actionsbox {
             padding: 0 8px 4px;
         }
 
@@ -544,7 +546,7 @@
             border-color: #d2ab3e;
         }
 
-        input:checked~.toggle-path {
+        input:checked ~ .toggle-path {
             background-color: #6633db;
         }
 
@@ -577,163 +579,170 @@
 </head>
 
 <body>
-    <div class="default-theme">
+<div class="default-theme">
 
-        <div style="color:#3f78e0; font-weight:bold;" class="flex justify-end text-white">
-            <a style="color:white;" href="fund-wallet" class="flex flex-col bg-primary rounded-b-lg px-5 py-2">
-                <span style="color:white;" class="text-xs font-medium">Wallet</span>
-                <span style="color:white;" class="text-xl">NGN{{ number_format(Auth::user()->wallet, 2) }}</span>
-            </a>
+    <div style="color:#3f78e0; font-weight:bold;" class="flex justify-end text-white">
+        <a style="color:white;" href="fund-wallet" class="flex flex-col bg-primary rounded-b-lg px-5 py-2">
+            <span style="color:white;" class="text-xs font-medium">Wallet</span>
+            <span style="color:white;" class="text-xl">NGN{{ number_format(Auth::user()->wallet, 2) }}</span>
+        </a>
+    </div>
+
+    <!DOCTYPE html>
+    <html wire:id="KYyr7BXHmAukicbrQqma"
+          wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;KYyr7BXHmAukicbrQqma&quot;,&quot;name&quot;:&quot;frontend.home&quot;,&quot;locale&quot;:&quot;en&quot;,&quot;path&quot;:&quot;\/&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;v&quot;:&quot;acj&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;295eff0e&quot;,&quot;data&quot;:{&quot;numbers&quot;:[],&quot;features&quot;:[],&quot;sections&quot;:[],&quot;assigned&quot;:[],&quot;user&quot;:[],&quot;orders&quot;:[],&quot;filters&quot;:{&quot;number&quot;:{&quot;country&quot;:[]},&quot;private&quot;:{&quot;country&quot;:[]},&quot;rented&quot;:{&quot;country&quot;:[]}},&quot;private&quot;:[],&quot;rented&quot;:[],&quot;types&quot;:[&quot;Open&quot;,&quot;Register Only&quot;,&quot;Private&quot;,&quot;Shared Buy&quot;,&quot;Private Buy&quot;],&quot;bg&quot;:[&quot;bg-gray-200&quot;,&quot;bg-lime-200&quot;,&quot;bg-red-200&quot;,&quot;bg-purple-200&quot;,&quot;bg-pink-200&quot;],&quot;text&quot;:[&quot;text-gray-800&quot;,&quot;text-lime-800&quot;,&quot;text-red-800&quot;,&quot;text-purple-800&quot;,&quot;text-pink-800&quot;]},&quot;dataMeta&quot;:{&quot;modelCollections&quot;:{&quot;numbers&quot;:{&quot;class&quot;:null,&quot;id&quot;:[],&quot;relations&quot;:[],&quot;connection&quot;:null,&quot;collectionClass&quot;:null},&quot;features&quot;:{&quot;class&quot;:&quot;App\\Models\\Feature&quot;,&quot;id&quot;:[1,2,3],&quot;relations&quot;:[],&quot;connection&quot;:&quot;mysql&quot;,&quot;collectionClass&quot;:null},&quot;sections&quot;:{&quot;class&quot;:&quot;App\\Models\\Section&quot;,&quot;id&quot;:[1,2],&quot;relations&quot;:[],&quot;connection&quot;:&quot;mysql&quot;,&quot;collectionClass&quot;:null},&quot;assigned&quot;:{&quot;class&quot;:null,&quot;id&quot;:[],&quot;relations&quot;:[],&quot;connection&quot;:null,&quot;collectionClass&quot;:null},&quot;orders&quot;:{&quot;class&quot;:null,&quot;id&quot;:[],&quot;relations&quot;:[],&quot;connection&quot;:null,&quot;collectionClass&quot;:null}},&quot;models&quot;:{&quot;user&quot;:{&quot;class&quot;:&quot;App\\Models\\User&quot;,&quot;id&quot;:7,&quot;relations&quot;:[],&quot;connection&quot;:&quot;mysql&quot;,&quot;collectionClass&quot;:null}},&quot;collections&quot;:[&quot;private&quot;,&quot;rented&quot;]},&quot;checksum&quot;:&quot;cf962efb8d221e5ebe86618f48f0f85d335196fa78ebeb696ca9cf0e7856a18d&quot;}}"
+          lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description"
+              content="An impressive and flawless site template that includes various UI elements and countless features, attractive ready-made blocks and rich pages, basically everything you need to create a unique and professional website.">
+        <meta name="keywords"
+              content="bootstrap 5, business, corporate, creative, gulp, marketing, minimal, modern, multipurpose, one page, responsive, saas, sass, seo, startup, html5 template, site template">
+        <meta name="author" content="elemis">
+        <title>Verify Asap | SMS Verification Website.</title>
+        <link rel="shortcut icon" href="{{url('')}}/public/assets/img/favicon.png">
+        <link rel="stylesheet" href="{{url('')}}/public/assets/css/plugins.css">
+        <link rel="stylesheet" href="{{url('')}}/public/assets/css/style.css">
+        <link rel="preload" href="{{url('')}}/public/assets/css/fonts/space.css" as="style"
+              onload="this.rel='stylesheet'">
+    </head>
+
+    <body>
+
+
+    <div wire:id="k3avItmW0YN9EgcVBf0J"
+         wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;k3avItmW0YN9EgcVBf0J&quot;,&quot;name&quot;:&quot;frontend.wallet&quot;,&quot;locale&quot;:&quot;en&quot;,&quot;path&quot;:&quot;wallet&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;v&quot;:&quot;acj&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[&quot;cancelOrder&quot;],&quot;path&quot;:&quot;https:\/\/verifyasap.com\/wallet&quot;},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;72bb1150&quot;,&quot;data&quot;:{&quot;amount&quot;:5,&quot;methods&quot;:[],&quot;selected&quot;:null,&quot;crypto&quot;:null,&quot;error&quot;:null,&quot;total&quot;:2,&quot;razorpay&quot;:null,&quot;page&quot;:1,&quot;paginators&quot;:{&quot;page&quot;:1}},&quot;dataMeta&quot;:{&quot;modelCollections&quot;:{&quot;methods&quot;:{&quot;class&quot;:&quot;App\\Models\\PaymentMethod&quot;,&quot;id&quot;:[5],&quot;relations&quot;:[],&quot;connection&quot;:&quot;mysql&quot;,&quot;collectionClass&quot;:null}}},&quot;checksum&quot;:&quot;e06f40890a224cc82793e013b7c726c2f372e57ddfbe3fab752c8a90a4d5fb44&quot;}}"
+         class="bg-white flex max-w-[480px] w-full flex-col mx-auto px-11 py-12">
+
+        <div class="text-center">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            @if (session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
+            @if (session()->has('error'))
+                <div class="alert alert-danger">
+                    {{ session()->get('error') }}
+                </div>
+            @endif
         </div>
 
-        <!DOCTYPE html>
-        <html wire:id="KYyr7BXHmAukicbrQqma" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;KYyr7BXHmAukicbrQqma&quot;,&quot;name&quot;:&quot;frontend.home&quot;,&quot;locale&quot;:&quot;en&quot;,&quot;path&quot;:&quot;\/&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;v&quot;:&quot;acj&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;295eff0e&quot;,&quot;data&quot;:{&quot;numbers&quot;:[],&quot;features&quot;:[],&quot;sections&quot;:[],&quot;assigned&quot;:[],&quot;user&quot;:[],&quot;orders&quot;:[],&quot;filters&quot;:{&quot;number&quot;:{&quot;country&quot;:[]},&quot;private&quot;:{&quot;country&quot;:[]},&quot;rented&quot;:{&quot;country&quot;:[]}},&quot;private&quot;:[],&quot;rented&quot;:[],&quot;types&quot;:[&quot;Open&quot;,&quot;Register Only&quot;,&quot;Private&quot;,&quot;Shared Buy&quot;,&quot;Private Buy&quot;],&quot;bg&quot;:[&quot;bg-gray-200&quot;,&quot;bg-lime-200&quot;,&quot;bg-red-200&quot;,&quot;bg-purple-200&quot;,&quot;bg-pink-200&quot;],&quot;text&quot;:[&quot;text-gray-800&quot;,&quot;text-lime-800&quot;,&quot;text-red-800&quot;,&quot;text-purple-800&quot;,&quot;text-pink-800&quot;]},&quot;dataMeta&quot;:{&quot;modelCollections&quot;:{&quot;numbers&quot;:{&quot;class&quot;:null,&quot;id&quot;:[],&quot;relations&quot;:[],&quot;connection&quot;:null,&quot;collectionClass&quot;:null},&quot;features&quot;:{&quot;class&quot;:&quot;App\\Models\\Feature&quot;,&quot;id&quot;:[1,2,3],&quot;relations&quot;:[],&quot;connection&quot;:&quot;mysql&quot;,&quot;collectionClass&quot;:null},&quot;sections&quot;:{&quot;class&quot;:&quot;App\\Models\\Section&quot;,&quot;id&quot;:[1,2],&quot;relations&quot;:[],&quot;connection&quot;:&quot;mysql&quot;,&quot;collectionClass&quot;:null},&quot;assigned&quot;:{&quot;class&quot;:null,&quot;id&quot;:[],&quot;relations&quot;:[],&quot;connection&quot;:null,&quot;collectionClass&quot;:null},&quot;orders&quot;:{&quot;class&quot;:null,&quot;id&quot;:[],&quot;relations&quot;:[],&quot;connection&quot;:null,&quot;collectionClass&quot;:null}},&quot;models&quot;:{&quot;user&quot;:{&quot;class&quot;:&quot;App\\Models\\User&quot;,&quot;id&quot;:7,&quot;relations&quot;:[],&quot;connection&quot;:&quot;mysql&quot;,&quot;collectionClass&quot;:null}},&quot;collections&quot;:[&quot;private&quot;,&quot;rented&quot;]},&quot;checksum&quot;:&quot;cf962efb8d221e5ebe86618f48f0f85d335196fa78ebeb696ca9cf0e7856a18d&quot;}}" lang="en">
 
-        <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta name="description" content="An impressive and flawless site template that includes various UI elements and countless features, attractive ready-made blocks and rich pages, basically everything you need to create a unique and professional website.">
-            <meta name="keywords" content="bootstrap 5, business, corporate, creative, gulp, marketing, minimal, modern, multipurpose, one page, responsive, saas, sass, seo, startup, html5 template, site template">
-            <meta name="author" content="elemis">
-            <title>Verify Asap | SMS Verification Website.</title>
-            <link rel="shortcut icon" href="{{url('')}}/public/assets/img/favicon.png">
-            <link rel="stylesheet" href="{{url('')}}/public/assets/css/plugins.css">
-            <link rel="stylesheet" href="{{url('')}}/public/assets/css/style.css">
-            <link rel="preload" href="{{url('')}}/public/assets/css/fonts/space.css" as="style" onload="this.rel='stylesheet'">
-        </head>
-
-        <body>
+        <a href="home"
+           class="aspect-[3.35] object-contain object-center w-[201px] overflow-hidden self-center max-w-full mt-2">
+            <img loading="lazy" srcset="https://i.postimg.cc/T18SnGvp/logo.png"
+                 class="aspect-[3.35] object-contain object-center w-[201px] overflow-hidden self-center max-w-full mt-2"/>
+        </a>
 
 
-            <div wire:id="k3avItmW0YN9EgcVBf0J" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;k3avItmW0YN9EgcVBf0J&quot;,&quot;name&quot;:&quot;frontend.wallet&quot;,&quot;locale&quot;:&quot;en&quot;,&quot;path&quot;:&quot;wallet&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;v&quot;:&quot;acj&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[&quot;cancelOrder&quot;],&quot;path&quot;:&quot;https:\/\/verifyasap.com\/wallet&quot;},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;72bb1150&quot;,&quot;data&quot;:{&quot;amount&quot;:5,&quot;methods&quot;:[],&quot;selected&quot;:null,&quot;crypto&quot;:null,&quot;error&quot;:null,&quot;total&quot;:2,&quot;razorpay&quot;:null,&quot;page&quot;:1,&quot;paginators&quot;:{&quot;page&quot;:1}},&quot;dataMeta&quot;:{&quot;modelCollections&quot;:{&quot;methods&quot;:{&quot;class&quot;:&quot;App\\Models\\PaymentMethod&quot;,&quot;id&quot;:[5],&quot;relations&quot;:[],&quot;connection&quot;:&quot;mysql&quot;,&quot;collectionClass&quot;:null}}},&quot;checksum&quot;:&quot;e06f40890a224cc82793e013b7c726c2f372e57ddfbe3fab752c8a90a4d5fb44&quot;}}" class="bg-white flex max-w-[480px] w-full flex-col mx-auto px-11 py-12">
-
-                <div class="text-center">
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
-                    @if (session()->has('message'))
-                    <div class="alert alert-success">
-                        {{ session()->get('message') }}
-                    </div>
-                    @endif
-                    @if (session()->has('error'))
-                    <div class="alert alert-danger">
-                        {{ session()->get('error') }}
-                    </div>
-                    @endif
-                </div>
+        <div class="text-stone-900 text-xl font-bold self-center whitespace-nowrap mt-10">
+            FUND WALLET
+        </div>
 
 
-                <a href="home" class="aspect-[3.35] object-contain object-center w-[201px] overflow-hidden self-center max-w-full mt-2">
-                    <img loading="lazy" srcset="https://i.postimg.cc/T18SnGvp/logo.png" class="aspect-[3.35] object-contain object-center w-[201px] overflow-hidden self-center max-w-full mt-2" />
-                </a>
+        <div
+            class="items-stretch shadow-sm bg-white self-stretch flex justify-between gap-5 mt-9 px-2 py-2 rounded-3xl">
+            <button id="span-3" class="button" onclick="activateButton(this)">
+                Fund
+            </button>
+            <button id="div-2" class="button" onclick="activateButton(this)">
+                History
+            </button>
+        </div>
 
 
+        <form id="myDiv" action="fund-now" class="grid grid-cols-1" gap-3 method="POST">
+            @csrf
 
-
-
-                <div class="text-stone-900 text-xl font-bold self-center whitespace-nowrap mt-10">
-                    FUND WALLET
-                </div>
-
-
-
-
-
-                <div class="items-stretch shadow-sm bg-white self-stretch flex justify-between gap-5 mt-9 px-2 py-2 rounded-3xl">
-                    <button id="span-3" class="button" onclick="activateButton(this)">
-                        Fund
-                    </button>
-                    <button id="div-2" class="button" onclick="activateButton(this)">
-                        History
-                    </button>
-                </div>
-
-
-                <form id="myDiv" action="fund-now" class="grid grid-cols-1" gap-3 method="POST">
-                    @csrf
-
-                    <label class="mt-3 mb-3 text-gray-600 font-bold gap-3 text-sm">Enter the Amount (NGN)</label>
-                    <div class="flex">
-                        <span class="inline-flex items-center px-4 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500">
+            <label class="mt-3 mb-3 text-gray-600 font-bold gap-3 text-sm">Enter the Amount (NGN)</label>
+            <div class="flex">
+                        <span
+                            class="inline-flex items-center px-4 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500">
                             NGN
                         </span>
-                        <input class="border-gray-300 gap-3 focus:border-primary focus:ring-1 focus:ring-primary focus:ring-opacity-50 rounded-md shadow-sm block w-full rounded-l-none" id="amount" type="number" max="999999" min="5" name="amount" placeholder="Enter the Amount you want Add" required="required">
-                    </div>
+                <input
+                    class="border-gray-300 gap-3 focus:border-primary focus:ring-1 focus:ring-primary focus:ring-opacity-50 rounded-md shadow-sm block w-full rounded-l-none"
+                    id="amount" type="number" max="999999" min="5" name="amount"
+                    placeholder="Enter the Amount you want Add" required="required">
+            </div>
 
 
-
-                    <div class="flex mt-5 mb-4">
-
+            <div class="flex mt-5 mb-4">
 
 
-                        <div class="flex">
+                <div class="flex">
 
-                            <span class="inline-flex  items-center px-10 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500">
+                            <span
+                                class="inline-flex  items-center px-10 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500">
                                 Paywith
                             </span>
 
-                            <select name="type" class="border-gray-300 gap-3 focus:border-primary focus:ring-1 focus:ring-primary focus:ring-opacity-50 rounded-md shadow-sm block w-full rounded-l-none" id="amount" type="number" max="999999" min="5" name="amount" placeholder="Enter the Amount you want Add" required="required">
-                                @foreach ($pay as $data)
-                                <option class="text-center" value="{{$data->id}}"> {{$data->title}} </option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="text-blue-500 text-center text-sm justify-center items-stretch bg-blue-500 bg-opacity-20 self-stretch mt-2 px-6 py-3 rounded-xl">
-                        Add more funds to wallet.
-                    </div>
-                    <button type="submit" class="text-white text-xl font-bold whitespace-nowrap justify-center items-stretch bg-blue-500 self-center mt-11 mb-11 px-12 py-5 rounded-3xl">
-                        Add Funds
-                    </button>
-                </form>
-
-
-
-
-
+                    <select name="type"
+                            class="border-gray-300 gap-3 focus:border-primary focus:ring-1 focus:ring-primary focus:ring-opacity-50 rounded-md shadow-sm block w-full rounded-l-none"
+                            id="amount" type="number" max="999999" min="5" name="amount"
+                            placeholder="Enter the Amount you want Add" required="required">
+                        @foreach ($pay as $data)
+                            <option class="text-center" value="{{$data->id}}"> {{$data->title}} </option>
+                        @endforeach
+                    </select>
+                </div>
 
             </div>
 
-            <div id="myDiv3" class="container mx-auto px-5 md:px-100">
-                <div class="space-y-6">
-                    <h1 class="text-2xl font-bold text-primary">List of Transactions</h1>
-                    <div class="border-b border-dashed border-primary w-24"></div>
-                    <div class="bg-gray-400 text-white shadow rounded-lg overflow-hidden">
-                        <div class="border-b py-4 px-5 grid grid-cols-3 md:grid-cols-4">
 
-                            @foreach($transaction as $data)
-                            <div class="hidden md:block">
-                                <label class="text-xs font-medium text-gray-100">Transaction ID #</label>
-                                <div class="text-lg font-bold">{{$data->ref_id}}</div>
-                            </div>
-                            <div>
-                                <label class="text-xs font-medium text-gray-100 mb-2">Type</label>
-                                @if($data->type == 2)
+            <div
+                class="text-blue-500 text-center text-sm justify-center items-stretch bg-blue-500 bg-opacity-20 self-stretch mt-2 px-6 py-3 rounded-xl">
+                Add more funds to wallet.
+            </div>
+            <button type="submit"
+                    class="text-white text-xl font-bold whitespace-nowrap justify-center items-stretch bg-blue-500 self-center mt-11 mb-11 px-12 py-5 rounded-3xl">
+                Add Funds
+            </button>
+        </form>
+
+
+    </div>
+
+    <div id="myDiv3" class="container mx-auto px-5 md:px-100">
+        <div class="space-y-6">
+            <h1 class="text-2xl font-bold text-primary">List of Transactions</h1>
+            <div class="border-b border-dashed border-primary w-24"></div>
+            <div class="bg-gray-400 text-white shadow rounded-lg overflow-hidden">
+                <div class="border-b py-4 px-5 grid grid-cols-3 md:grid-cols-4">
+
+                    @foreach($transaction as $data)
+                        <div class="hidden md:block">
+                            <label class="text-xs font-medium text-gray-100">Transaction ID #</label>
+                            <div class="text-lg font-bold">{{$data->ref_id}}</div>
+                        </div>
+                        <div>
+                            <label class="text-xs font-medium text-gray-100 mb-2">Type</label>
+                            @if($data->type == 2)
                                 <div>
                                     <span class="uppercase text-xs font-bold bg-green-800 text-white rounded px-2 py-1">Credit</span>
                                 </div>
-                                @else
+                            @else
                                 <div>
                                     <span class="uppercase text-xs font-bold bg-red-800 text-white rounded px-2 py-1">Debit</span>
                                 </div>
-                                @endif
-                            </div>
-                            <div>
-                                <label class="text-xs font-medium text-gray-100 ">Amount</label>
-                                <div class="text-lg font-bold">NGN {{ number_format($data->amount, 2) }}</div>
-                            </div>
-                            @if ($data->status == 2)
+                            @endif
+                        </div>
+                        <div>
+                            <label class="text-xs font-medium text-gray-100 ">Amount</label>
+                            <div class="text-lg font-bold">NGN {{ number_format($data->amount, 2) }}</div>
+                        </div>
+                        @if ($data->status == 2)
 
                             <div>
                                 <label class="text-xs font-medium text-gray-100 mb-2">Status</label>
@@ -742,107 +751,115 @@
                                 </div>
                             </div>
 
-                            @else
-
+                        @elseif($data->status == 0)
 
                             <div>
                                 <label class="text-xs font-medium text-gray-100 mb-2">Status</label>
                                 <div>
-                                    <a href="resolve-page?trx_ref={{$data->ref_id}}" class="text-xs font-bold bg-orange-300 text-gray-800 rounded px-2 py-1">Resolve</a>
+                                    <a href="resolve-page?trx_ref={{$data->ref_id}}"
+                                       class="text-xs font-bold bg-orange-300 text-gray-800 rounded px-2 py-1">Resolve</a>
                                 </div>
                             </div>
 
-                            @endif
+                        @elseif($data->status == 3)
 
-                        </div>
-                        <div class="border-b py-4 px-5 grid grid-cols-3 md:grid-cols-4">
-                            <div class="hidden md:block">
-
-                            </div>
                             <div>
-
-                            </div>
-                            <div>
-
-                            </div>
-                            <div>
-
+                                <label class="text-xs font-medium text-gray-100 mb-2">Status</label>
+                                <div>
+                                    <span class="text-xs font-bold bg-danger-300 text-gray-800 rounded px-2 py-1">Declined</span>
+                                </div>
                             </div>
 
-                            @endforeach
-                        </div>
-                    </div>
-                    <div>
-                    </div>
+                        @endif
 
                 </div>
+                <div class="border-b py-4 px-5 grid grid-cols-3 md:grid-cols-4">
+                    <div class="hidden md:block">
+
+                    </div>
+                    <div>
+
+                    </div>
+                    <div>
+
+                    </div>
+                    <div>
+
+                    </div>
+
+                    @endforeach
+                </div>
+            </div>
+            <div>
             </div>
 
-
-
-            <script>
-                var showButton = document.getElementById('span-3');
-                var hideButton = document.getElementById('div-2');
-                var myDiv = document.getElementById('myDiv');
-                var myDiv2 = document.getElementById('myDiv3');
-
-
-
-                showButton.addEventListener('click', function() {
-                    myDiv.style.display = 'block';
-                    myDiv2.style.display = 'none';
-                });
-
-                hideButton.addEventListener('click', function() {
-                    myDiv.style.display = 'none';
-                    myDiv2.style.display = 'block';
-                });
-                // JavaScript function to handle button clicks and color change
-                function activateButton(button) {
-                    // Reset styles for both buttons
-                    document.getElementById('span-3').style.backgroundColor = 'white';
-
-                    document.getElementById('div-2').style.backgroundColor = 'white';
-
-                    // Change the color of the clicked button
-                    button.style.backgroundColor = '#1e1e1e'; // Red, change to the desired color
-                }
-
-            </script>
-            </main>
-    </div>
-    </div>
-    <!-- Livewire Component wire-end:k3avItmW0YN9EgcVBf0J -->
-    </div>
+        </div>
     </div>
 
 
-    <style>
-        .float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 40px;
-            right: 40px;
-            background-color: #000000;
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 3px #999;
-            z-index: 100;
+    <script>
+        var showButton = document.getElementById('span-3');
+        var hideButton = document.getElementById('div-2');
+        var myDiv = document.getElementById('myDiv');
+        var myDiv2 = document.getElementById('myDiv3');
+
+
+        showButton.addEventListener('click', function () {
+            myDiv.style.display = 'block';
+            myDiv2.style.display = 'none';
+        });
+
+        hideButton.addEventListener('click', function () {
+            myDiv.style.display = 'none';
+            myDiv2.style.display = 'block';
+        });
+
+        // JavaScript function to handle button clicks and color change
+        function activateButton(button) {
+            // Reset styles for both buttons
+            document.getElementById('span-3').style.backgroundColor = 'white';
+
+            document.getElementById('div-2').style.backgroundColor = 'white';
+
+            // Change the color of the clicked button
+            button.style.backgroundColor = '#1e1e1e'; // Red, change to the desired color
         }
 
-        .my-float {
-            margin-top: 16px;
-        }
+    </script>
+    </main>
+</div>
+</div>
+<!-- Livewire Component wire-end:k3avItmW0YN9EgcVBf0J -->
+</div>
+</div>
 
-    </style>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <a href="https://t.me/verifyasapp" class="float" target="_blank">
-        <i class="fa fa-comment my-float"></i>
-    </a>
+<style>
+    .float {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        bottom: 40px;
+        right: 40px;
+        background-color: #000000;
+        color: #FFF;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 30px;
+        box-shadow: 2px 2px 3px #999;
+        z-index: 100;
+    }
+
+    .my-float {
+        margin-top: 16px;
+    }
+
+</style>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<a href="https://t.me/verifyasapp" class="float" target="_blank">
+    <i class="fa fa-comment my-float"></i>
+</a>
 
 </body>
 

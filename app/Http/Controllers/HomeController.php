@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Deposit;
 use DateTime;
 use App\Models\Item;
 use App\Models\User;
@@ -566,13 +567,8 @@ class HomeController extends Controller
 
         if ($status == 'failed') {
 
-
             $message = Auth::user()->email . "| Cancled |  NGN " . number_format($request->amount) . " | with ref | $trx_id |  on VERIFY ASAP";
             send_notification2($message);
-
-
-
-
 
             Transaction::where('ref_id', $trx_id)->where('status', 1)->update(['status' => 3]);
             return redirect('fund-wallet')->with('error', 'Transaction Declined');
@@ -590,11 +586,6 @@ class HomeController extends Controller
 
             $message =  Auth::user()->email . "| on VERIFY ASAP | is trying to fund  with | " . number_format($request->amount, 2) . "\n\n IP ====> " . $request->ip();
             send_notification2($message);
-
-
-
-
-
 
 
             return redirect('fund-wallet')->with('error', 'Transaction already confirmed or not found');
@@ -684,6 +675,10 @@ class HomeController extends Controller
         $trx_id = $request->trxref;
         $ip = $request->ip();
         $ref = $request->reference;
+
+
+
+
 
         $trxstatus = Transaction::where('ref_id', $trx_id)->first()->status ?? null;
 
