@@ -751,7 +751,7 @@
                                 </div>
                             </div>
 
-                        @elseif($data->status == 0)
+                        @elseif($data->status == 1)
 
                             <div>
                                 <label class="text-xs font-medium text-gray-100 mb-2">Status</label>
