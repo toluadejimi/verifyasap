@@ -175,6 +175,47 @@ function session_resolve($session_id, $ref){
 }
 
 
+function session_resolve_others($session_id, $ref){
+
+    $curl = curl_init();
+
+    $databody = array(
+        'session_id' => "$session_id",
+        'ref' => "$ref"
+    );
+
+
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://web.enkpay.com/api/resolve-others',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => $databody,
+    ));
+
+    $var = curl_exec($curl);
+    curl_close($curl);
+    $var = json_decode($var);
+
+    $message = $var->message ?? null;
+    $status = $var->status ?? null;
+
+    $amount = $var->amount ?? null;
+
+    return array([
+        'status' => $status,
+        'amount' => $amount,
+        'message' => $message
+    ]);
+
+
+}
+
+
 function get_countries(){
     $key = env('KEY');
         $curl = curl_init();

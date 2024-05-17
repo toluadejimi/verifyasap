@@ -1038,6 +1038,8 @@ class HomeController extends Controller
     public function resolveNow(request $request)
     {
 
+
+
         if ($request->bank_type == "providus") {
 
             if ($request->trx_ref == null || $request->session_id == null) {
@@ -1433,7 +1435,12 @@ class HomeController extends Controller
     }
 
 
-    public function get_smscode(request $request)
+
+
+
+
+    public
+    function get_smscode(request $request)
     {
 
 
@@ -1459,7 +1466,8 @@ class HomeController extends Controller
     }
 
 
-    public function webhook(request $request)
+    public
+    function webhook(request $request)
     {
 
         $message = json_encode($request->all());
@@ -1467,28 +1475,32 @@ class HomeController extends Controller
     }
 
 
-    public function orders(request $request)
+    public
+    function orders(request $request)
     {
         $orders = Verification::where('user_id', Auth::id())->get() ?? null;
         return view('orders', compact('orders'));
     }
 
 
-    public function about_us(request $request)
+    public
+    function about_us(request $request)
     {
 
         return view('about-us');
     }
 
 
-    public function policy(request $request)
+    public
+    function policy(request $request)
     {
 
         return view('policy');
     }
 
 
-    public function delete_order(request $request)
+    public
+    function delete_order(request $request)
     {
 
         $order = Verification::where('id', $request->id)->first() ?? null;
@@ -1531,7 +1543,8 @@ class HomeController extends Controller
     }
 
 
-    public function e_check(request $request)
+    public
+    function e_check(request $request)
     {
 
         $get_user = User::where('email', $request->email)->first() ?? null;
@@ -1552,7 +1565,8 @@ class HomeController extends Controller
     }
 
 
-    public function e_fund(request $request)
+    public
+    function e_fund(request $request)
     {
 
         $get_user = User::where('email', $request->email)->first() ?? null;
