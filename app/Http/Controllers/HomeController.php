@@ -2,26 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Deposit;
-use DateTime;
-use App\Models\Item;
-use App\Models\User;
-use App\Models\Country;
-use App\Models\Setting;
-use App\Models\SoldLog;
-use App\Models\Category;
-
-
-use App\Models\Transaction;
-use App\Models\Verification;
-use Illuminate\Http\Request;
 use App\Models\AccountDetail;
+use App\Models\Country;
+use App\Models\Deposit;
 use App\Models\ManualPayment;
 use App\Models\PaymentMethod;
+use App\Models\Setting;
+use App\Models\SoldLog;
+use App\Models\Transaction;
+use App\Models\User;
+use App\Models\Verification;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
+
 
 class HomeController extends Controller
 {
@@ -40,7 +36,6 @@ class HomeController extends Controller
 
         $verification = Verification::where('user_id', Auth::id())->get();
         $verifications = Verification::where('user_id', Auth::id())->where('status', 1)->get();
-
 
 
         $data['services'] = $services;
@@ -66,7 +61,6 @@ class HomeController extends Controller
         $data['product'] = null;
 
 
-
         return view('home', $data);
     }
 
@@ -86,13 +80,10 @@ class HomeController extends Controller
         }
 
 
-
         $nummm = Verification::where('user_id', Auth::id())->first()->status ?? null;
         if ($nummm == null) {
             return redirect('home');
         }
-
-
 
 
         $data['number_order'] = 1;
@@ -145,7 +136,6 @@ class HomeController extends Controller
         $product = 1;
 
 
-
         if ($price == null) {
             return redirect('home')->with('error', 'Verification not available for selected service');
         } else {
@@ -192,7 +182,7 @@ class HomeController extends Controller
         }
 
 
-        if($request->price == null){
+        if ($request->price == null) {
             return redirect('home')->with('message', 'SMS Code fetch');
         }
 
@@ -202,8 +192,7 @@ class HomeController extends Controller
         }
 
 
-
-        User::where('id', Auth::id())->decrement('wallet', $request->price) ?? null;
+            User::where('id', Auth::id())->decrement('wallet', $request->price) ?? null;
 
         $country = $request->country;
         $service = $request->service;
@@ -246,8 +235,6 @@ class HomeController extends Controller
             $num = Verification::where('user_id', Auth::id())->where('status', 1)->first();
 
 
-
-
             $data['services'] = $services;
             $data['countries'] = $countries;
             $data['verification'] = $verification;
@@ -259,8 +246,6 @@ class HomeController extends Controller
             $data['product'] = null;
 
             $data['num'] = $num;
-
-
 
 
             return view('home2', $data);
@@ -364,15 +349,11 @@ class HomeController extends Controller
     {
 
         $request->validate([
-            'amount'      => 'required|numeric|gt:0',
+            'amount' => 'required|numeric|gt:0',
         ]);
 
 
-
-
-
-        Transaction::where('user_id', Auth::id())->where('status', 1)->delete() ?? null;
-
+            Transaction::where('user_id', Auth::id())->where('status', 1)->delete() ?? null;
 
 
         if ($request->type == 1) {
@@ -387,8 +368,6 @@ class HomeController extends Controller
             }
 
 
-
-
             $key = env('WEBKEY');
             $ref = "VERF" . random_int(000, 999) . date('ymdhis');
             $email = Auth::user()->email;
@@ -396,12 +375,12 @@ class HomeController extends Controller
             $url = "https://web.enkpay.com/pay?amount=$request->amount&key=$key&ref=$ref&email=$email";
 
 
-            $data                  = new Transaction();
-            $data->user_id         = Auth::id();
-            $data->amount          = $request->amount;
-            $data->ref_id          = $ref;
-            $data->type            = 2;
-            $data->status          = 1; //initiate
+            $data = new Transaction();
+            $data->user_id = Auth::id();
+            $data->amount = $request->amount;
+            $data->ref_id = $ref;
+            $data->type = 2;
+            $data->status = 1; //initiate
             $data->save();
 
 
@@ -411,7 +390,6 @@ class HomeController extends Controller
 
             return Redirect::to($url);
         }
-
 
 
         if ($request->type == 2) {
@@ -426,18 +404,16 @@ class HomeController extends Controller
             }
 
 
-
-
             $ref = "VERFM" . random_int(000, 999) . date('ymdhis');
             $email = Auth::user()->email;
 
 
-            $data                  = new Transaction();
-            $data->user_id         = Auth::id();
-            $data->amount          = $request->amount;
-            $data->ref_id          = $ref;
-            $data->type            = 6; //manual funding
-            $data->status          = 1; //initiate
+            $data = new Transaction();
+            $data->user_id = Auth::id();
+            $data->amount = $request->amount;
+            $data->ref_id = $ref;
+            $data->type = 6; //manual funding
+            $data->status = 1; //initiate
             $data->save();
 
 
@@ -446,16 +422,11 @@ class HomeController extends Controller
             send_notification3($message);
 
 
-
-
-
-
             $data['account_details'] = AccountDetail::where('id', 1)->first();
             $data['amount'] = $request->amount;
 
             return view('manual-fund', $data);
         }
-
 
 
         if ($request->type == 3) {
@@ -470,7 +441,6 @@ class HomeController extends Controller
             if ($request->amount > 100000) {
                 return back()->with('error', 'You can not fund more than NGN 100,000');
             }
-
 
 
             $url = "https://api.paystack.co/transaction/initialize";
@@ -518,7 +488,6 @@ class HomeController extends Controller
     {
 
 
-
         if ($request->receipt == null) {
             return back()->with('error', "Payment receipt is required");
         }
@@ -541,10 +510,6 @@ class HomeController extends Controller
         send_notification2($message);
 
 
-
-
-
-
         return view('confirm-pay');
     }
 
@@ -554,7 +519,6 @@ class HomeController extends Controller
 
         return view('confirm-pay');
     }
-
 
 
     public function verify_payment(request $request)
@@ -575,16 +539,14 @@ class HomeController extends Controller
         }
 
 
-
-
         $trxstatus = Transaction::where('ref_id', $trx_id)->first()->status ?? null;
 
         if ($trxstatus == 2) {
 
-            $message =  Auth::user()->email . "| is trying to fund  with | " . number_format($request->amount, 2) . "\n\n IP ====> " . $request->ip();
+            $message = Auth::user()->email . "| is trying to fund  with | " . number_format($request->amount, 2) . "\n\n IP ====> " . $request->ip();
             send_notification($message);
 
-            $message =  Auth::user()->email . "| on VERIFY ASAP | is trying to fund  with | " . number_format($request->amount, 2) . "\n\n IP ====> " . $request->ip();
+            $message = Auth::user()->email . "| on VERIFY ASAP | is trying to fund  with | " . number_format($request->amount, 2) . "\n\n IP ====> " . $request->ip();
             send_notification2($message);
 
 
@@ -613,8 +575,6 @@ class HomeController extends Controller
         $amount = $var->price ?? null;
 
 
-
-
         if ($status1 == 'success') {
 
             $chk_trx = Transaction::where('ref_id', $trx_id)->first() ?? null;
@@ -625,11 +585,9 @@ class HomeController extends Controller
             Transaction::where('ref_id', $trx_id)->update(['status' => 2]);
             User::where('id', Auth::id())->increment('wallet', $amount);
 
-            $message =  Auth::user()->email . "| just funded NGN" . number_format($request->amount, 2) . " on Log market";
+            $message = Auth::user()->email . "| just funded NGN" . number_format($request->amount, 2) . " on Log market";
             send_notification($message);
             send_notification3($message);
-
-
 
 
             $order_id = $trx_id;
@@ -656,10 +614,6 @@ class HomeController extends Controller
             send_notification2($message);
 
 
-
-
-
-
             return redirect('fund-wallet')->with('message', "Wallet has been funded with $amount");
         }
 
@@ -677,17 +631,14 @@ class HomeController extends Controller
         $ref = $request->reference;
 
 
-
-
-
         $trxstatus = Transaction::where('ref_id', $trx_id)->first()->status ?? null;
 
         if ($trxstatus == 2) {
 
-            $message =  Auth::user()->email . "| is trying to fund  with | " . number_format($request->amount, 2) . "\n\n IP ====> " . $request->ip();
+            $message = Auth::user()->email . "| is trying to fund  with | " . number_format($request->amount, 2) . "\n\n IP ====> " . $request->ip();
             send_notification($message);
 
-            $message =  Auth::user()->email . "| on VERIFY ASAP | is trying to fund  with | " . number_format($request->amount, 2) . "\n\n IP ====> " . $request->ip();
+            $message = Auth::user()->email . "| on VERIFY ASAP | is trying to fund  with | " . number_format($request->amount, 2) . "\n\n IP ====> " . $request->ip();
             send_notification2($message);
             send_notification3($message);
 
@@ -718,8 +669,7 @@ class HomeController extends Controller
 
         $status1 = $var->status ?? null;
         $status2 = $var->data->status ?? null;
-        $amount = $var->data->amount / 100  ?? null;
-
+        $amount = $var->data->amount / 100 ?? null;
 
 
         if ($status1 == true && $status2 == 'success') {
@@ -729,18 +679,16 @@ class HomeController extends Controller
             User::where('id', Auth::id())->increment('wallet', $amount);
 
 
-
-            $data                  = new Transaction();
-            $data->user_id         = Auth::id();
-            $data->amount          = $amount;
-            $data->ref_id          = $trx_id;
-            $data->type            = 2;
-            $data->status          = 2; //initiate
+            $data = new Transaction();
+            $data->user_id = Auth::id();
+            $data->amount = $amount;
+            $data->ref_id = $trx_id;
+            $data->type = 2;
+            $data->status = 2; //initiate
             $data->save();
 
 
-
-            $message =  Auth::user()->email . "| just funded with Paystack NGN" . number_format($amount, 2) . " on Log market";
+            $message = Auth::user()->email . "| just funded with Paystack NGN" . number_format($amount, 2) . " on Log market";
             send_notification($message);
 
 
@@ -754,10 +702,6 @@ class HomeController extends Controller
 
         return redirect('fund-wallet')->with('error', 'Transaction already confirmed or not found');
     }
-
-
-
-
 
 
     public function login(Request $request)
@@ -785,11 +729,6 @@ class HomeController extends Controller
     {
         return view('Auth.login');
     }
-
-
-
-
-
 
 
     public function forget_password(Request $request)
@@ -822,9 +761,6 @@ class HomeController extends Controller
     }
 
 
-
-
-
     public function profile(request $request)
     {
 
@@ -835,8 +771,6 @@ class HomeController extends Controller
 
         return view('profile', compact('user', 'orders'));
     }
-
-
 
 
     public function logout(Request $request)
@@ -862,7 +796,6 @@ class HomeController extends Controller
         $message = $resolve[0]['message'];
 
 
-
         $trx = Transaction::where('ref_id', $request->ref_id)->first()->status ?? null;
         if ($trx == null) {
 
@@ -872,7 +805,6 @@ class HomeController extends Controller
             $message = Auth::user()->email . "is trying to reslove from deleted transaction on VERIFY ASAP";
             send_notification2($message);
             send_notification3($message);
-
 
 
             return back()->with('error', "Transaction has been deleted");
@@ -891,10 +823,6 @@ class HomeController extends Controller
             send_notification3($message);
 
 
-
-
-
-
             return back()->with('message', "Error Occured");
         }
 
@@ -905,16 +833,15 @@ class HomeController extends Controller
             Transaction::where('ref_id', $request->ref_id)->update(['status' => 4]);
 
 
-
             $ref = "LOG-" . random_int(000, 999) . date('ymdhis');
 
 
-            $data                  = new Transaction();
-            $data->user_id         = Auth::id();
-            $data->amount          = $amount;
-            $data->ref_id          = $ref;
-            $data->type            = 2;
-            $data->status          = 2;
+            $data = new Transaction();
+            $data->user_id = Auth::id();
+            $data->amount = $amount;
+            $data->ref_id = $ref;
+            $data->type = 2;
+            $data->status = 2;
             $data->save();
 
 
@@ -926,11 +853,6 @@ class HomeController extends Controller
             send_notification3($message);
 
 
-
-
-
-
-
             return back()->with('message', "Transaction successfully Resolved, NGN $amount added to ur wallet");
         }
 
@@ -938,7 +860,6 @@ class HomeController extends Controller
             return back()->with('error', "$message");
         }
     }
-
 
 
     public function change_password(request $request)
@@ -949,7 +870,6 @@ class HomeController extends Controller
 
         return view('change-password', compact('user'));
     }
-
 
 
     public function faq(request $request)
@@ -969,10 +889,6 @@ class HomeController extends Controller
         $user = Auth::id();
         return view('rules', compact('user'));
     }
-
-
-
-
 
 
     public function update_password_now(request $request)
@@ -1021,7 +937,7 @@ class HomeController extends Controller
                 'subject' => "Reset Password",
                 'toreceiver' => $email,
                 'url' => $url,
-                'user' =>$username,
+                'user' => $username,
             );
 
 
@@ -1030,7 +946,6 @@ class HomeController extends Controller
                 $message->to($data['toreceiver']);
                 $message->subject($data['subject']);
             });
-
 
 
             return redirect('/forgot-password')->with('message', "A reset password mail has been sent to $request->email, if not inside inbox check your spam folder");
@@ -1089,10 +1004,9 @@ class HomeController extends Controller
     }
 
 
-
-
     public function resloveDeposit(Request $request)
     {
+
         $dep = Transaction::where('ref_id', $request->trx_ref)->first() ?? null;
 
 
@@ -1115,172 +1029,416 @@ class HomeController extends Controller
         } else {
 
             $ref = $request->trx_ref;
-            $user =  Auth::user() ?? null;
+            $user = Auth::user() ?? null;
             return view('resolve-page', compact('ref', 'user'));
         }
     }
 
 
-    public function  resolveNow(request $request)
+    public function resolveNow(request $request)
     {
 
-        if ($request->trx_ref == null || $request->session_id == null) {
-            return back()->with('error', "Session ID or Ref Can not be null");
-        }
+        if ($request->bank_type == "providus") {
 
-
-        $trx = Transaction::where('ref_id', $request->trx_ref)->first()->status ?? null;
-        $ck_trx = (int)$trx;
-        if ($ck_trx == 2) {
-
-            $email = Auth::user()->email;
-            $message =  "$email | Verify ASAP  | is trying to fund and a successful order with orderid $request->trx_ref";
-            send_notification2($message);
-
-            $message =  "$email | Verify ASAP  | is trying to fund and a successful order with orderid $request->trx_ref";
-            send_notification($message);
-            send_notification3($message);
-
-
-
-
-
-
-            return back()->with('error', "This Transaction has been successful");
-        }
-
-
-
-        if ($ck_trx != 1) {
-
-            $email = Auth::user()->email;
-            $message =  "$email | Verify ASAP  | is trying to fund and a successful order with orderid $request->trx_ref";
-            send_notification2($message);
-
-
-
-            $message =  "$email | Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
-            send_notification($message);
-            send_notification3($message);
-
-
-
-
-            return back()->with('error', "This Transaction has been successful");
-        }
-
-        if ($ck_trx == 2) {
-
-            $email = Auth::user()->email;
-            $message =  "$email |Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
-            send_notification2($message);
-
-            $message =  "$email | Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
-            send_notification($message);
-            send_notification3($message);
-
-
-
-
-
-
-            return back()->with('error', "This Transaction has been successful");
-        }
-
-
-        if ($ck_trx == 4) {
-
-            $email = Auth::user()->email;
-            $message =  "$email |Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
-            send_notification2($message);
-
-            $message =  "$email | Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
-            send_notification($message);
-            send_notification3($message);
-
-
-
-
-
-
-            return back()->with('error', "This Transaction has been resolved");
-        }
-
-
-
-
-
-
-        if ($ck_trx == 1) {
-            $session_id = $request->session_id;
-            if ($session_id == null) {
-                $notify[] = ['error', "session id or amount cant be empty"];
-                return back()->withNotify($notify);
+            if ($request->trx_ref == null || $request->session_id == null) {
+                return back()->with('error', "Session ID or Ref Can not be null");
             }
 
+            $trx = Transaction::where('ref_id', $request->trx_ref)->first()->status ?? null;
+            $ck_trx = (int)$trx;
+            if ($ck_trx == 2) {
 
-            $curl = curl_init();
-            $databody = array(
-                'session_id' => "$session_id",
-                'ref' => "$request->trx_ref"
-
-            );
-
-            curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://web.enkpay.com/api/resolve',
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => '',
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 0,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => 'POST',
-                CURLOPT_POSTFIELDS => $databody,
-            ));
-
-            $var = curl_exec($curl);
-            curl_close($curl);
-            $var = json_decode($var);
-
-
-            $messager = $var->message ?? null;
-            $status = $var->status ?? null;
-            $trx = $var->trx ?? null;
-            $amount = $var->amount ?? null;
-
-            if ($status == true) {
-                User::where('id', Auth::id())->increment('wallet', $var->amount);
-                Transaction::where('ref_id', $request->trx_ref)->update(['status' => 2]);
-
-
-                $user_email = Auth::user()->email;
-                $message = "$user_email | $request->trx_ref | $session_id | $var->amount | just resolved deposit | Verify ASAP";
-                send_notification($message);
+                $email = Auth::user()->email;
+                $message = "$email | Verify ASAP  | is trying to fund and a successful order with orderid $request->trx_ref";
                 send_notification2($message);
+
+                $message = "$email | Verify ASAP  | is trying to fund and a successful order with orderid $request->trx_ref";
+                send_notification($message);
                 send_notification3($message);
 
 
-
-
-
-                return redirect('fund-wallet')->with('message', "Transaction successfully Resolved, NGN $amount added to ur wallet");
+                return back()->with('error', "This Transaction has been successful");
             }
 
-            if ($status == false) {
-                return back()->with('error', "$messager");
+
+            if ($ck_trx != 1) {
+
+                $email = Auth::user()->email;
+                $message = "$email | Verify ASAP  | is trying to fund and a successful order with orderid $request->trx_ref";
+                send_notification2($message);
+
+
+                $message = "$email | Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
+                send_notification($message);
+                send_notification3($message);
+
+
+                return back()->with('error', "This Transaction has been successful");
             }
 
-            return back()->with('error', "please try again later");
+            if ($ck_trx == 2) {
+
+                $email = Auth::user()->email;
+                $message = "$email |Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
+                send_notification2($message);
+
+                $message = "$email | Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
+                send_notification($message);
+                send_notification3($message);
+
+
+                return back()->with('error', "This Transaction has been successful");
+            }
+
+
+            if ($ck_trx == 4) {
+
+                $email = Auth::user()->email;
+                $message = "$email |Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
+                send_notification2($message);
+
+                $message = "$email | Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
+                send_notification($message);
+                send_notification3($message);
+
+
+                return back()->with('error', "This Transaction has been resolved");
+            }
+
+
+            if ($ck_trx == 1) {
+                $session_id = $request->session_id;
+                if ($session_id == null) {
+                    $notify[] = ['error', "session id or amount cant be empty"];
+                    return back()->withNotify($notify);
+                }
+
+
+                $curl = curl_init();
+                $databody = array(
+                    'session_id' => "$session_id",
+                    'ref' => "$request->trx_ref"
+
+                );
+
+                curl_setopt_array($curl, array(
+                    CURLOPT_URL => 'https://web.enkpay.com/api/resolve',
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'POST',
+                    CURLOPT_POSTFIELDS => $databody,
+                ));
+
+                $var = curl_exec($curl);
+                curl_close($curl);
+                $var = json_decode($var);
+
+
+                $messager = $var->message ?? null;
+                $status = $var->status ?? null;
+                $trx = $var->trx ?? null;
+                $amount = $var->amount ?? null;
+
+                if ($status == true) {
+                    User::where('id', Auth::id())->increment('wallet', $var->amount);
+                    Transaction::where('ref_id', $request->trx_ref)->update(['status' => 2]);
+
+
+                    $user_email = Auth::user()->email;
+                    $message = "$user_email | $request->trx_ref | $session_id | $var->amount | just resolved deposit | Verify ASAP";
+                    send_notification($message);
+                    send_notification2($message);
+                    send_notification3($message);
+
+
+                    return redirect('fund-wallet')->with('message', "Transaction successfully Resolved, NGN $amount added to ur wallet");
+                }
+
+                if ($status == false) {
+                    return back()->with('error', "$messager");
+                }
+
+                return back()->with('error', "please try again later");
+            }
+
         }
+
+
+        if ($request->bank_type == "opay") {
+
+            if ($request->trx_ref == null || $request->session_id == null) {
+                return back()->with('error', "Session ID or Ref Can not be null");
+            }
+
+            $trx = Transaction::where('ref_id', $request->trx_ref)->first()->status ?? null;
+            $ck_trx = (int)$trx;
+            if ($ck_trx == 2) {
+
+                $email = Auth::user()->email;
+                $message = "$email | Verify ASAP  | is trying to fund and a successful order with orderid $request->trx_ref";
+                send_notification2($message);
+
+                $message = "$email | Verify ASAP  | is trying to fund and a successful order with orderid $request->trx_ref";
+                send_notification($message);
+                send_notification3($message);
+
+
+                return back()->with('error', "This Transaction has been successful");
+            }
+
+
+            if ($ck_trx != 1) {
+
+                $email = Auth::user()->email;
+                $message = "$email | Verify ASAP  | is trying to fund and a successful order with orderid $request->trx_ref";
+                send_notification2($message);
+
+
+                $message = "$email | Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
+                send_notification($message);
+                send_notification3($message);
+
+
+                return back()->with('error', "This Transaction has been successful");
+            }
+
+            if ($ck_trx == 2) {
+
+                $email = Auth::user()->email;
+                $message = "$email |Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
+                send_notification2($message);
+
+                $message = "$email | Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
+                send_notification($message);
+                send_notification3($message);
+
+
+                return back()->with('error', "This Transaction has been successful");
+            }
+
+
+            if ($ck_trx == 4) {
+
+                $email = Auth::user()->email;
+                $message = "$email |Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
+                send_notification2($message);
+
+                $message = "$email | Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
+                send_notification($message);
+                send_notification3($message);
+
+
+                return back()->with('error', "This Transaction has been resolved");
+            }
+
+
+            if ($ck_trx == 1) {
+                $session_id = $request->session_id;
+                if ($session_id == null) {
+                    $notify[] = ['error', "session id or amount cant be empty"];
+                    return back()->withNotify($notify);
+                }
+
+
+                $curl = curl_init();
+                $databody = array(
+                    'session_id' => "$session_id",
+                    'ref' => "$request->trx_ref"
+
+                );
+
+                curl_setopt_array($curl, array(
+                    CURLOPT_URL => 'https://web.enkpay.com/api/resolve-others',
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'POST',
+                    CURLOPT_POSTFIELDS => $databody,
+                ));
+
+                $var = curl_exec($curl);
+                curl_close($curl);
+                $var = json_decode($var);
+
+
+                $messager = $var->message ?? null;
+                $status = $var->status ?? null;
+                $trx = $var->trx ?? null;
+                $amount = $var->amount ?? null;
+
+                if ($status == true) {
+                    User::where('id', Auth::id())->increment('wallet', $var->amount);
+                    Transaction::where('ref_id', $request->trx_ref)->update(['status' => 2]);
+
+
+                    $user_email = Auth::user()->email;
+                    $message = "$user_email | $request->trx_ref | $session_id | $var->amount | just resolved deposit | Verify ASAP";
+                    send_notification($message);
+                    send_notification2($message);
+                    send_notification3($message);
+
+
+                    return redirect('fund-wallet')->with('message', "Transaction successfully Resolved, NGN $amount added to ur wallet");
+                }
+
+                if ($status == false) {
+                    return back()->with('error', "$messager");
+                }
+
+                return back()->with('error', "please try again later");
+            }
+
+        }
+
+        if ($request->bank_type == "palmpay") {
+
+            if ($request->trx_ref == null || $request->session_id == null) {
+                return back()->with('error', "Session ID or Ref Can not be null");
+            }
+
+            $trx = Transaction::where('ref_id', $request->trx_ref)->first()->status ?? null;
+            $ck_trx = (int)$trx;
+            if ($ck_trx == 2) {
+
+                $email = Auth::user()->email;
+                $message = "$email | Verify ASAP  | is trying to fund and a successful order with orderid $request->trx_ref";
+                send_notification2($message);
+
+                $message = "$email | Verify ASAP  | is trying to fund and a successful order with orderid $request->trx_ref";
+                send_notification($message);
+                send_notification3($message);
+
+
+                return back()->with('error', "This Transaction has been successful");
+            }
+
+
+            if ($ck_trx != 1) {
+
+                $email = Auth::user()->email;
+                $message = "$email | Verify ASAP  | is trying to fund and a successful order with orderid $request->trx_ref";
+                send_notification2($message);
+
+
+                $message = "$email | Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
+                send_notification($message);
+                send_notification3($message);
+
+
+                return back()->with('error', "This Transaction has been successful");
+            }
+
+            if ($ck_trx == 2) {
+
+                $email = Auth::user()->email;
+                $message = "$email |Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
+                send_notification2($message);
+
+                $message = "$email | Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
+                send_notification($message);
+                send_notification3($message);
+
+
+                return back()->with('error', "This Transaction has been successful");
+            }
+
+
+            if ($ck_trx == 4) {
+
+                $email = Auth::user()->email;
+                $message = "$email |Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
+                send_notification2($message);
+
+                $message = "$email | Verify ASAP | is trying to fund and a successful order with orderid $request->trx_ref";
+                send_notification($message);
+                send_notification3($message);
+
+
+                return back()->with('error', "This Transaction has been resolved");
+            }
+
+
+            if ($ck_trx == 1) {
+                $session_id = $request->session_id;
+                if ($session_id == null) {
+                    $notify[] = ['error', "session id or amount cant be empty"];
+                    return back()->withNotify($notify);
+                }
+
+
+                $curl = curl_init();
+                $databody = array(
+                    'session_id' => "$session_id",
+                    'ref' => "$request->trx_ref"
+
+                );
+
+                curl_setopt_array($curl, array(
+                    CURLOPT_URL => 'https://web.enkpay.com/api/resolve-others',
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'POST',
+                    CURLOPT_POSTFIELDS => $databody,
+                ));
+
+                $var = curl_exec($curl);
+                curl_close($curl);
+                $var = json_decode($var);
+
+
+                $messager = $var->message ?? null;
+                $status = $var->status ?? null;
+                $trx = $var->trx ?? null;
+                $amount = $var->amount ?? null;
+
+                if ($status == true) {
+                    User::where('id', Auth::id())->increment('wallet', $var->amount);
+                    Transaction::where('ref_id', $request->trx_ref)->update(['status' => 2]);
+
+
+                    $user_email = Auth::user()->email;
+                    $message = "$user_email | $request->trx_ref | $session_id | $var->amount | just resolved deposit | Verify ASAP";
+                    send_notification($message);
+                    send_notification2($message);
+                    send_notification3($message);
+
+
+                    return redirect('fund-wallet')->with('message', "Transaction successfully Resolved, NGN $amount added to ur wallet");
+                }
+
+                if ($status == false) {
+                    return back()->with('error', "$messager");
+                }
+
+                return back()->with('error', "please try again later");
+            }
+
+        }
+
+
+        return back();
+
+
     }
 
 
-    public function  get_smscode(request $request)
+    public function get_smscode(request $request)
     {
 
 
-        $sms =  Verification::where('phone', $request->num)->first()->sms ?? null;
-        $order_id =  Verification::where('phone', $request->num)->first()->order_id ?? null;
+        $sms = Verification::where('phone', $request->num)->first()->sms ?? null;
+        $order_id = Verification::where('phone', $request->num)->first()->order_id ?? null;
         check_sms($order_id);
 
 
@@ -1373,13 +1531,10 @@ class HomeController extends Controller
     }
 
 
-
-
-
     public function e_check(request $request)
     {
 
-        $get_user =  User::where('email', $request->email)->first() ?? null;
+        $get_user = User::where('email', $request->email)->first() ?? null;
 
         if ($get_user == null) {
 
@@ -1400,7 +1555,7 @@ class HomeController extends Controller
     public function e_fund(request $request)
     {
 
-        $get_user =  User::where('email', $request->email)->first() ?? null;
+        $get_user = User::where('email', $request->email)->first() ?? null;
 
         if ($get_user == null) {
 
@@ -1410,7 +1565,7 @@ class HomeController extends Controller
             ]);
         }
 
-        User::where('email', $request->email)->increment('wallet', $request->amount) ?? null;
+            User::where('email', $request->email)->increment('wallet', $request->amount) ?? null;
 
         $amount = number_format($request->amount, 2);
 
