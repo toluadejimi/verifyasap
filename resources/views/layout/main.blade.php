@@ -1704,7 +1704,7 @@
                                             <li><a href="/fund-wallet">Fund Wallet<i class="fas fa-chevron-down"></i></a></li>
                                             <li><a href="/orders">Orders<i class="fas fa-chevron-down"></i></a></li>
                                             <li><a href="/contact">Contact<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a style="color: red" href="/logout">Log Out<i class="fas fa-chevron-down"></i></a></li>
+                                            <li><a style="color: red" href="/log-out">Log Out<i class="fas fa-chevron-down"></i></a></li>
 
                                         </ul>
                                     </div>
@@ -1729,8 +1729,9 @@
                                             <a href="/home">Home<i class="fa fa-angle-down"></i></a>
                                         </li>
                                         <li class="page_menu_item"><a href="/fund-wallet">Fund Wallet<i class="fa fa-angle-down"></i></a></li>
-                                        <li class="page_menu_item"><a href="/Orders">Orders<i class="fa fa-angle-down"></i></a></li>
-                                          <li><a style="color: red" href="/logout">Log Out<i class="fas fa-chevron-down"></i></a></li>
+                                        <li class="page_menu_item"><a href="/orders">Orders<i class="fa fa-angle-down"></i></a></li>
+                                        <li style="color: red" class="page_menu_item"><a href="/log-out">Logout<i class="fa fa-angle-down"></i></a></li>
+
 
                                     </ul>
 
