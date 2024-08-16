@@ -31,32 +31,29 @@ class HomeController extends Controller
     public function home(request $request)
     {
 
+
         $countries = get_countries();
         $services = get_services();
 
-        $verification = Verification::where('user_id', Auth::id())->get();
-        $verifications = Verification::where('user_id', Auth::id())->where('status', 1)->get();
+        $verification = Verification::where('user_id', Auth::id())->get() ?? null;
+        $verifications = Verification::where('user_id', Auth::id())->where('status', 1)->get() ?? null;
+
+
+        $data['pay'] = PaymentMethod::all();
+        $data['transaction'] = Transaction::query()
+            ->orderByRaw('updated_at DESC')
+            ->where('user_id', Auth::id())
+            ->take(10)->get();
+
+
 
 
         $data['services'] = $services;
         $data['countries'] = $countries;
         $data['verification'] = $verification;
 
-        if ($verifications->count() == 1) {
 
-            $num = Verification::where('user_id', Auth::id())->where('status', 1)->first() ?? null;
-            $sms = Verification::where('user_id', Auth::id())->where('status', 1)->first()->sms ?? null;
-            $number = Verification::where('user_id', Auth::id())->where('status', 1)->first()->phone ?? null;
 
-            $data['number_order'] = 1;
-            $data['sms'] = $sms;
-            $data['number'] = $number;
-            $data['num'] = $num;
-
-            return view('home2', $data);
-        } else {
-            $data['pend'] = 0;
-        }
 
         $data['product'] = null;
 
@@ -99,13 +96,24 @@ class HomeController extends Controller
     public function check_av(Request $request)
     {
 
+
+
+        $data['pay'] = PaymentMethod::all();
+        $data['transaction'] = Transaction::query()
+            ->orderByRaw('updated_at DESC')
+            ->where('user_id', Auth::id())
+            ->take(10)->get();
+
+
+
+
         $key = env('KEY');
 
 
         $databody = array(
             "key" => $key,
-            "country" => $request->country,
-            "service" => $request->service,
+            "country" => $request->selectedID,
+            "service" => $request->serviceID,
             "pool" => '7',
         );
 
@@ -148,8 +156,8 @@ class HomeController extends Controller
             $ngnprice = ($price * $get_rate) + $margin;
 
 
-            $data['count_id'] = $count_id;
-            $data['serv'] = $request->service;
+            $data['count_id'] = $request->selectedID;
+            $data['serv'] = $request->serviceID;
             $data['verification'] = $verification;
             $countries = get_countries();
             $services = get_services();
@@ -158,6 +166,7 @@ class HomeController extends Controller
             $data['rate'] = $rate;
             $data['price'] = $ngnprice;
             $data['product'] = 1;
+            $data['country_name'] = $request->country_name;
 
             $data['number_order'] = null;
 
@@ -168,7 +177,6 @@ class HomeController extends Controller
                 $data['pend'] = 0;
             }
 
-
             return view('home', $data);
         }
     }
@@ -177,22 +185,16 @@ class HomeController extends Controller
     public function order_now(Request $request)
     {
 
+
         if (Auth::user()->wallet < $request->price) {
             return back()->with('error', "Insufficient Funds");
         }
-
 
         if ($request->price == null) {
             return redirect('home')->with('message', 'SMS Code fetch');
         }
 
-        $ckn = Verification::where('user_id', Auth::id())->where('status', 1) ?? null;
-        if ($ckn->count() == 1) {
-            return redirect('home')->with('error', "Complete or End Pending Order");
-        }
-
-
-            User::where('id', Auth::id())->decrement('wallet', $request->price) ?? null;
+        User::where('id', Auth::id())->decrement('wallet', $request->price) ?? null;
 
         $country = $request->country;
         $service = $request->service;
@@ -248,7 +250,7 @@ class HomeController extends Controller
             $data['num'] = $num;
 
 
-            return view('home2', $data);
+            return redirect('home')->with('message', "Order Placed");
         }
     }
 
@@ -1588,4 +1590,203 @@ class HomeController extends Controller
             'message' => "NGN $amount has been successfully added to your wallet",
         ]);
     }
+
+
+
+
+
+
+    public  function getInitialCountdown(request $request)
+    {
+
+        $ver = Verification::where('id', $request->id)->first()->status;
+        if($ver == 1){
+            $secs = Verification::where('id', $request->id)->first()->expires_in;
+            return response()->json([
+                'seconds' => $secs
+            ]);
+        }
+
+
+
+
+    }
+
+
+
+    public function cancle_sms_timer(Request $request)
+    {
+        $order = Verification::where('id', $request->id)->first() ?? null;
+
+        if ($order == null) {
+
+            return response()->json([
+                'message' => "Order not found"
+            ]);
+        }
+
+        if ($order->status == 2) {
+            return response()->json([
+                'message' => "Order Completed"
+            ]);
+        }
+
+        if ($order->status == 1 && $order->type == 1) {
+
+            $orderID = $order->order_id;
+            $can_order = cancel_order($orderID);
+
+            if($request->delete == 1){
+
+                if($order->status == 1){
+
+                    $amount = number_format($order->cost, 2);
+                    User::where('id', Auth::id())->increment('wallet', $order->cost);
+                    Verification::where('id', $request->id)->delete();
+
+                    $message = Auth::user()->email." just been refunded | $order->cost";
+                    send_notification($message);
+                    send_notification2($message);
+
+                    return response()->json([
+                        'message' => "Order has been cancled, NGN$amount has been refunded"
+                    ]);
+
+
+                }
+
+
+            }
+
+
+            if ($can_order == 0) {
+
+                $usr = User::where('id', $order->user_id)->first();
+                $amount = number_format($order->cost, 2);
+                Verification::where('id', $request->id)->delete();
+
+                User::where('id', $order->user_id)->increment('wallet', $order->cost);
+
+
+                return response()->json([
+                    'message' => "Order has been removed"
+                ]);
+            }
+
+
+            if ($can_order == 1) {
+
+                $amount = number_format($order->cost, 2);
+                Verification::where('id', $request->id)->delete();
+
+                User::where('id', $order->user_id)->increment('wallet', $order->cost);
+
+                return response()->json([
+                    'message' => "Order has been canceled, NGN$amount has been refunded"
+                ]);
+
+            }
+
+
+            if ($can_order == 3) {
+                $order = Verification::where('id', $request->id)->first() ?? null;
+                if ($order->status != 1 || $order == null) {
+                    return response()->json([
+                        'message' => "Please try again later"
+                    ]);
+                }
+                $amount = number_format($order->cost, 2);
+                User::where('id', $order->user_id)->increment('wallet', $order->cost);
+                Verification::where('id', $request->id)->delete();
+
+
+                return response()->json([
+                    'message' => "Order has been canceled, NGN$amount has been refunded"
+                ]);
+
+            }
+        }
+
+        if ($order->status == 1 && $order->type == 2) {
+
+
+            $orderID = $order->order_id;
+
+            $can_order = cancel_world_order($orderID);
+
+            if($request->delete == 1){
+
+
+                if($order->status == 1){
+
+                    $amount = number_format($order->cost, 2);
+                    User::where('id', $order->user_id)->increment('wallet', $order->cost);
+                    Verification::where('id', $request->id)->delete();
+
+
+                    return response()->json([
+                        'message' => "Order has been canceled, NGN$amount has been refunded"
+                    ]);
+
+
+
+                }
+
+
+            }
+
+
+            if ($can_order == 0) {
+                return response()->json([
+                    'message' => "Your order cannot be cancelled yet, please try again later"
+                ]);
+            }
+
+
+            if ($can_order == 1) {
+                $amount = number_format($order->cost, 2);
+                User::where('id', $order->user_id)->increment('wallet', $order->cost);
+                Verification::where('id', $request->id)->delete();
+
+                return response()->json([
+                    'message' => "Order has been canceled, NGN$amount has been refunded"
+                ]);
+
+            }
+
+
+            if ($can_order == 3) {
+                $order = Verification::where('id', $request->id)->first() ?? null;
+                if ($order->status != 1 || $order == null) {
+
+                    return response()->json([
+                        'message' => "Please try again later"
+                    ]);
+                }
+                $amount = number_format($order->cost, 2);
+                User::where('id', $order->user_id)->increment('wallet', $order->cost);
+                Verification::where('id', $request->id)->delete();
+
+                return response()->json([
+                    'message' => "Order has been canceled, NGN$amount has been refunded"
+                ]);
+
+            }
+        }
+    }
+
+
+
+    public function updatesec(request $request)
+    {
+
+        $ver = Verification::where('id', $request->id)->first()->status;
+
+        if($ver == 1){
+            Verification::where('id', $request->id)->update(['expires_in' => $request->secs]);
+        }
+
+    }
+
+
 }

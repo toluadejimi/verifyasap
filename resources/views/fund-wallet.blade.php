@@ -662,54 +662,6 @@
         </div>
 
 
-        <form id="myDiv" action="fund-now" class="grid grid-cols-1" gap-3 method="POST">
-            @csrf
-
-            <label class="mt-3 mb-3 text-gray-600 font-bold gap-3 text-sm">Enter the Amount (NGN)</label>
-            <div class="flex">
-                        <span
-                            class="inline-flex items-center px-4 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500">
-                            NGN
-                        </span>
-                <input
-                    class="border-gray-300 gap-3 focus:border-primary focus:ring-1 focus:ring-primary focus:ring-opacity-50 rounded-md shadow-sm block w-full rounded-l-none"
-                    id="amount" type="number" max="999999" min="5" name="amount"
-                    placeholder="Enter the Amount you want Add" required="required">
-            </div>
-
-
-            <div class="flex mt-5 mb-4">
-
-
-                <div class="flex">
-
-                            <span
-                                class="inline-flex  items-center px-10 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500">
-                                Paywith
-                            </span>
-
-                    <select name="type"
-                            class="border-gray-300 gap-3 focus:border-primary focus:ring-1 focus:ring-primary focus:ring-opacity-50 rounded-md shadow-sm block w-full rounded-l-none"
-                            id="amount" type="number" max="999999" min="5" name="amount"
-                            placeholder="Enter the Amount you want Add" required="required">
-                        @foreach ($pay as $data)
-                            <option class="text-center" value="{{$data->id}}"> {{$data->title}} </option>
-                        @endforeach
-                    </select>
-                </div>
-
-            </div>
-
-
-            <div
-                class="text-blue-500 text-center text-sm justify-center items-stretch bg-blue-500 bg-opacity-20 self-stretch mt-2 px-6 py-3 rounded-xl">
-                Add more funds to wallet.
-            </div>
-            <button type="submit"
-                    class="text-white text-xl font-bold whitespace-nowrap justify-center items-stretch bg-blue-500 self-center mt-11 mb-11 px-12 py-5 rounded-3xl">
-                Add Funds
-            </button>
-        </form>
 
 
     </div>

@@ -54,6 +54,7 @@ Route::post('update-password-now',  [HomeController::class,'update_password_now'
 
 Route::any('get-smscode',  [HomeController::class,'get_smscode']);
 
+Route::any('getInitialCountdown',  [HomeController::class,'getInitialCountdown']);
 
 
 
@@ -75,20 +76,20 @@ Route::group(['middleware' => ['auth', 'user', 'session.timeout']], function () 
     Route::any('delete-order',  [HomeController::class,'delete_order']);
 
 
-    
 
 
-    
+
+
 
 
 
     Route::any('check-av',  [HomeController::class,'check_av']);
-    
+
     Route::any('order_now',  [HomeController::class,'order_now']);
-    
+
     Route::any('cancle-sms',  [HomeController::class,'cancle_sms']);
     Route::any('check-sms',  [HomeController::class,'check_sms']);
-    
+
 
 Route::get('welcome',  [HomeController::class,'welcome_index']);
 Route::get('fund-wallet',  [HomeController::class,'fund_wallet']);

@@ -329,16 +329,12 @@ function create_order($country, $service, $price){
     curl_close($curl);
     $var = json_decode($var);
 
-
-
     $success = $var->success ?? null;
 
     if($success == 0){
         return 5;
 
     }
-
-
 
     if($success == 1){
 
@@ -348,8 +344,8 @@ function create_order($country, $service, $price){
         $ver->order_id = $var->order_id;
         $ver->country = $var->country;
         $ver->service = $var->service;
-        $ver->expires_in = $var->expires_in / 10 - 20;
         $ver->cost = $price;
+        $ver->expires_in = 300;
         $ver->api_cost = $var->cost;
         $ver->status = 1;
 
