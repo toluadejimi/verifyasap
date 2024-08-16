@@ -1011,7 +1011,7 @@
         .main_nav_content
         {
             width: 100%;
-            height: 60px;
+            height: 0px;
         }
         .cat_menu_container
         {
@@ -1564,7 +1564,7 @@
             }
             .main_nav_content
             {
-                height: 35px;
+                height: 0px;
             }
 
             .menu_trigger_container
