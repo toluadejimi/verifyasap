@@ -1726,10 +1726,12 @@
 
                                     <ul class="page_menu_nav">
                                         <li class="page_menu_item">
-                                            <a href="#">Home<i class="fa fa-angle-down"></i></a>
+                                            <a href="/home">Home<i class="fa fa-angle-down"></i></a>
                                         </li>
-                                        <li class="page_menu_item"><a href="/order">Orders<i class="fa fa-angle-down"></i></a></li>
-                                        <li class="page_menu_item"><a href="/contact">contact<i class="fa fa-angle-down"></i></a></li>
+                                        <li class="page_menu_item"><a href="/fund-wallet">Fund Wallet<i class="fa fa-angle-down"></i></a></li>
+                                        <li class="page_menu_item"><a href="/Orders">Orders<i class="fa fa-angle-down"></i></a></li>
+                                          <li><a style="color: red" href="/logout">Log Out<i class="fas fa-chevron-down"></i></a></li>
+
                                     </ul>
 
 
