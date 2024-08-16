@@ -341,6 +341,7 @@ class HomeController extends Controller
         $transaction = Transaction::query()
             ->orderByRaw('updated_at DESC')
             ->where('user_id', Auth::id())
+            ->take('10')
             ->get();
 
         return view('fund-wallet', compact('user', 'pay', 'transaction'));
