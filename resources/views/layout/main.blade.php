@@ -1012,7 +1012,7 @@
         .main_nav_content
         {
             width: 100%;
-            height: 0px;
+            height: 55px;
         }
         .cat_menu_container
         {
