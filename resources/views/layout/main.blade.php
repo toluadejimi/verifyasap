@@ -177,6 +177,7 @@
             z-index: 1;
             width: 100%;
             box-sizing: border-box;
+            margin-top: 70px;
         }
         .dropdown .item {
             padding: 10px;

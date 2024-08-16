@@ -76,7 +76,7 @@
                         <div class="search-container d-flex justify-content-center mb-3">
                             <input type="text" id="search" name="country_name"
                                    class="search-box d-flex justify-content-center"
-                                   placeholder="Search here"
+                                   placeholder="Search country"
                                    onkeyup="filterItems()" onclick="toggleDropdown()">
                             <div id="dropdown" class="dropdown">
                                 @foreach ($countries as $data)
@@ -92,7 +92,7 @@
                             Service </h6>
                         <div class="search-container d-flex justify-content-center mb-3">
                             <input type="text" id="searchservice" class="search-box d-flex justify-content-center"
-                                   placeholder="Search here"
+                                   placeholder="Search service"
                                    onkeyup="filterItemsservice()" onclick="toggleDropdownservice()">
                             <div id="dropdownservice" class="dropdown">
                                 @foreach ($services as $data)
