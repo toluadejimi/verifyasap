@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="5">
+    <meta http-equiv="refresh" content="10">
 
     <!-- Mobile Specific Metas -->
     <meta name="viewport"
