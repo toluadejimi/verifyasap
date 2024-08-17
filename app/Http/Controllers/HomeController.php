@@ -250,7 +250,7 @@ class HomeController extends Controller
             $data['num'] = $num;
 
 
-            return redirect('home')->with('message', "Order Placed");
+            return redirect('verification')->with('message', "Order Placed");
         }
     }
 
