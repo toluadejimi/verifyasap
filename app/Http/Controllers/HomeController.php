@@ -1517,15 +1517,11 @@ class HomeController extends Controller
         send_notification2($message1);
 
 
-        $activationId = $request->activationId;
-        $messageId = $request->messageId;
-        $service = $request->service;
-        $text = $request->text;
-        $code = $request->code;
-        $country = $request->country;
-        $receivedAt = $request->receivedAt;
+        $activationId = $request->orderid;
+        $code = $request->sms;
         Verification::where('order_id', $activationId)->update([
             'sms' => $code,
+            'full_sms' => $request->full_sms,
             'status' => 2,
         ]);
 
