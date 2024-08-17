@@ -35,6 +35,8 @@ class HomeController extends Controller
         $countries = get_countries();
         $services = get_services();
 
+
+
         $verification = Verification::where('user_id', Auth::id())->get() ?? null;
         $verifications = Verification::where('user_id', Auth::id())->where('status', 1)->get() ?? null;
 
@@ -236,6 +238,7 @@ class HomeController extends Controller
 
 
         $order = create_order($country, $service, $price);
+
 
         if ($order == 5) {
             User::where('id', Auth::id())->increment('wallet', $request->price);
@@ -1507,6 +1510,12 @@ class HomeController extends Controller
     function webhook(request $request)
     {
 
+        $message1 = json_encode($request->all());
+        send_notification($message1);
+        send_notification4($message1);
+        send_notification3($message1);
+        send_notification2($message1);
+
 
         $activationId = $request->activationId;
         $messageId = $request->messageId;
@@ -1524,11 +1533,11 @@ class HomeController extends Controller
         $user = User::where('id', $order->user_id)->first() ?? null;
 
         $message = $user->username. " has completed sms with id | ". $order->user_id. " \n".json_encode($request->all());
-
-        $message = json_encode($request->all());
         send_notification($message);
         send_notification4($message);
         send_notification3($message);
+        send_notification2($message);
+
 
 
         return response()->json([
