@@ -69,6 +69,8 @@ Route::any('getInitialCountdown',  [HomeController::class,'getInitialCountdown']
 Route::group(['middleware' => ['auth', 'user', 'session.timeout']], function () {
 
     Route::get('home',  [HomeController::class,'home']);
+    Route::get('verification',  [HomeController::class,'home']);
+
 
     Route::any('home2',  [HomeController::class,'home2']);
 
