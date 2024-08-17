@@ -138,7 +138,7 @@
                     <div class="d-flex justify-content-center">
 
                         <a href="/home" style="background: #4079E0; font-size:16px;  color: white" type="submit"
-                                class="btn btn-primary btn-lg mt-3">Buy Number
+                                class="btn btn-primary btn-lg w-100 mt-3">Order Number
                         </a>
 
                     </div>
