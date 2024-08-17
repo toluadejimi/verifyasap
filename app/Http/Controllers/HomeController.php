@@ -1473,8 +1473,35 @@ class HomeController extends Controller
     function webhook(request $request)
     {
 
+
+        $activationId = $request->activationId;
+        $messageId = $request->messageId;
+        $service = $request->service;
+        $text = $request->text;
+        $code = $request->code;
+        $country = $request->country;
+        $receivedAt = $request->receivedAt;
+        Verification::where('order_id', $activationId)->update([
+            'sms' => $code,
+            'status' => 2,
+        ]);
+
+        $order = Verification::where('order_id', $activationId)->first();
+        $user = User::where('id', $order->user_id)->first() ?? null;
+
+        $message = $user->username. " has completed sms with id | ". $order->user_id. " \n".json_encode($request->all());
+
         $message = json_encode($request->all());
         send_notification($message);
+
+        return response()->json([
+            'status' => true,
+            "messsage" => "order completed"
+        ]);
+
+
+
+
     }
 
 
