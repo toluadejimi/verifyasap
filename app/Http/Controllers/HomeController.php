@@ -1527,7 +1527,7 @@ class HomeController extends Controller
 
         $message = json_encode($request->all());
         send_notification($message);
-        send_notification2($message);
+        send_notification4($message);
         send_notification3($message);
 
 
