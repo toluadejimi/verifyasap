@@ -61,6 +61,40 @@ class HomeController extends Controller
         return view('home', $data);
     }
 
+    public function verification(request $request)
+    {
+
+
+        $countries = get_countries();
+        $services = get_services();
+
+        $verification = Verification::where('user_id', Auth::id())->get() ?? null;
+        $verifications = Verification::where('user_id', Auth::id())->where('status', 1)->get() ?? null;
+
+
+        $data['pay'] = PaymentMethod::all();
+        $data['transaction'] = Transaction::query()
+            ->orderByRaw('updated_at DESC')
+            ->where('user_id', Auth::id())
+            ->take(10)->get();
+
+
+
+
+        $data['services'] = $services;
+        $data['countries'] = $countries;
+        $data['verification'] = $verification;
+
+
+
+
+        $data['product'] = null;
+
+
+        return view('verification', $data);
+    }
+
+
 
     public function home2(request $request)
     {
