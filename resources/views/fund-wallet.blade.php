@@ -52,7 +52,7 @@
                     <div class="col-12  d-flex justify-content-center mb-5">
                         <select type="text" class="form-control2" name="type" required>
                             <option value="1">Instant</option>
-                            <option value="2">Manual</option>
+{{--                            <option value="2">Manual</option>--}}
                         </select>
                     </div>
 
